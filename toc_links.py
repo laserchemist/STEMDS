@@ -40,7 +40,7 @@ GREY   = "#555555"
 # ── helpers ───────────────────────────────────────────────────────────────────
 
 def nbgitpuller(filename):
-    urlpath = f"tree/{FOLDER}/{filename}"
+    urlpath = f"lab/tree/{FOLDER}/{filename}"
     return (f"{HUB}/hub/user-redirect/git-pull"
             f"?repo={quote(REPO, safe='')}"
             f"&urlpath={quote(urlpath, safe='')}"
