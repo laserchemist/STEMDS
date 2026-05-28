@@ -33,8 +33,12 @@ ACTIVITIES = [
     ("Activity1_Planetary_Data_Lab.ipynb",       "🪐 Activity 1","Planetary Data Lab"),
     ("Activity2_Planet_Builder_Simulator.ipynb", "🚀 Activity 2","Planet Builder Simulator"),
     ("Lab04-Functions-A.ipynb",                  "🧮 Lab 04",    "Functions"),
+<<<<<<< Updated upstream
     ("Code_Library.ipynb",                       "📖 Your Code Library", "For all your coding needs :)")
 ]
+=======
+ ("Plant_Explorer.ipynb",                  "Plant Similarity: Photo Investigation",    "Plant Identification")]
+>>>>>>> Stashed changes
 
 # ── Instructor-only notebooks ─────────────────────────────────────────────────
 # These appear in a separate grey section at the bottom of the TOC.
