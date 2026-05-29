@@ -1,0 +1,158 @@
+[
+  {
+    "question": "Which Python data type would you use to store someone's name?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "int",
+        "correct": false,
+        "feedback": "Not quite. int stores whole numbers like 42, not text."
+      },
+      {
+        "answer": "float",
+        "correct": false,
+        "feedback": "Not quite. float stores decimal numbers like 3.14, not text."
+      },
+      {
+        "answer": "str",
+        "correct": true,
+        "feedback": "Correct! str (string) stores text — characters between quotes."
+      },
+      {
+        "answer": "bool",
+        "correct": false,
+        "feedback": "Not quite. bool only stores True or False."
+      }
+    ]
+  },
+  {
+    "question": "What does int(3.9) evaluate to in Python?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "4",
+        "correct": false,
+        "feedback": "Close, but int() truncates (chops off) the decimal — it does NOT round."
+      },
+      {
+        "answer": "3",
+        "correct": true,
+        "feedback": "Correct! int() truncates toward zero, so 3.9 becomes 3."
+      },
+      {
+        "answer": "3.9",
+        "correct": false,
+        "feedback": "No — int() converts the float to an integer by removing the decimal part."
+      },
+      {
+        "answer": "This causes an error",
+        "correct": false,
+        "feedback": "No — Python happily converts a float to int. It would error on int('hello') though!"
+      }
+    ]
+  },
+  {
+    "question": "What is the result of 'hello'.replace('l', 'r')?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "'herlo'",
+        "correct": false,
+        "feedback": "replace() changes ALL occurrences, not just the first one."
+      },
+      {
+        "answer": "'herro'",
+        "correct": true,
+        "feedback": "Correct! Both 'l' characters are replaced — .replace() is global by default."
+      },
+      {
+        "answer": "'hello'",
+        "correct": false,
+        "feedback": "Strings are immutable — methods return a new string — but replace() does make a change here."
+      },
+      {
+        "answer": "An error",
+        "correct": false,
+        "feedback": "No error — .replace(old, new) is a standard string method."
+      }
+    ]
+  },
+  {
+    "question": "Which expression creates an array of even numbers from 2 to 10 (inclusive)?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "np.arange(2, 10, 2)",
+        "correct": false,
+        "feedback": "Almost! arange stops BEFORE the stop value, so this gives [2, 4, 6, 8] — missing 10."
+      },
+      {
+        "answer": "np.arange(2, 11, 2)",
+        "correct": true,
+        "feedback": "Correct! Start at 2, stop before 11, step by 2 → [2, 4, 6, 8, 10]."
+      },
+      {
+        "answer": "np.arange(2, 10)",
+        "correct": false,
+        "feedback": "No stride given — this gives every integer from 2 to 9, not just even numbers."
+      },
+      {
+        "answer": "make_array(2, 10, 2)",
+        "correct": false,
+        "feedback": "make_array() lists exact values — make_array(2, 10, 2) gives just [2, 10, 2], not a range."
+      }
+    ]
+  },
+  {
+    "question": "What does len('data science') return?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "2",
+        "correct": false,
+        "feedback": "2 would be the word count. len() counts individual characters."
+      },
+      {
+        "answer": "11",
+        "correct": false,
+        "feedback": "Close — but don't forget the space between the two words!"
+      },
+      {
+        "answer": "12",
+        "correct": true,
+        "feedback": "Correct! 'd-a-t-a- -s-c-i-e-n-c-e' = 12 characters including the space."
+      },
+      {
+        "answer": "13",
+        "correct": false,
+        "feedback": "Count again — 'data science' has 4 + 1 (space) + 7 = 12 characters."
+      }
+    ]
+  },
+  {
+    "question": "Why is 'from math import *' generally discouraged in large programs?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "It imports too slowly",
+        "correct": false,
+        "feedback": "Speed is not the concern. Star imports are fast."
+      },
+      {
+        "answer": "It can overwrite variables you already defined with the same name",
+        "correct": true,
+        "feedback": "Correct! If math defines 'floor' and you already used that name, your variable gets silently overwritten. Bugs like this are very hard to track down."
+      },
+      {
+        "answer": "It only works in Jupyter notebooks",
+        "correct": false,
+        "feedback": "Not true — 'from x import *' works in any Python environment."
+      },
+      {
+        "answer": "It prevents you from using numpy",
+        "correct": false,
+        "feedback": "Not true — you can still import and use numpy alongside it."
+      }
+    ]
+  }
+]

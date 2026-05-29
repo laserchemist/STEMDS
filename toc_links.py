@@ -32,6 +32,7 @@ ACTIVITIES = [
     ("lab01_middle_school.ipynb",                "🔬 Lab 01",    "Introduction to Python as a Tool"),
     ("Activity1_Planetary_Data_Lab.ipynb",       "🪐 Activity 1","Planetary Data Lab"),
     ("Activity2_Planet_Builder_Simulator.ipynb", "🚀 Activity 2","Planet Builder Simulator"),
+     ("lab2_middle_school.ipynb", "🧮 Lab 02", "Store data in lists and arrays"),
     ("Lab04-Functions-A.ipynb",                  "🧮 Lab 04",    "Functions"),
 ("Plant_Explorer.ipynb",                  "🌿Plant Similarity: Photo Investigation",    "Plant Identification"),
     ("Code_Library.ipynb",                       "📖 Your Code Library", "For all your coding needs :)")]
