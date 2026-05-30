@@ -1,0 +1,30 @@
+City,State,Population,Area_km2,Region
+New York City,New York,8336817,783,Northeast
+Los Angeles,California,3979576,1302,West
+Chicago,Illinois,2693976,606,Midwest
+Houston,Texas,2304580,1777,South
+Phoenix,Arizona,1608139,1341,West
+Philadelphia,Pennsylvania,1603797,369,Northeast
+San Antonio,Texas,1434625,1194,South
+San Diego,California,1386932,964,West
+Dallas,Texas,1304379,999,South
+San Jose,California,1013240,467,West
+Austin,Texas,961855,773,South
+Jacksonville,Florida,949611,1935,South
+Fort Worth,Texas,895008,874,South
+Columbus,Ohio,898553,568,Midwest
+Charlotte,North Carolina,874579,771,South
+Indianapolis,Indiana,876384,941,Midwest
+San Francisco,California,874961,121,West
+Seattle,Washington,737255,217,West
+Denver,Colorado,727211,401,West
+Nashville,Tennessee,689447,1362,South
+Oklahoma City,Oklahoma,649021,1608,South
+El Paso,Texas,678815,668,South
+Boston,Massachusetts,675647,125,Northeast
+Portland,Oregon,652503,376,West
+Las Vegas,Nevada,641903,352,West
+Memphis,Tennessee,633104,756,South
+Louisville,Kentucky,633045,1032,South
+Baltimore,Maryland,609032,238,Northeast
+Milwaukee,Wisconsin,590157,249,Midwest

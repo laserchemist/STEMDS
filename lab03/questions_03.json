@@ -1,0 +1,110 @@
+[
+  {
+    "question": "What does tbl.column('Score') return?",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "A Table with only the Score column",
+       "correct": false,
+       "feedback": "That's what tbl.select('Score') returns. column() extracts the data itself."},
+      {"answer": "An array of the values in the Score column",
+       "correct": true,
+       "feedback": "Correct! .column() returns a NumPy array — the raw data, ready for math."},
+      {"answer": "The number of rows in the Score column",
+       "correct": false,
+       "feedback": "That would be tbl.num_rows. column() gives you the actual values."},
+      {"answer": "A sorted copy of the table",
+       "correct": false,
+       "feedback": "That would be tbl.sort('Score'). column() extracts one column's data."}
+    ]
+  },
+  {
+    "question": "Which predicate finds rows where a value is greater than 50?",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "are.equal_to(50)",
+       "correct": false,
+       "feedback": "are.equal_to(50) finds rows exactly equal to 50."},
+      {"answer": "are.below(50)",
+       "correct": false,
+       "feedback": "are.below(50) finds rows strictly less than 50 — opposite direction!"},
+      {"answer": "are.above(50)",
+       "correct": true,
+       "feedback": "Correct! are.above(50) returns rows where the value is strictly greater than 50."},
+      {"answer": "are.between(50, 100)",
+       "correct": false,
+       "feedback": "are.between(50, 100) finds rows from 50 up to (but not including) 100 — not all values above 50."}
+    ]
+  },
+  {
+    "question": "What is the key difference between select and column?",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "select is faster; column is slower",
+       "correct": false,
+       "feedback": "Speed isn't the distinction. Think about what each one returns."},
+      {"answer": "select returns a Table; column returns an Array",
+       "correct": true,
+       "feedback": "Exactly right! tbl.select('A') → Table (can have multiple columns). tbl.column('A') → array (raw data, one column only)."},
+      {"answer": "column returns a Table; select returns an Array",
+       "correct": false,
+       "feedback": "It's the other way around! select → Table, column → Array."},
+      {"answer": "They return the same thing — just different syntax",
+       "correct": false,
+       "feedback": "They return fundamentally different types. select gives a Table; column gives an Array."}
+    ]
+  },
+  {
+    "question": "What does tbl.sort('Price', descending=True) do?",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "Modifies tbl in place, highest Price first",
+       "correct": false,
+       "feedback": "sort() never modifies the original table — it returns a sorted copy."},
+      {"answer": "Returns a new table sorted from lowest to highest Price",
+       "correct": false,
+       "feedback": "descending=True means highest first, not lowest first."},
+      {"answer": "Returns a new table sorted from highest to lowest Price",
+       "correct": true,
+       "feedback": "Correct! descending=True gives highest-first order, and sort always returns a copy."},
+      {"answer": "Raises an error because sort() doesn't take arguments",
+       "correct": false,
+       "feedback": "sort() definitely takes arguments — the column name, and optionally descending=True."}
+    ]
+  },
+  {
+    "question": "You want rows where Year is between 2000 and 2010 (including 2000, excluding 2010). Which predicate is correct?",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "are.equal_to(2005)",
+       "correct": false,
+       "feedback": "That only finds rows exactly equal to 2005, not the whole range."},
+      {"answer": "are.above(2000)",
+       "correct": false,
+       "feedback": "are.above(2000) starts at 2001 (exclusive) and goes up forever — no upper bound."},
+      {"answer": "are.between(2000, 2010)",
+       "correct": true,
+       "feedback": "Correct! are.between(a, b) keeps rows where a ≤ value < b — so 2000 through 2009."},
+      {"answer": "are.below(2010)",
+       "correct": false,
+       "feedback": "are.below(2010) gives everything before 2010, but has no lower bound — it would include years before 2000."}
+    ]
+  },
+  {
+    "question": "To add a computed column 'Total' = Quiz1 + Quiz2, what's the correct approach?",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "tbl.column('Quiz1') + tbl.column('Quiz2')",
+       "correct": false,
+       "feedback": "This computes the array correctly, but doesn't add it to the table! You need with_column()."},
+      {"answer": "tbl.select('Quiz1', 'Quiz2')",
+       "correct": false,
+       "feedback": "select just picks columns — it doesn't compute anything or add a new one."},
+      {"answer": "tbl.with_column('Total', tbl.column('Quiz1') + tbl.column('Quiz2'))",
+       "correct": true,
+       "feedback": "Correct! Extract both columns as arrays, add them, then use with_column() to attach the result."},
+      {"answer": "tbl.sort('Quiz1') + tbl.sort('Quiz2')",
+       "correct": false,
+       "feedback": "You can't add two Tables together like that. Extract the columns as arrays first."}
+    ]
+  }
+]
