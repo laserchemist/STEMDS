@@ -15,18 +15,13 @@ Expected layout:
         ├── darwin_origin_species.txt
         ├── GroundHogData/
         └── tests/
-
 In the notebook:
     from lab05_init import *
-"""
-
 import sys, os
-
 # ── add parent directory so shared files are importable ──────────────────────
 _parent = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 if _parent not in sys.path:
     sys.path.insert(0, _parent)
-
 # ── standard imports ──────────────────────────────────────────────────────────
 import numpy as np
 import math
@@ -34,25 +29,21 @@ import json, glob
 import nbformat as nbf
 import matplotlib
 import matplotlib.pyplot as plt
-plt.style.use('ggplot')
+get_ipython().run_line_magic("matplotlib", "inline")
+plt.style.use("ggplot")
 from datascience import *
 from gofer.ok import check
 from IPython.display import display
 from jupyterquiz import display_quiz
-
 # ── styling ───────────────────────────────────────────────────────────────────
 from notebook_style import apply_style
 apply_style()
-
 # ── lab version ───────────────────────────────────────────────────────────────
 ver = '2026V105'
-
 # ── current notebook path ─────────────────────────────────────────────────────
 notebook = max(glob.glob('*.ipynb'), key=os.path.getmtime)
-
 # ── JupyterHub username ───────────────────────────────────────────────────────
 user = os.getenv('JUPYTERHUB_USER', 'student')
-
 # ── open-ended answer checker ─────────────────────────────────────────────────
 def test_open(text, notebook, length):
     """Check that the markdown cell after the one containing 'text'
