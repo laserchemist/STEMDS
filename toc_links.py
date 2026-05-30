@@ -68,7 +68,7 @@ HS_ACTIVITIES = [
     ("lab02/lab2_high_school.ipynb",
         "🧮 Lab 02",   "Data types — numbers, strings, arrays"),
     ("lab03/lab3_high_school.ipynb",
-        "🗃️ Lab 03",   "Tables — organising & analysing data"),
+        "🗃️ Lab 03",   "Tables — organizing & analyzing data"),
     ("Lab04-Functions-A.ipynb",
         "⚙️ Lab 04",   "Functions"),
     ("Plant_Explorer.ipynb",
