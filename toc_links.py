@@ -1,15 +1,21 @@
 """
 toc_links.py
 ============
-Run this script to regenerate TOC.ipynb:
+Run this script to regenerate all four TOC notebooks:
 
     python toc_links.py
 
+Generates:
+    TOC.ipynb              — Middle school, full (instructor section included)
+    TOC_student.ipynb      — Middle school, student-only
+    TOC_hs.ipynb           — High school, full (instructor section included)
+    TOC_hs_student.ipynb   — High school, student-only
+
 All nbgitpuller URL logic and button styling lives here.
-TOC.ipynb is pure markdown — no code cells, no execution needed.
+TOC notebooks are pure markdown — no code cells, no execution needed.
 
 To add a new notebook:
-    Add one line to ACTIVITIES in the format:
+    Add one line to MS_ACTIVITIES or HS_ACTIVITIES in the format:
     ("filename.ipynb",  "emoji Label",  "Short description"),
 """
 
@@ -23,56 +29,115 @@ REPO   = "https://github.com/laserchemist/STEMDS"
 BRANCH = "main"
 FOLDER = "STEMDS"   # subfolder the repo clones into on the hub
 
-# ── Student-facing notebooks ──────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════════════════════
+#  MIDDLE SCHOOL activities
+# ══════════════════════════════════════════════════════════════════════════════
 # Each entry: ("filename.ipynb",  "emoji Label",  "Short description")
-# ALL THREE fields are required — missing the description will crash at build time.
+# ALL THREE fields are required — missing the description crashes at build time.
 
-ACTIVITIES = [
-    ("lab00_middle_school.ipynb",                "🔬 Lab 00",    "Introduction to Data Science"),
-    ("lab01_middle_school.ipynb",                "🔬 Lab 01",    "Introduction to Python as a Tool"),
-    ("Activity1_Planetary_Data_Lab.ipynb",       "🪐 Activity 1","Planetary Data Lab"),
-    ("Activity2_Planet_Builder_Simulator.ipynb", "🚀 Activity 2","Planet Builder Simulator"),
-     ("lab2_middle_school.ipynb", "🧮 Lab 02", "Store data in lists and arrays"),
-    ("lab03/lab3_middle_school.ipynb", "🧮 Lab 03", "Tables for data!"),
-    ("Lab04-Functions-A.ipynb",                  "🧮 Lab 04",    "Functions"),
-("Plant_Explorer.ipynb",                  "🌿Plant Similarity: Photo Investigation",    "Plant Identification"),
-    ("Code_Library.ipynb",                       "📖 Your Code Library", "For all your coding needs :)")]
+MS_ACTIVITIES = [
+    ("lab00_middle_school.ipynb",
+        "🔬 Lab 00",   "Introduction to Data Science"),
+    ("lab01_middle_school.ipynb",
+        "🔬 Lab 01",   "Introduction to Python as a Tool"),
+    ("Activity1_Planetary_Data_Lab.ipynb",
+        "🪐 Activity 1", "Planetary Data Lab"),
+    ("Activity2_Planet_Builder_Simulator.ipynb",
+        "🚀 Activity 2", "Planet Builder Simulator"),
+    ("lab02/lab2_middle_school.ipynb",
+        "🧮 Lab 02",   "Data types — numbers, strings, arrays"),
+    ("lab03/lab3_middle_school.ipynb",
+        "🗃️ Lab 03",   "Tables — organising data"),
+    ("Lab04-Functions-A.ipynb",
+        "⚙️ Lab 04",   "Functions"),
+    ("Plant_Explorer.ipynb",
+        "🌿 Plant Similarity: Photo Investigation", "Plant Identification"),
+    ("Code_Library.ipynb",
+        "📖 Your Code Library", "For all your coding needs :)"),
+]
 
-# ── Instructor-only notebooks ─────────────────────────────────────────────────
-# These appear in a separate grey section at the bottom of the TOC.
-# NOTE: the section is visually separated but not access-restricted —
-# anyone with the link can open the dashboard.  Students don't get this
-# link; the only protection is obscurity.  See LOCKING note below.
+# ══════════════════════════════════════════════════════════════════════════════
+#  HIGH SCHOOL activities
+# ══════════════════════════════════════════════════════════════════════════════
+
+HS_ACTIVITIES = [
+    ("lab00_middle_school.ipynb",          # shared with MS — same intro lab
+        "🔬 Lab 00",   "Introduction to Data Science"),
+    ("lab01_high_school.ipynb",
+        "🔬 Lab 01",   "Introduction to Python as a Tool"),
+    ("lab02/lab2_high_school.ipynb",
+        "🧮 Lab 02",   "Data types — numbers, strings, arrays"),
+    ("lab03/lab3_high_school.ipynb",
+        "🗃️ Lab 03",   "Tables — organising & analysing data"),
+    ("Lab04-Functions-A.ipynb",
+        "⚙️ Lab 04",   "Functions"),
+    ("Plant_Explorer.ipynb",
+        "🌿 Plant Similarity: Photo Investigation", "Plant Identification"),
+    ("Code_Library.ipynb",
+        "📖 Your Code Library", "For all your coding needs :)"),
+]
+
+# ── Instructor-only notebooks (same for both programs) ────────────────────────
+# NOTE: security-by-obscurity only — see LOCKING note below.
 
 INSTRUCTOR = [
-    ("instructor_dashboard.ipynb", "📊 Dashboard", "Instructor Submission Dashboard"),
+    ("instructor_dashboard.ipynb",
+        "📊 Dashboard", "Instructor Submission Dashboard"),
 ]
 
 # ── LOCKING note ──────────────────────────────────────────────────────────────
-# How "locked" is the instructor section?
-#
-#   • Students do not receive the TOC nbgitpuller link that shows this section;
-#     they get a student-only link (see build_toc_student() below).
-#   • Anyone who knows the filename can open the notebook directly, so this is
-#     security-by-obscurity only.
-#   • The dashboard only READS submissions.json — students can't corrupt data
-#     through it because writes require knowing the file path.
-#   • For stronger protection, keep instructor_dashboard.ipynb in a separate
-#     private repo and never push it to laserchemist/STEMDS.
+# Students do not receive the full TOC link that shows this section.
+# The dashboard only READS submissions.json — no write risk through the UI.
+# For stronger protection keep instructor_dashboard.ipynb in a private repo.
 
 # ── colors ────────────────────────────────────────────────────────────────────
 
-CHERRY = "#9B2335"   # Temple cherry
-GREY   = "#555555"
+CHERRY      = "#9B2335"   # Temple cherry  — middle school buttons
+HS_PURPLE   = "#5C2D91"   # Deep violet    — high school buttons
+GREY        = "#555555"   # Instructor section (both)
+
+# ── header HTML ───────────────────────────────────────────────────────────────
+
+def _ms_header():
+    return (
+        '<img src="Temple_flag_morn.png" alt="Temple University" '
+        'style="width:180px;float:right;margin:8px;"/>\n\n'
+        '# 🔬 STEM Data Science\n'
+        '### Temple University · Summer Program · Middle School\n\n'
+        '---'
+    )
+
+def _hs_header():
+    # Psychedelic gradient banner — vivid, bold, high school energy
+    banner = (
+        '<div style="'
+        'background:linear-gradient(135deg,#1a0033,#6a0080,#c800a0,#ff4060,#ff9900,#ffe000);'
+        'border-radius:14px;padding:28px 32px;margin-bottom:18px;'
+        'box-shadow:0 4px 24px rgba(200,0,160,0.35);">\n'
+        '  <img src="Temple_flag_morn.png" alt="Temple University" '
+        'style="width:140px;float:right;margin:0 0 8px 16px;'
+        'border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.4);"/>\n'
+        '  <span style="font-size:2.2em;font-weight:900;'
+        'background:linear-gradient(90deg,#ffe000,#ff9900,#ff4060,#c800a0,#6a0080);'
+        '-webkit-background-clip:text;-webkit-text-fill-color:transparent;'
+        'display:block;line-height:1.2;">⚡ STEM Data Science</span>\n'
+        '  <span style="color:#ffffff;font-size:1.15em;font-weight:600;'
+        'text-shadow:0 1px 4px rgba(0,0,0,0.5);">'
+        'Temple University · Summer Program · High School</span>\n'
+        '</div>\n\n---'
+    )
+    return banner
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
 def nbgitpuller(filename):
     urlpath = f"lab/tree/{FOLDER}/{filename}"
-    return (f"{HUB}/hub/user-redirect/git-pull"
-            f"?repo={quote(REPO, safe='')}"
-            f"&urlpath={quote(urlpath, safe='')}"
-            f"&branch={BRANCH}")
+    return (
+        f"{HUB}/hub/user-redirect/git-pull"
+        f"?repo={quote(REPO, safe='')}"
+        f"&urlpath={quote(urlpath, safe='')}"
+        f"&branch={BRANCH}"
+    )
 
 def button(label, desc, url, color):
     return (
@@ -88,67 +153,46 @@ def button(label, desc, url, color):
     )
 
 def button_group(items, color):
-    # Validate tuples before building — catches missing description early
     for entry in items:
         if len(entry) != 3:
             raise ValueError(
-                f"Each ACTIVITIES entry needs exactly 3 fields "
+                f"Each entry needs exactly 3 fields "
                 f"(filename, label, description).\n"
                 f"  Problem entry: {entry}\n"
                 f"  Got {len(entry)} field(s) instead of 3."
             )
-    return ('<div style="margin:12px 0;">\n' +
-            "\n".join(button(l, d, nbgitpuller(f), color) for f, l, d in items) +
-            '\n</div>')
+    return (
+        '<div style="margin:12px 0;">\n'
+        + "\n".join(button(lbl, desc, nbgitpuller(fname), color)
+                    for fname, lbl, desc in items)
+        + '\n</div>'
+    )
 
-# ── build full TOC (instructor + students) ────────────────────────────────────
+def _resources_section():
+    return (
+        '## 🔗 Resources\n\n'
+        '- [Inferential Thinking — Online Textbook]'
+        '(https://inferentialthinking.com/chapters/intro.html)\n'
+        '- [Datascience Table Reference](http://data8.org/datascience/index.html)\n'
+        '- [Data Science Primer](https://laserchemist.github.io/dprimer/intro.html)\n'
+        '- [EDS Course Website](https://sites.temple.edu/data/)'
+    )
 
-def build_toc(output="TOC.ipynb"):
-    """Full TOC with instructor section — keep this link private."""
-    _write_toc(output, include_instructor=True)
-    print(f"\n📎 Share with STUDENTS (no instructor section):")
-    print(f"   python toc_links.py  → use TOC_student.ipynb link instead")
-    print(f"\n🔒 Instructor link (keep private):")
-    print(f"   {nbgitpuller(output)}")
+def _instructor_section(color=GREY):
+    return '---\n\n## 🔒 Instructor\n\n' + button_group(INSTRUCTOR, color)
 
-# ── build student-only TOC ────────────────────────────────────────────────────
+# ── notebook writer ───────────────────────────────────────────────────────────
 
-def build_toc_student(output="TOC_student.ipynb"):
-    """Student TOC — no instructor section. Share this link freely."""
-    _write_toc(output, include_instructor=False)
-    print(f"\n📎 Share this link with students:")
-    print(f"   {nbgitpuller(output)}")
-
-# ── internal writer ───────────────────────────────────────────────────────────
-
-def _write_toc(output, include_instructor=True):
+def _write_toc(output, header, activities, btn_color, include_instructor):
     sections = [
-        # header
-        ('<img src="Temple_flag_morn.png" alt="Temple University" '
-         'style="width:180px;float:right;margin:8px;"/>\n\n'
-         '# STEM Data Science\n'
-         '### Temple University · Summer Program\n\n'
-         '---'),
-
-        # activities
-        ('## 📚 Activities & Labs\n\n'
-         '*Click any button to open the notebook on the hub.*\n\n'
-         + button_group(ACTIVITIES, CHERRY)),
-
-        # resources
-        ('## 🔗 Resources\n\n'
-         '- [Inferential Thinking — Online Textbook]'
-         '(https://inferentialthinking.com/chapters/intro.html)\n'
-         '- [Datascience Table Reference](http://data8.org/datascience/index.html)\n'
-         '- [Data Science Primer](https://laserchemist.github.io/dprimer/intro.html)\n'
-         '- [EDS Course Website](https://sites.temple.edu/data/)'),
+        header,
+        '## 📚 Activities & Labs\n\n'
+        '*Click any button to open the notebook on the hub.*\n\n'
+        + button_group(activities, btn_color),
+        _resources_section(),
     ]
-
     if include_instructor:
-        sections.append(
-            '---\n\n## 🔒 Instructor\n\n' +
-            button_group(INSTRUCTOR, GREY)
-        )
+        sections.append(_instructor_section())
 
     nb = {
         "nbformat": 4,
@@ -168,10 +212,47 @@ def _write_toc(output, include_instructor=True):
 
     with open(output, "w") as f:
         json.dump(nb, f, indent=1)
-    print(f"Written → {output}")
+    print(f"  Written → {output}")
+    print(f"  Link    → {nbgitpuller(output)}")
+
+# ── public builders ───────────────────────────────────────────────────────────
+
+def build_ms_toc():
+    """Middle school — full (with instructor section). Keep link private."""
+    print("\n📘 Middle School — Full TOC")
+    _write_toc("TOC.ipynb", _ms_header(), MS_ACTIVITIES,
+               CHERRY, include_instructor=True)
+
+def build_ms_toc_student():
+    """Middle school — student-only. Share this link freely."""
+    print("\n📘 Middle School — Student TOC")
+    _write_toc("TOC_student.ipynb", _ms_header(), MS_ACTIVITIES,
+               CHERRY, include_instructor=False)
+
+def build_hs_toc():
+    """High school — full (with instructor section). Keep link private."""
+    print("\n🔥 High School — Full TOC")
+    _write_toc("TOC_hs.ipynb", _hs_header(), HS_ACTIVITIES,
+               HS_PURPLE, include_instructor=True)
+
+def build_hs_toc_student():
+    """High school — student-only. Share this link freely."""
+    print("\n🔥 High School — Student TOC")
+    _write_toc("TOC_hs_student.ipynb", _hs_header(), HS_ACTIVITIES,
+               HS_PURPLE, include_instructor=False)
 
 # ── run ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    build_toc()
-    build_toc_student()
+    build_ms_toc()
+    build_ms_toc_student()
+    build_hs_toc()
+    build_hs_toc_student()
+
+    print("\n" + "="*60)
+    print("SHARE WITH STUDENTS:")
+    print("  Middle school → TOC_student.ipynb link above")
+    print("  High school   → TOC_hs_student.ipynb link above")
+    print("\nKEEP PRIVATE (instructor section):")
+    print("  Middle school → TOC.ipynb link above")
+    print("  High school   → TOC_hs.ipynb link above")
