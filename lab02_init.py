@@ -1,31 +1,52 @@
 """
 lab02_init.py
 =============
-Initialization for Lab 02 — middle school and high school versions.
+Initialization for Lab 02 — all versions.
 Students never need to open or edit this file.
+
+Expected directory layout:
+    course_root/
+    ├── notebook_style.py       ← shared styling
+    ├── lab_submit.py           ← shared submission helper
+    └── lab02/
+        ├── lab02_init.py   ← this file
+        ├── lab02_*.ipynb
+        ├── questions_02.json (if present)
+        └── tests/
 
 In the notebook, the entire setup is just:
     from lab02_init import *
 """
 
-# ── imports ───────────────────────────────────────────────────────────────────
+import sys, os
+
+# ── add parent directory so shared files are importable ──────────────────────
+_parent = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if _parent not in sys.path:
+    sys.path.insert(0, _parent)
+
+# ── standard imports ──────────────────────────────────────────────────────────
 import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+get_ipython().run_line_magic("matplotlib", "inline")
+plt.style.use("ggplot")
 import math
-import json, glob, os
+import json, glob
 import nbformat as nbf
 from datascience import *
 from gofer.ok import check
-from IPython.display import display, YouTubeVideo
+from IPython.display import display
 from jupyterquiz import display_quiz
 
-# ── styling ───────────────────────────────────────────────────────────────────
+# ── styling (from parent directory) ──────────────────────────────────────────
 from notebook_style import apply_style
 apply_style()
 
 # ── lab version ───────────────────────────────────────────────────────────────
 ver = '2026V102'
 
-# ── current notebook path (needed by open-ended tests) ───────────────────────
+# ── current notebook path ─────────────────────────────────────────────────────
 notebook = max(glob.glob('*.ipynb'), key=os.path.getmtime)
 
 # ── JupyterHub username ───────────────────────────────────────────────────────

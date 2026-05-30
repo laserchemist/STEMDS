@@ -1,0 +1,262 @@
+[
+  {
+    "question": "What does <code>tbl.column('Score')</code> return?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "A one-column Table",
+        "correct": false,
+        "feedback": "That's what <code>tbl.select('Score')</code> returns. <code>column()</code> extracts the raw data."
+      },
+      {
+        "answer": "A NumPy array of the values in the Score column",
+        "correct": true,
+        "feedback": "Correct! Use <code>column()</code> when you need the values for arithmetic; use <code>select()</code> when you need a Table."
+      },
+      {
+        "answer": "The number of rows",
+        "correct": false,
+        "feedback": "That's <code>tbl.num_rows</code>. <code>column()</code> gives you the actual values."
+      },
+      {
+        "answer": "A sorted copy of the table",
+        "correct": false,
+        "feedback": "That's <code>tbl.sort('Score')</code>. <code>column()</code> extracts one column's data as an array."
+      }
+    ]
+  },
+  {
+    "question": "Which call correctly builds a Table with columns <em>Name</em> and <em>Score</em>?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "<code>Table(['Name','Score'], [names_arr, scores_arr])</code>",
+        "correct": false,
+        "feedback": "Incorrect syntax \u2014 <code>Table()</code> takes no positional arguments."
+      },
+      {
+        "answer": "<code>Table().with_columns('Name', names_arr, 'Score', scores_arr)</code>",
+        "correct": true,
+        "feedback": "Correct! <code>with_columns()</code> takes alternating label/array pairs."
+      },
+      {
+        "answer": "<code>Table().add('Name', names_arr, 'Score', scores_arr)</code>",
+        "correct": false,
+        "feedback": "The method is <code>with_columns()</code>, not <code>add()</code>."
+      },
+      {
+        "answer": "<code>Table(names_arr, scores_arr, columns=['Name','Score'])</code>",
+        "correct": false,
+        "feedback": "This is pandas-style syntax, not the <code>datascience</code> library."
+      }
+    ]
+  },
+  {
+    "question": "<code>tbl.sort('Price', descending=True)</code> \u2014 which statement is true?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "It modifies <code>tbl</code> in place and returns None",
+        "correct": false,
+        "feedback": "Table methods never modify in place \u2014 they always return a new Table."
+      },
+      {
+        "answer": "It returns a new Table sorted from lowest to highest Price",
+        "correct": false,
+        "feedback": "<code>descending=True</code> means highest first, not lowest first."
+      },
+      {
+        "answer": "It returns a new Table sorted from highest to lowest Price",
+        "correct": true,
+        "feedback": "Correct! <code>sort()</code> always returns a copy; <code>descending=True</code> reverses the order."
+      },
+      {
+        "answer": "It raises an error because <code>descending</code> is not valid",
+        "correct": false,
+        "feedback": "<code>descending</code> is a valid keyword argument for <code>sort()</code>."
+      }
+    ]
+  },
+  {
+    "question": "Which expression keeps only rows where the Year column is between 2000 and 2009 inclusive?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "<code>tbl.where('Year', are.above(2000))</code>",
+        "correct": false,
+        "feedback": "<code>are.above(2000)</code> starts at 2001 (strict) and has no upper bound."
+      },
+      {
+        "answer": "<code>tbl.where('Year', are.between(2000, 2010))</code>",
+        "correct": true,
+        "feedback": "Correct! <code>are.between(a, b)</code> keeps values where a \u2264 value &lt; b, giving 2000\u20132009 inclusive."
+      },
+      {
+        "answer": "<code>tbl.where('Year', are.equal_to(2000, 2009))</code>",
+        "correct": false,
+        "feedback": "<code>are.equal_to()</code> takes a single value, not a range."
+      },
+      {
+        "answer": "<code>tbl.where('Year', are.below(2010))</code>",
+        "correct": false,
+        "feedback": "<code>are.below(2010)</code> has no lower bound and would include years before 2000."
+      }
+    ]
+  },
+  {
+    "question": "A table has 200 rows. After filtering for the 'West' region you have 50 rows. What is the <em>proportion</em> of Western entries?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "50",
+        "correct": false,
+        "feedback": "That is the count. Proportion = count \u00f7 total rows."
+      },
+      {
+        "answer": "0.25",
+        "correct": true,
+        "feedback": "Correct! 50 / 200 = 0.25."
+      },
+      {
+        "answer": "25",
+        "correct": false,
+        "feedback": "25 would be the percentage; proportion is a decimal between 0 and 1."
+      },
+      {
+        "answer": "4",
+        "correct": false,
+        "feedback": "4 is the ratio the other way (200/50). Proportion = 50/200 = 0.25."
+      }
+    ]
+  },
+  {
+    "question": "You want a Table containing only columns A, B, C from a Table that also has column D. Which call is correct?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "<code>tbl.drop('A', 'B', 'C')</code>",
+        "correct": false,
+        "feedback": "<code>drop('A','B','C')</code> removes A, B, C \u2014 leaving only D."
+      },
+      {
+        "answer": "<code>tbl.select('D')</code>",
+        "correct": false,
+        "feedback": "<code>select('D')</code> keeps only D."
+      },
+      {
+        "answer": "<code>tbl.drop('D')</code>",
+        "correct": true,
+        "feedback": "Correct! <code>drop('D')</code> removes D and returns the Table with A, B, C."
+      },
+      {
+        "answer": "<code>tbl.remove('D')</code>",
+        "correct": false,
+        "feedback": "<code>remove()</code> is not a Table method in the datascience library."
+      }
+    ]
+  },
+  {
+    "question": "Two events are independent with P(A) = 0.4 and P(B) = 0.3. What is P(A and B)?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "0.70",
+        "correct": false,
+        "feedback": "0.70 \u2248 P(A) + P(B), which approximates P(A or B). For independent AND: multiply."
+      },
+      {
+        "answer": "0.12",
+        "correct": true,
+        "feedback": "Correct! For independent events: P(A and B) = P(A) \u00d7 P(B) = 0.4 \u00d7 0.3 = 0.12."
+      },
+      {
+        "answer": "0.10",
+        "correct": false,
+        "feedback": "Check the multiplication: 0.4 \u00d7 0.3 = 0.12, not 0.10."
+      },
+      {
+        "answer": "Cannot be determined without more information",
+        "correct": false,
+        "feedback": "Independence is given, so we can multiply directly."
+      }
+    ]
+  },
+  {
+    "question": "A simulation runs 1000 times. 47 of those runs produce a result as extreme as the real data. What is the p-value?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "47",
+        "correct": false,
+        "feedback": "The p-value is a proportion between 0 and 1, not a count. Divide 47 by 1000."
+      },
+      {
+        "answer": "0.047",
+        "correct": true,
+        "feedback": "Correct! p-value = 47 / 1000 = 0.047. Since 0.047 < 0.05 this is statistically significant at the 5% level."
+      },
+      {
+        "answer": "0.53",
+        "correct": false,
+        "feedback": "0.53 = (1000\u221247)/1000 \u2014 the fraction that did NOT match. The p-value uses the fraction that DID."
+      },
+      {
+        "answer": "0.95",
+        "correct": false,
+        "feedback": "0.95 is the confidence level corresponding to \u03b1 = 0.05, not the p-value itself."
+      }
+    ]
+  },
+  {
+    "question": "Why do we run 1000 simulations instead of just 1 when estimating a p-value?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "One simulation is too slow to compute",
+        "correct": false,
+        "feedback": "One simulation is actually faster! We run many to reduce variability, not for speed."
+      },
+      {
+        "answer": "To build a reliable picture of what random chance can produce \u2014 one run might be unusually high or low",
+        "correct": true,
+        "feedback": "Correct! 1000 simulations reveal the full distribution of random outcomes, giving a stable p-value estimate."
+      },
+      {
+        "answer": "Each simulation tests a different null hypothesis",
+        "correct": false,
+        "feedback": "All 1000 simulations test the same null hypothesis \u2014 they each give one random outcome to compare against."
+      },
+      {
+        "answer": "Canvas requires at least 1000 data points",
+        "correct": false,
+        "feedback": "The number 1000 is a practical statistical choice, not a platform requirement."
+      }
+    ]
+  },
+  {
+    "question": "Essex Ed has 9 observations; Punxsutawney Phil has 107. Both score 60% correct. Whose p-value is likely smaller (stronger evidence against the null)?",
+    "type": "multiple_choice",
+    "answers": [
+      {
+        "answer": "Essex Ed's \u2014 fewer observations make the test more sensitive",
+        "correct": false,
+        "feedback": "Fewer observations make the test LESS sensitive. With only 9 flips, 60% happens by chance quite often."
+      },
+      {
+        "answer": "Phil's \u2014 more observations make a 60% accuracy harder to explain as luck",
+        "correct": true,
+        "feedback": "Correct! With 107 observations the null distribution is narrow, so 60% accuracy is surprising if guessing randomly. With only 9, 60% is easy to achieve by chance."
+      },
+      {
+        "answer": "They would have identical p-values since both scored 60%",
+        "correct": false,
+        "feedback": "The accuracy alone doesn't determine the p-value \u2014 sample size matters just as much."
+      },
+      {
+        "answer": "P-values cannot be compared between different groundhogs",
+        "correct": false,
+        "feedback": "P-values are standardised measures of evidence and can always be compared."
+      }
+    ]
+  }
+]
