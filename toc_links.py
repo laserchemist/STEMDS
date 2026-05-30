@@ -50,6 +50,8 @@ MS_ACTIVITIES = [
         "🗃️ Lab 03",   "Tables — organising data"),
     ("Lab04-Functions-A.ipynb",
         "⚙️ Lab 04",   "Functions"),
+    ("lab05/lab5_middle_school.ipynb",
+        "🎲 Lab 05",   "Probability, Simulation & Hypothesis Testing"),
     ("Plant_Explorer.ipynb",
         "🌿 Plant Similarity: Photo Investigation", "Plant Identification"),
     ("Code_Library.ipynb",
@@ -68,9 +70,11 @@ HS_ACTIVITIES = [
     ("lab02/lab2_high_school.ipynb",
         "🧮 Lab 02",   "Data types — numbers, strings, arrays"),
     ("lab03/lab3_high_school.ipynb",
-        "🗃️ Lab 03",   "Tables — organizing & analyzing data"),
+        "🗃️ Lab 03",   "Tables — organising & analysing data"),
     ("Lab04-Functions-A.ipynb",
         "⚙️ Lab 04",   "Functions"),
+    ("lab05/lab5_high_school.ipynb",
+        "🎲 Lab 05",   "Probability, Simulation & Hypothesis Testing"),
     ("Plant_Explorer.ipynb",
         "🌿 Plant Similarity: Photo Investigation", "Plant Identification"),
     ("Code_Library.ipynb",
@@ -131,7 +135,7 @@ def _hs_header():
 # ── helpers ───────────────────────────────────────────────────────────────────
 
 def nbgitpuller(filename):
-    urlpath = f"lab/tree/{FOLDER}/{filename}"
+    urlpath = f"tree/{FOLDER}/{filename}"
     return (
         f"{HUB}/hub/user-redirect/git-pull"
         f"?repo={quote(REPO, safe='')}"
@@ -183,7 +187,7 @@ def _instructor_section(color=GREY):
 
 # ── notebook writer ───────────────────────────────────────────────────────────
 
-def _write_toc(output, header, activities, btn_color, include_instructor):
+def _write_toc(output, header, activities, btn_color, include_instructor, dark_bg=False):
     sections = [
         header,
         '## 📚 Activities & Labs\n\n'
@@ -193,6 +197,19 @@ def _write_toc(output, header, activities, btn_color, include_instructor):
     ]
     if include_instructor:
         sections.append(_instructor_section())
+
+    source = "\n\n".join(sections)
+
+    if dark_bg:
+        # Wrap entire content in a dark panel — deep space charcoal,
+        # readable against the gradient banner and violet buttons.
+        source = (
+            '<div style="background:#1a1a2e;color:#e8e8f0;'
+            'padding:24px 28px;border-radius:12px;'
+            'box-shadow:0 4px 20px rgba(0,0,0,0.5);">\n\n'
+            + source
+            + '\n\n</div>'
+        )
 
     nb = {
         "nbformat": 4,
@@ -206,7 +223,7 @@ def _write_toc(output, header, activities, btn_color, include_instructor):
             "cell_type": "markdown",
             "id": "toc-main",
             "metadata": {},
-            "source": "\n\n".join(sections)
+            "source": source
         }]
     }
 
@@ -233,13 +250,13 @@ def build_hs_toc():
     """High school — full (with instructor section). Keep link private."""
     print("\n🔥 High School — Full TOC")
     _write_toc("TOC_hs.ipynb", _hs_header(), HS_ACTIVITIES,
-               HS_PURPLE, include_instructor=True)
+               HS_PURPLE, include_instructor=True, dark_bg=True)
 
 def build_hs_toc_student():
     """High school — student-only. Share this link freely."""
     print("\n🔥 High School — Student TOC")
     _write_toc("TOC_hs_student.ipynb", _hs_header(), HS_ACTIVITIES,
-               HS_PURPLE, include_instructor=False)
+               HS_PURPLE, include_instructor=False, dark_bg=True)
 
 # ── run ───────────────────────────────────────────────────────────────────────
 
