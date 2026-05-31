@@ -111,6 +111,8 @@ INSTRUCTOR = [
 CHERRY      = "#9B2335"   # Temple cherry  — middle school buttons
 HS_PURPLE   = "#5C2D91"   # Deep violet    — high school buttons
 GREY        = "#555555"   # Instructor section (both)
+GREEN       = "#06402B"   # green for reviews :)
+GOLD        = "#EFBF04"   # gold exercises because they retrieve your memory like a GOlden Retriever haHAHA
 
 # ── header HTML ───────────────────────────────────────────────────────────────
 
@@ -196,7 +198,7 @@ def _resources_section():
 
 def _review_section(color=GREEN):
     return '---\n\n## 🧠 Reviews\n\n' + button_group(REVIEWS, color)
-def _exercise_section(color=BLUE):
+def _exercise_section(color=GOLD):
     return '---\n\n## 💪 Exercises\n\n' + button_group(EXERCISES, color)
 
 def _instructor_section(color=GREY):
