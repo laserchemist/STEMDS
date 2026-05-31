@@ -1,0 +1,142 @@
+[{
+		"question": "Which of these is NOT a method?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Table.read_table('file')",
+				"correct": false,
+				"feedback": "No! This is a method through and through."
+			},
+			{
+				"answer": "string.upper()",
+				"correct": false,
+				"feedback": "No! The string part is the object, and the upper part is the method name."
+			},
+            {
+                "answer": "abs(number)",
+                "correct": true,
+                "feedback": "Yes! This is a function, and we can differentiate between functions and methods by looking for the presence of the object (which only methods have)."
+            },
+			{
+				"answer": "np.arange(start, stop, step)",
+				"correct": true,
+				"feedback": "Yes! This is a special case in that imported library names (here numpy as np) look very similar to the object in methods. You only need to know three library names: np, m, and plt. All others are method objects."
+			}
+		]
+	},
+    {
+		"question": "What code will turn 'fizz' into 'fuzz'?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "'fizz'.replace('z', 'u')",
+				"correct": false,
+				"feedback": "No! This replaces the wrong letter!"
+			},
+			{
+				"answer": "'fizz'.replace('i', 'u')",
+				"correct": true,
+				"feedback": "Yes! This replaces the 'i' with 'u', which is exactly what happens in the transformation."
+			},
+			{
+				"answer": "fizz.replace(i, u)",
+				"correct": false,
+				"feedback": "No! You need quotation marks around these arguments!"
+			}
+		]
+	},
+	{
+		"question": "What code will best turn 'better' into 'bitter'?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "'better'.replace('et', 'it')",
+				"correct": true,
+				"feedback": "Yes! This differentiates between the two e's enough such that only the first e is replaced."
+			},
+			{
+				"answer": "'better'.replace('e', 'i')",
+				"correct": false,
+				"feedback": "No! Remember, the .replace method replaces ALL instances of a certain string. Here, both e's will be replaced."
+			},
+            {
+                "answer": "'bitter'.replace('i', 'e')",
+                "correct": false,
+                "feedback": "No! You are going in the wrong direction."
+            },
+			{
+				"answer": "'better'.replace('better', 'bitter')",
+				"correct": false,
+				"feedback": "No! While this will get you the correct result, it's long and cumbersome, and there's a much shorter code that will do it."
+			}
+		]
+	},
+	{
+		"question": "How do we get rid of a certain snippet in a string?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Use .replace, but make the second argument 0",
+				"correct": false,
+				"feedback": "No! .replace doesn't recognize numbers"
+			},
+			{
+				"answer": "Use .replace, but make the second argument an empty string",
+				"correct": true,
+				"feedback": "Yes! This empty string is simply ''."
+			},
+			{
+				"answer": "Use .replace with only one argument.",
+				"correct": false,
+				"feedback": "No! You'll get an error."
+			}
+		]
+	},
+    {
+		"question": "Suppose that the variable mood is defined as 'I am feeling happy'. What code will get the length of this string, and what will it output?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "len(mood) and the output will be 15",
+				"correct": false,
+				"feedback": "No! Spaces are counted as any other character."
+			},
+			{
+				"answer": "len(mood) and the output will be 18",
+				"correct": true,
+				"feedback": "Yes! This has the correct function and the correct output."
+			},
+			{
+				"answer": "range(mood) and the output will be 18",
+				"correct": false,
+				"feedback": "No! range is not used in this way."
+			},
+            {
+				"answer": "mood.len() and the output will be 18",
+				"correct": false,
+				"feedback": "No! len is NOT a method."
+			}
+		]
+	},
+    {
+		"question": "What code will turn 'banana' into ['b', 'n', 'n', '']?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "'banana'.split()",
+				"correct": false,
+				"feedback": "No! We need an argument inside the parentheses!"
+			},
+			{
+				"answer": "'banana'.replace('a')",
+				"correct": false,
+				"feedback": "No! .replace should not be used here!"
+			},
+			{
+				"answer": "'banana'.split('a')",
+				"correct": true,
+				"feedback": "Yes! This correctly identifies the method name, the structure, and the split boundary. Mmm, I could go for a banana split right about now..."
+			},
+            {
+				"answer": "split('banana', 'a')",
+				"correct": false,
+				"feedback": "No! split is NOT a function."
+			}
+		]
+	}
+]
+ 

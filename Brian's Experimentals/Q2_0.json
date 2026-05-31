@@ -1,0 +1,112 @@
+[{
+		"question": "Assume that the equation from Question 1 was reproduced, with all the needed variables being defined exactly as they show up in the equation. Which of these code snippets is acceptable?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "x = 0.5 * G * M / R**2 * t**2",
+				"correct": false,
+				"feedback": "No! While this WILL get you the right answer, it's very disorganized and hard to read."
+			},
+			{
+				"answer": "x = 0.5 * G * M * t**2 / R**2",
+				"correct": true,
+				"feedback": "Yes! A great way to mak your code much more legible is to put all the terms in the numerator on one side, and those in the denominator in the other side."
+			},
+            {
+                "answer": "x = 0.5 * G * (M/R**2) * t**2",
+                "correct": true,
+                "feedback": "Yes! Using parentheses to safely isolate fractions and other potentially confusing math expressions is always a great option."
+            },
+			{
+				"answer": "x = 0.5 * G * M / (R**2 * t**2)",
+				"correct": false,
+				"feedback": "No! This groups the R^2 and t^2 terms together in the denominator even though the t^2 term is in the numerator."
+			}
+		]
+	},
+    {
+		"question": "What function do I use to get the data type of a variable x?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "x?",
+				"correct": false,
+				"feedback": "No! This is used on functions and methods, not variables, to find out more about what they do."
+			},
+			{
+				"answer": "type(x)",
+				"correct": true,
+				"feedback": "Yes! It will return int (integer), float (float), or str (string). You can also use this on the data types of Labs 2, 3, and 5."
+			},
+			{
+				"answer": "help(x)",
+				"correct": false,
+				"feedback": "No! Much like x?, it is used to get more information about functions, data types, etc., but not user-created variables."
+			}
+		]
+	},
+	{
+		"question": "How can we put quotations inside a string?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "\"\"text\"\"",
+				"correct": false,
+				"feedback": "No! Python will form strings between each pair of quotations, and so the text will not be counted as part of it."
+			},
+			{
+				"answer": "'\"text'\"",
+				"correct": false,
+				"feedback": "No! This features a mismatch. The outermost pair of quotation marks must match (either single-single or double-double)."
+			},
+            {
+                "answer": "'\"text\"'",
+                "correct": true,
+                "feedback": "Yes! This correctly includes the inner pair of quotation marks (the double quotes) in the string. (\"text\")"
+            },
+			{
+				"answer": "\"'text'\"",
+				"correct": true,
+				"feedback": "Yes! This correctly includes the inner pair of quotation marks (the single quotes) in the string. ('text')"
+			}
+		]
+	},
+	{
+		"question": "What is the meaning of the absolute value as it is used in Question 4?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "It gets the distance between streets and avenues regardless of direction",
+				"correct": true,
+				"feedback": "Yes! This ensures that when you are getting the distance between any two streets, whatever number you get is Positive."
+			},
+			{
+				"answer": "It converts between different units of length",
+				"correct": false,
+				"feedback": "No! There is no change in units."
+			},
+			{
+				"answer": "It gets the maximum length between them",
+				"correct": false,
+				"feedback": "No! The max function wasn't used in Question 4."
+			}
+		]
+	},
+    {
+		"question": "What will this output? max(20, 21+4, -abs(-150/5), 30-6)",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "24",
+				"correct": false,
+				"feedback": "No! Look closely at what each argument evaluates to."
+			},
+			{
+				"answer": "30",
+				"correct": false,
+				"feedback": "No! Remember that the abs() function will turn any number positive, but doesn't act on anything *outside* its parentheses."
+			},
+			{
+				"answer": "25",
+				"correct": true,
+				"feedback": "Yes! This is the maximum value."
+			}
+		]
+	}
+]
+ 

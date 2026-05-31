@@ -1,0 +1,493 @@
+<div id="cb-root-%%UID%%"
+     style="font-family:Segoe UI,Arial,sans-serif;
+            max-width:1100px;
+            margin:12px auto;
+            display:grid;
+            grid-template-columns:320px 1fr;
+            gap:18px;">
+
+  <!-- LEFT PANEL -->
+  <div style="background:#fff;
+              border:1px solid #e5e5e5;
+              border-radius:16px;
+              padding:18px;">
+
+    <div style="font-size:20px;
+                font-weight:700;
+                margin-bottom:14px;">
+      Code Blocks
+    </div>
+
+    <div id="cb-blocks-%%UID%%"
+         style="display:flex;
+                flex-wrap:wrap;
+                gap:10px;">
+    </div>
+
+    <button id="cb-clear-%%UID%%"
+            style="margin-top:18px;
+                   width:100%;
+                   background:#d64545;
+                   color:white;
+                   border:none;
+                   border-radius:10px;
+                   padding:10px;
+                   font-size:14px;
+                   font-weight:600;
+                   cursor:pointer;">
+      Clear Workspace
+    </button>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div style="background:#fff;
+              border:1px solid #e5e5e5;
+              border-radius:16px;
+              padding:18px;">
+
+    <div style="font-size:20px;
+                font-weight:700;
+                margin-bottom:14px;">
+      Workspace
+    </div>
+
+    <!-- DROP SLOTS -->
+    <div id="cb-slots-%%UID%%"
+         style="display:flex;
+                flex-wrap:wrap;
+                gap:12px;
+                margin-bottom:22px;">
+    </div>
+
+    <!-- LIVE CODE -->
+    <div id="cb-code-%%UID%%"
+         style="background:#111;
+                color:#5cff87;
+                font-family:Consolas,monospace;
+                border-radius:12px;
+                min-height:70px;
+                padding:16px;
+                font-size:18px;
+                margin-bottom:20px;">
+      Your code will appear here...
+    </div>
+
+    <!-- TEMPLATE PREVIEW -->
+    <div style="background:#eef5ff;
+                border:1px solid #cfe0ff;
+                border-radius:12px;
+                padding:16px;">
+
+      <div style="font-size:11px;
+                  font-weight:700;
+                  letter-spacing:1.5px;
+                  color:#4d79d8;
+                  margin-bottom:8px;
+                  text-transform:uppercase;">
+        Function Structure
+      </div>
+
+      <div id="cb-template-%%UID%%"
+           style="font-family:Consolas,monospace;
+                  font-size:18px;
+                  color:#222;">
+        Click or drag a function block.
+      </div>
+    </div>
+    <button id="cb-check-%%UID%%"
+        style="
+          margin-top:10px;
+          width:100%;
+          background:#4caf50;
+          color:white;
+          border:none;
+          padding:10px;
+          border-radius:10px;
+          font-weight:600;
+          cursor:pointer;">
+  Check Answer
+</button>
+
+<div id="cb-feedback-%%UID%%"
+     style="margin-top:10px;font-weight:600;"></div>
+  </div>
+</div>
+
+<script type='text/javascript' src='https://temple.2i2c.cloud/kvOPcet6zzwNiey95w1QLqkytc3_BJqeHb3nRXLx135kuHCizHjdrJrAs1NoIh1Aic3q1cnJykG25NalRw386B4DpGtHjjPQ5eg6X4mDTXtMARdKLEnvzTx5ytzEwR3HScOQG97oavqYp--Dn2rqa2_-d1zFl79RybLmTxItVa4P1GtBdBWZdBgs2YygbNnTFPi0M6ScuyHlTrkksBynXZ_7iLRretVYNEN8KZJWIiHqRkYjNpggat8bxGaSgQpbP-XjjsVQssDUkweeFZS0KDNCsqT6ryXzbH6FR6Iab7zWZb7ptPxavDmA58TY5zYuwOMLfjdI2_ItZssvK0vw2sQa0UK1rtupV5CDFqQtwgg-MWvtWGtf3Tk1reeov3nnw5yfDsEh9wOhgH8v5km7uwEdyqt_HuPcZsxF4LC6n6-DksILpdNbPv9fp_w9vcrjKTctANjIiBSrU6Sbma5hiDGxcniawtnXM3N9i6b0elJQLnf1LfF7oBkyFbS7ftc7zej6m_0Zh4BnWF0AZcsqYz2hrgD3OzZr3kdiJbXbDh1Hmd0hBuL7CSD1g4ONOSqbdeCyq8o36QEwJgKIQENQZN3NhjuTgc6_feSsduSJTmFnFvHVCPCoDG1K3StiuZAQCtkLyL59K8s'></script><script>
+(function () {
+
+const DATA = {
+
+  globalBlocks: {
+    'Libraries': ['np', 'm'],
+    'Functions': ['abs', 'len'],
+    'Methods': ['split', 'replace'],
+    'Variables': [],
+    'Numbers': ['2'],
+    'Operators': ['+', '-', '*', '/', '='],
+    'Syntax': ['(', ')', '[', ']', ',', ':', "'", "."],
+    'Strings': []
+  },
+
+  levelBlocks: {
+    level0: {
+      'Numbers': ['0', '1', '3', '5', '7', '9'],
+      'Variables': ['example_list']
+    },
+    level1: {
+      'Functions': ['average', 'mean'],
+      'Variables': ['example_list', 'list_avg']
+    },
+
+    level2: {
+      'Functions': ['arange'],
+      'Variables': ['numbers'],
+      'Numbers': ['0', '10', '11', '1']
+    },
+    level3: {
+      'Variables': ['word', 's_count'],
+      'Strings': ["'s'"],
+      'Numbers': ['1']
+    },
+    level4: {
+      'Variables': ['dead_prezzes'],
+      'Numbers': ['1841', '1981', '20'],
+      'Functions': ['arange']
+    },
+    level5: {
+      'Variables': ['words', 'x', 's_counts'],
+      'Strings': ["'s'"],
+      'Syntax': ['for', 'in'],
+      'Numbers': ['1']
+    },
+    level6: {
+      'Variables': ['vowel_counts', 'vowels', 'text', 'x'],
+      'Syntax': ['for', 'in'],
+      'Numbers': ['1']
+    },
+    level9046: {
+      'Variables': ['Life', 'tragedy', 'beauty', 'love', 'danger', 'easy', 'that', 'it'],
+      'Syntax': ['the', 'to', 'and', 'or', '--'],
+      'Functions': ['can', 'be', 'is', 'live', 'would'],
+      'Operators': ['magnificent', 'overwhelming', 'easy', 'whole', 'Without', 'almost']
+    }
+  },
+
+  colors: {
+    'Libraries': '#839493',
+    'Functions': '#7c4dff',
+    'Methods': '#920545',
+    'Variables': '#2196f3',
+    'Numbers': '#43a047',
+    'Operators': '#ef6c00',
+    'Syntax': '#757575',
+    'Strings': '#c2185b'
+  },
+
+    templates: {
+        'print': 'print(anything)',
+        'arange': 'np.arange(start, stop, step)',
+        'len': 'len(list or array)',
+        'average': 'np.average(list or array)',
+        'mean': 'np.mean(list or array)'
+    },
+      
+    answers: {
+        level0: [['example_list', '=', '[', '0', ',', '7', ',', '3', ',', '5', ',', '2', ']']],
+        level1: [['list_avg', '=', 'np', '.', 'average', '(', 'example_list', ')'],
+                 ['list_avg', '=', 'np', '.', 'mean', '(', 'example_list', ')']],
+        level2: [['numbers', '=', 'np', '.', 'arange', '(', '0', ',', '11', ',', '1', ')'],
+                 ['numbers', '=', 'np', '.', 'arange', '(', '0', ',', '11', ')', '', ''],
+                 ['numbers', '=', 'np', '.', 'arange', '(', '11', ')', '', '', '', '']],
+        level3: [['s_count', '=', 'len', '(', 'word', '.', 'split', '(', "'s'", ')', ')', '-', '1', ''],
+                 ['s_count', '=', '-', '1', '+', 'len', '(', 'word', '.', 'split', '(', "'s'", ')', ')']],
+        level4: [['dead_prezzes', '=', 'len', '(', 'np', '.', 'arange', '(', '1841', ',', '1981', ',', '20', ')', ')']],
+        level5: [['s_counts', '=', '[', 'len', '(', 'x', '.', 'split', '(', "'s'", ')', ')', '-', '1', 'for', 'x', 'in', 'words', ']', ''],
+                 ['s_counts', '=', '[', '-', '1', '+', 'len', '(', 'x', '.', 'split', '(', "'s'", ')', ')', 'for', 'x', 'in', 'words', ']']],
+        level6: [['vowel_counts', '=', '[', 'len', '(', 'text', '.', 'split', '(', 'x', ')', ')', '-', '1', 'for', 'x', 'in', 'vowels', ']', ''],
+                 ['vowel_counts', '=', '[', '-', '1', '+', 'len', '(', 'text', '.', 'split', '(', 'x', ')', ')', 'for', 'x', 'in', 'vowels', ']']],
+        level9046: [['Life', 'can', 'be', 'magnificent', 'and', 'overwhelming', '--', 'that', 'is', 'the', 'whole', 'tragedy', '.', 'Without', 'beauty', ',', 'love', ',', 'or', 'danger', 'it', 'would', 'almost', 'be', 'easy', 'to', 'live', '.']]
+    }
+};
+  var UID  = %%UID%%;
+
+  var activeLevel = "__LEVEL__";
+
+  function mergeBlocks(globalBlocks, levelBlocks) {
+
+  const merged = JSON.parse(JSON.stringify(globalBlocks));
+
+  Object.keys(levelBlocks || {}).forEach(category => {
+
+    if (!merged[category]) {
+      merged[category] = [];
+    }
+
+    merged[category].push(...levelBlocks[category]);
+  });
+
+  return merged;
+}
+
+var blockGroups = mergeBlocks(
+  DATA.globalBlocks,
+  DATA.levelBlocks[activeLevel]
+);
+  var colors = DATA.colors;
+  var templates = DATA.templates;
+
+  var checkBtn = document.getElementById('cb-check-' + UID);
+var feedback = document.getElementById('cb-feedback-' + UID);
+
+  var dragged = null;
+
+  var blocksEl   = document.getElementById('cb-blocks-' + UID);
+  var slotsEl    = document.getElementById('cb-slots-' + UID);
+  var codeEl     = document.getElementById('cb-code-' + UID);
+  var templateEl = document.getElementById('cb-template-' + UID);
+  var clearBtn   = document.getElementById('cb-clear-' + UID);
+
+  function getAnswerKey() {
+  return DATA.answers[activeLevel];
+  }
+
+  function getSequence() {
+  return slots
+    .filter(Boolean)
+    .map(x => x.value);
+}
+
+  /* -------------------------------------------------- */
+  /* BUILD BLOCKS                                       */
+  /* -------------------------------------------------- */
+
+ Object.keys(blockGroups).forEach(function (category) {
+
+  /* category container */
+  var section = document.createElement('div');
+
+  section.style.marginBottom = '18px';
+
+  /* category title */
+  var title = document.createElement('div');
+
+  title.textContent = category;
+
+  title.style.cssText =
+    'font-size:12px;' +
+    'font-weight:700;' +
+    'letter-spacing:1px;' +
+    'text-transform:uppercase;' +
+    'color:#888;' +
+    'margin-bottom:8px;';
+
+  section.appendChild(title);
+
+  /* block row */
+  var row = document.createElement('div');
+
+  row.style.cssText =
+    'display:flex;' +
+    'flex-wrap:wrap;' +
+    'gap:10px;';
+
+  /* individual blocks */
+  blockGroups[category].forEach(function (b) {
+
+    var div = document.createElement('div');
+
+    div.dataset.category = category;
+div.dataset.value = b;
+
+    div.textContent = b;
+
+    div.draggable = true;
+
+    div.style.cssText =
+      'padding:10px 14px;' +
+      'background:' + colors[category] + ';' +
+      'color:white;' +
+      'border-radius:12px;' +
+      'cursor:grab;' +
+      'font-size:15px;' +
+      'font-weight:600;' +
+      'user-select:none;' +
+      'box-shadow:0 2px 5px rgba(0,0,0,0.12);';
+
+    div.addEventListener('dragstart', function () {
+  dragged = {
+    value: b,
+    category: category
+  };
+});
+
+    div.addEventListener('click', function () {
+      if (templates[b]) {
+        templateEl.textContent = templates[b];
+      }
+    });
+
+    div.addEventListener('dblclick', function () {
+
+  var emptyIdx = slots.findIndex(s => s === null);
+
+  if (emptyIdx === -1) return;
+
+  slots[emptyIdx] = {
+    value: div.dataset.value,
+    category: div.dataset.category
+  };
+
+  renderSlots();
+  updateCode();
+
+  if (templates[div.dataset.value]) {
+    templateEl.textContent = templates[div.dataset.value];
+  }
+});
+
+    row.appendChild(div);
+  });
+
+  section.appendChild(row);
+
+  blocksEl.appendChild(section);
+});
+  /* -------------------------------------------------- */
+  /* BUILD DROP SLOTS                                   */
+  /* -------------------------------------------------- */
+
+const answerKey = DATA.answers[activeLevel];
+
+/* use first valid answer to determine slot count */
+const slotCount = answerKey[0].length;
+
+  var slots = new Array(slotCount).fill(null);
+
+function renderSlots() {
+  if (!slotsEl) {
+    console.error("slotsEl not found");
+    return;
+  }
+
+  slotsEl.innerHTML = "";
+
+  for (let i = 0; i < slotCount; i++) {
+    const slot = document.createElement("div");
+    slot.dataset.index = i;
+
+let bg = "#fafafa";
+
+if (slots[i]) {
+  bg = colors[slots[i].category];
+}
+
+slot.style.cssText =
+  "position:relative;" +
+  "width:95px;" +
+  "height:65px;" +
+  "border:2px dashed #ccc;" +
+  "border-radius:14px;" +
+  "display:flex;" +
+  "align-items:center;" +
+  "justify-content:center;" +
+  "background:" + bg + ";" +
+  "color:white;" +
+  "font-size:18px;" +
+  "font-weight:600;";
+
+    slot.textContent = slots[i] ? slots[i].value : "";
+
+    slot.addEventListener("dragover", function (e) {
+  e.preventDefault();
+});
+
+slot.addEventListener("drop", function (e) {
+  e.preventDefault();
+
+  if (!dragged) return;
+
+  slots[i] = {
+    value: dragged.value,
+    category: dragged.category
+  };
+
+  renderSlots();
+  updateCode();
+
+  if (templates[dragged.value]) {
+    templateEl.textContent = templates[dragged.value];
+  }
+});
+
+    // safe X button
+    const xBtn = document.createElement("div");
+    xBtn.textContent = "×";
+    xBtn.style.cssText =
+      "position:absolute;top:4px;right:6px;cursor:pointer;font-weight:700;color:#999;";
+
+    xBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      slots[i] = null;
+      renderSlots();
+      updateCode();
+    });
+
+    slot.appendChild(xBtn);
+
+    slotsEl.appendChild(slot);
+  }
+}
+  /* -------------------------------------------------- */
+  /* UPDATE LIVE CODE                                   */
+  /* -------------------------------------------------- */
+
+  function updateCode() {
+
+  var line = slots
+    .filter(Boolean)
+    .map(x => x.value)
+    .join(' ');
+
+  codeEl.textContent = line || 'Your code will appear here...';
+}
+
+checkBtn.addEventListener('click', function() {
+var user = slots.map(function(x) {
+  return x ? x.value : "";
+});
+
+
+
+var targets = getAnswerKey();
+
+var correct = targets.some(function(target) {
+
+  return (
+    user.length === target.length &&
+    user.every((v, i) => v === target[i])
+  );
+}); 
+
+  var hooray = ['✓ Correct!', '✓ Bravo!', '✓ 9ood Job!', '✓ 0utstanding!', '✓ 4wesome Job!', '✓ 6reat work!', '✓✓ Wow, even the challenge as well? Good job! (By the way, there is no code hidden in this one)', '', '', '', '90% there! The code is the author.']
+  feedback.textContent = correct ? hooray[parseInt(activeLevel.split('evel')[1], 10)%12] : "✗ Try again";
+  feedback.style.color = correct ? "green" : "red";
+});
+
+  /* -------------------------------------------------- */
+  /* CLEAR BUTTON                                       */
+  /* -------------------------------------------------- */
+
+clearBtn.addEventListener('click', function () {
+  slots = new Array(slotCount).fill(null);
+  renderSlots();
+  updateCode();
+  templateEl.textContent = 'Click or drag a function block.';
+});
+    renderSlots();
+
+})();
+
+</script>
+
+
