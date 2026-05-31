@@ -81,6 +81,18 @@ HS_ACTIVITIES = [
         "📖 Your Code Library", "For all your coding needs :)"),
 ]
 
+EXERCISES = [
+    ("lab01/E1_v1.1.ipynb", "Exercises 01", "Supplemental for Lab 01"),
+    ("lab02/E2_v1.3.ipynb", "Exercises 02", "Supplemental for Lab 02"),
+    ("lab03/E3_v1.3.ipynb", "Exercises 03", "Supplemental for Lab 03"),
+    ("lab04/E4_v1.2.ipynb", "Exercises 04", "Supplemental for Lab 04"),
+    ("lab05/E1_v1.5.ipynb", "Exercises 05", "Supplemental for Lab 05")]
+
+REVIEWS = [
+    ("lab00/ReviewMaterials/Review_0.ipynb", "Review for Lab 00", "alright beans"),
+    ("lab01/ReviewMaterials/Review_1.ipynb", "Review for Lab 01", "cool beans"),
+    ("lab02/ReviewMaterials/Review_2.ipynb", "Review for Lab 02", "cooler beans")]
+
 # ── Instructor-only notebooks (same for both programs) ────────────────────────
 # NOTE: security-by-obscurity only — see LOCKING note below.
 
@@ -182,12 +194,17 @@ def _resources_section():
         '- [EDS Course Website](https://sites.temple.edu/data/)'
     )
 
+def _review_section(color=GREEN):
+    return '---\n\n## 🧠 Reviews\n\n' + button_group(REVIEWS, color)
+def _exercise_section(color=BLUE):
+    return '---\n\n## 💪 Exercises\n\n' + button_group(EXERCISES, color)
+
 def _instructor_section(color=GREY):
     return '---\n\n## 🔒 Instructor\n\n' + button_group(INSTRUCTOR, color)
 
 # ── notebook writer ───────────────────────────────────────────────────────────
 
-def _write_toc(output, header, activities, btn_color, include_instructor, dark_bg=False):
+def _write_toc(output, header, activities, btn_color, include_reviews, include_exercises, include_instructor, dark_bg=False):
     sections = [
         header,
         '## 📚 Activities & Labs\n\n'
@@ -195,6 +212,10 @@ def _write_toc(output, header, activities, btn_color, include_instructor, dark_b
         + button_group(activities, btn_color),
         _resources_section(),
     ]
+    if include_reviews:
+        sections.append(_review_section())
+    if include_exercises:
+        sections.append(_exercise_section())
     if include_instructor:
         sections.append(_instructor_section())
 
@@ -238,25 +259,25 @@ def build_ms_toc():
     """Middle school — full (with instructor section). Keep link private."""
     print("\n📘 Middle School — Full TOC")
     _write_toc("TOC.ipynb", _ms_header(), MS_ACTIVITIES,
-               CHERRY, include_instructor=True)
+               CHERRY, include_reviews=True, include_exercises=True, include_instructor=True)
 
 def build_ms_toc_student():
     """Middle school — student-only. Share this link freely."""
     print("\n📘 Middle School — Student TOC")
     _write_toc("TOC_student.ipynb", _ms_header(), MS_ACTIVITIES,
-               CHERRY, include_instructor=False)
+               CHERRY, include_reviews=True, include_exercises=True, include_instructor=True)
 
 def build_hs_toc():
     """High school — full (with instructor section). Keep link private."""
     print("\n🔥 High School — Full TOC")
     _write_toc("TOC_hs.ipynb", _hs_header(), HS_ACTIVITIES,
-               HS_PURPLE, include_instructor=True, dark_bg=True)
+               HS_PURPLE, include_reviews=True, include_exercises=True, include_instructor=True, dark_bg=True)
 
 def build_hs_toc_student():
     """High school — student-only. Share this link freely."""
     print("\n🔥 High School — Student TOC")
     _write_toc("TOC_hs_student.ipynb", _hs_header(), HS_ACTIVITIES,
-               HS_PURPLE, include_instructor=False, dark_bg=True)
+               HS_PURPLE, include_reviews=True, include_exercises=True, include_instructor=True, dark_bg=True)
 
 # ── run ───────────────────────────────────────────────────────────────────────
 
