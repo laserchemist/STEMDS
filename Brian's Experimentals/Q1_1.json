@@ -1,0 +1,157 @@
+[{
+		"question": "Which of these is NOT among the four code structures?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Method",
+				"correct": false,
+				"feedback": "No! Methods are among the most prevalent structures, especially when you are dealing with lists/arrays and tables."
+			},
+			{
+				"answer": "Index",
+				"correct": false,
+				"feedback": "No! While relatively simple, indices are invaluable to data manipulation."
+			},
+            {
+                "answer": "Variable",
+                "correct": true,
+                "feedback": "Yes! Variables can be likened to the means of storage for data types, and are very often used as arguments within code structures, but they are not a code structure in themselves."
+            },
+			{
+				"answer": "Function",
+				"correct": false,
+				"feedback": "No! Functions are among the most common code structures (in fact, you have been using print() already)!"
+			}
+		]
+	},
+	{
+		"question": "In this segment of code, what is the order in which the code structures are evaluated? functionName(object.MethodName(a[b]))",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Function, then Method, then Index",
+				"correct": false,
+				"feedback": "No! The outermost structures are evaluated last."
+			},
+			{
+				"answer": "Operation, then Index, then Function",
+				"correct": false,
+				"feedback": "No! There are no Operations here."
+			},
+            {
+                "answer": "Index, then Method, then Function",
+                "correct": true,
+                "feedback": "Yes! The order goes from innermost to outermost."
+            },
+			{
+				"answer": "Method, then Index, then Function",
+				"correct": false,
+				"feedback": "No! The method in this case is NOT the innermost structure."
+			}
+		]
+	},
+	{
+		"question": "What is the main danger behind giving variables the same names as function/method names?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Python will mix up the variable and the function/method, and you won't be able to use the function/method anymore.",
+				"correct": true,
+				"feedback": "Yes! Any further attempts to use the function/method will instead be interpreted as using the variable."
+			},
+			{
+				"answer": "You will be liable to confuse the function/method and the variable.",
+				"correct": false,
+				"feedback": "No! While this is certainly a possibility, this is not the main hazard."
+			},
+			{
+				"answer": "Python will crash and all the servers will shut down",
+				"correct": false,
+				"feedback": "No! The server will run as normal, just with an overridden function/method name. You can reset by simply restarting the Kernel."
+			}
+		]
+	},
+    {
+		"question": "How do you import a library in its original name? (libraryName is a placeholder for the name of whatever library you are importing).",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "import libraryName",
+				"correct": true,
+				"feedback": "Yes! You'll know you've done it correctly when the word import is a bold green, and the cell doesn't spit out an error message."
+			},
+			{
+				"answer": "get libraryName",
+				"correct": false,
+				"feedback": "No! get is not the right word to use here."
+			},
+			{
+				"answer": "from libraryName import *",
+				"correct": false,
+				"feedback": "No! While this will import the library, it will get rid of the original libraryName."
+			}
+		]
+	},
+    {
+		"question": "How do you import the library as the name x?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "import libraryName as x",
+				"correct": true,
+				"feedback": "Yes! This will import the functions and methods of the library such that they are properly used in the form x.functionName"
+			},
+			{
+				"answer": "from libraryName import x",
+				"correct": false,
+				"feedback": "No! This is reserved for importing specific functions/methods from a library, and x is not a function/method name."
+			},
+			{
+				"answer": "import x as libraryName",
+				"correct": false,
+				"feedback": "No! This is the wrong order."
+			}
+		]
+	},
+    {
+		"question": "What does a % b do?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "It divides a by b and returns just the quotient",
+				"correct": false,
+				"feedback": "No! That is done by the slash (/)."
+			},
+			{
+				"answer": "It divides a by b and returns the value as a percentage",
+				"correct": false,
+				"feedback": "No! This operation is just the regular division multiplied by 100, and that isn't what % does."
+			},
+			{
+				"answer": "Nothing",
+				"correct": false,
+				"feedback": "No! If it did nothing we wouldn't be talking about it! I could've roasted you just then but that would get me in trouble."
+			},
+            {
+                "answer": "It divides a by b and returns just the remainder",
+                "correct": true,
+                "feedback": "Yes! This is especially handy for divisibility problems (is a divisible by b) and odd/even problems."
+            }
+		]
+	},
+    {
+		"question": "What is the difference between using + for strings and + for floats/integers?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "+ on strings joins them together, while + on floats/integers does addition.",
+				"correct": true,
+				"feedback": "Yes! Both of these operations should feel relatively intuitive."
+			},
+			{
+				"answer": "There is no difference between them",
+				"correct": false,
+				"feedback": "No! Check back on the Exercises 01."
+			},
+			{
+				"answer": "+ on strings converts all the characters to ASCII numbers and adds them all up, while + on floats/integers just does addition",
+				"correct": false,
+				"feedback": "No! You won't have to deal with ASCII numbers and all that jazz in this course."
+			}
+		]
+	}
+]
+ 

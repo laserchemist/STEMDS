@@ -1,0 +1,147 @@
+[{
+		"question": "What's the general structure of a function (like print)?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "object.functionName(arguments)",
+				"correct": false,
+				"feedback": "No! This is the structure of a Method. You can think of it as a more complex version of a function, but Methods are not Functions."
+			},
+			{
+				"answer": "functionName(arguments)",
+				"correct": true,
+				"feedback": "Yes! The parentheses denote the extent of the function's arguments."
+			},
+            {
+                "answer": "functionName[arguments]",
+                "correct": false,
+                "feedback": "No! This use of square brackets is called an index, and it specifies position in strings, lists, arrays, and tables, not functions."
+            },
+			{
+				"answer": "functionName arguments",
+				"correct": false,
+				"feedback": "No! You need a way to differentiate between the function's arguments and the rest of your code."
+			}
+		]
+	},
+	{
+		"question": "Which of these is a string?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "'5'",
+				"correct": true,
+				"feedback": "Yes! Any characters surrounded by quotation marks is a string, even if the character is a number."
+			},
+			{
+				"answer": "Hello World",
+				"correct": false,
+				"feedback": "No! This has NO quotation marks around it. Instead, Hello and World would each be a variable."
+			},
+            {
+                "answer": "\"'\"",
+                "correct": true,
+                "feedback": "While a bit confusing to the eyes, this does count as a string, with the single quotation mark as the character. This is a great way to differentiate between quotes actually inside the string and quotes serving as the ends of the string (called delimiters)."
+            },
+			{
+				"answer": "5",
+				"correct": false,
+				"feedback": "No! This is an integer, another data type separate from a string."
+			}
+		]
+	},
+	{
+		"question": "Jupyter is quite helpful in that it color-codes different data types. What is the color for an integer or float?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Green",
+				"correct": true,
+				"feedback": "Correct! Both integers (whole numbers) and floats (numbers with decimal points) are distinctly green."
+			},
+			{
+				"answer": "Red",
+				"correct": false,
+				"feedback": "No! This is reserved for strings."
+			},
+			{
+				"answer": "Black",
+				"correct": false,
+				"feedback": "No! This is reserved for variables."
+			}
+		]
+	},
+    {
+		"question": "Which of these would bring up a coding error?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "'5'+'5'",
+				"correct": false,
+				"feedback": "No! Adding two strings up will just concatenate them (55)."
+			},
+			{
+				"answer": "4 * '5'",
+				"correct": false,
+				"feedback": "No! The multiplication symbol on strings causes the string to concatenate itself that many times (5555)."
+			},
+			{
+				"answer": "'5'*'5'",
+				"correct": true,
+				"feedback": "Yes! There is no such thing as multiplying two strings together."
+			},
+            {
+                "answer": "4+'5'",
+                "correct": true,
+                "feedback": "Yes! integers and strings can't be added together."
+            }
+		]
+	},
+    {
+		"question": "In what circumstances would the code cell output a value?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "When it is in the last line of your cell",
+				"correct": true,
+				"feedback": "Yes! Just putting a value in the last line of a code cell by itself (e.g. y) will cause python to output it."
+			},
+			{
+				"answer": "Putting it in a print function",
+				"correct": true,
+				"feedback": "Yes! This works no matter where the print function is in the cell."
+			},
+			{
+				"answer": "Defining it anywhere in the cell",
+				"correct": false,
+				"feedback": "Defining a variable or value (e.g. y = 5) by itself will never put that value in the output."
+			},
+            {
+                "answer": "Adding a question mark to it",
+                "correct": false,
+                "feedback": "No! This is used on functions and methods (not variables) to see what they do."
+            }
+		]
+	},
+    {
+		"question": "What is the Python notation for exponentiation?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "^",
+				"correct": false,
+				"feedback": "No! This does something else entirely that is very complicated and not necessary for this course."
+			},
+			{
+				"answer": "*",
+				"correct": false,
+				"feedback": "No! This is a standard multiplication symbol."
+			},
+			{
+				"answer": "**",
+				"correct": true,
+				"feedback": "Yes! This will raise the value to the left by the value to the right (e.g. 2**3 means 2 raised to the 3rd power)."
+			},
+            {
+                "answer": "->",
+                "correct": false,
+                "feedback": "No! You won't ever need to use arrows in this course."
+            }
+		]
+	}
+]
+ 

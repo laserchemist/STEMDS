@@ -1,0 +1,112 @@
+[{
+		"question": "What does the print function do?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "It sends whatever arguments inside the parentheses to an external printer.",
+				"correct": false,
+				"feedback": "No! If that were the case we'd be drowning in purchases of printer ink."
+			},
+			{
+				"answer": "It puts whatever arguments inside the parentheses in the output of the code cell.",
+				"correct": true,
+				"feedback": "Yes! The output is the text and other fancy stuff that appears below the cell."
+			},
+			{
+				"answer": "It counts the number of arguments within its parentheses and outputs this number.",
+				"correct": false,
+				"feedback": "No! That is the function of len()."
+			}
+		]
+	},
+	{
+		"question": "How many arguments can the print function have?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Just one.",
+				"correct": false,
+				"feedback": "No! Remember that arguments are separated from each other by commas."
+			},
+			{
+				"answer": "Up to five.",
+				"correct": false,
+				"feedback": "No! Although it would be a bit cumbersome to have more than five arguments to a function."
+			},
+			{
+				"answer": "As many as you want.",
+				"correct": true,
+				"feedback": "Yes! The print function is one of the most versatile functions you'll see."
+			}
+		]
+	},
+    {
+		"question": "What types of arguments can the print function accept?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "All types",
+				"correct": true,
+				"feedback": "Yes! It can print strings, integers, floats, lists/arrays, etc., and does the heavy duty of converting them all to output."
+			},
+			{
+				"answer": "Just strings",
+				"correct": false,
+				"feedback": "No! If it were just strings then we'd have no need for multiple arguments."
+			},
+			{
+				"answer": "Just strings and variables",
+				"correct": false,
+				"feedback": "No! The variable is NOT a data type, though it does STORE any data type."
+			}
+		]
+	},
+    {
+		"question": "Which of these would bring up a coding error?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "print(\"Hello World\")",
+				"correct": false,
+				"feedback": "No! This is the most standard way to use the print function."
+			},
+			{
+				"answer": "print(\"Hello\", \"World\")",
+				"correct": false,
+				"feedback": "No! A bit redundant in this case, but Python handles the two arguments and automatically adds a space between them. What a nice fellow."
+			},
+			{
+				"answer": "print('Hello World')",
+				"correct": false,
+				"feedback": "No! Single and Double Quotations are indistinguishable for Python."
+			},
+            {
+                "answer": "print(\"Hello\"), \"World\"",
+                "correct": true,
+                "feedback": "Yes! Having \"World\" outside the parentheses means that it is not an argument for a function, and Python does not know what to do with it."
+            }
+		]
+	},
+    {
+		"question": "How do we put output text on different lines?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Place them in separate print statements",
+				"correct": true,
+				"feedback": "Yes! This is the most straightforward way to make multiple lines!"
+			},
+			{
+				"answer": "Put them in separate arguments of the same print function",
+				"correct": false,
+				"feedback": "No! This will only put a space between them."
+			},
+			{
+				"answer": "Insert a variable between them",
+				"correct": false,
+				"feedback": "No! This only prints whatever the variable stores."
+			},
+            {
+                "answer": "Place a &lt;br&gt; between them",
+                "correct": false,
+                "feedback": "No! This is for Markdown, and Python and Markdown are two different languages."
+            }
+		]
+	}
+]
+ 

@@ -1,0 +1,101 @@
+[{
+		"question": "What is the symbol for assignment?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Equals sign (=)",
+				"correct": true,
+				"feedback": "Correct! Anything on the right side of this equals sign will be stored in the variable to the left of the equals sign."
+			},
+			{
+				"answer": "Arrow (->)",
+				"correct": false,
+				"feedback": "No! You won't be using this symbol as part of your programming syntax here."
+			},
+			{
+				"answer": "Double equals sign (==)",
+				"correct": false,
+				"feedback": "No! This is used to compare the values of both sides and see if they are the same. You'll be using this later."
+			}
+		]
+	},
+    {
+		"question": "Which of these would bring up a coding error?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "x = 0",
+				"correct": false,
+				"feedback": "No! Zero and negative numbers are treated the same as positive numbers."
+			},
+			{
+				"answer": "x = '0'",
+				"correct": false,
+				"feedback": "No! When surrounded in quotes, the character 0 becomes a string. Strings can be stored in variables."
+			},
+			{
+				"answer": "'x' = '0'",
+				"correct": true,
+				"feedback": "Yes! The left side must consist exclusively of variables, and turning x into a string violates this rule."
+			},
+            {
+                "answer": "'0' = x",
+                "correct": true,
+                "feedback": "Yes! The variable in which information is being stored (in this case x) MUST be on the left side. And '0' is far from a variable."
+            }
+		]
+	},
+    {
+        "question": "Given that x is 'apple', what should you type to make y equal to 'appleapple'?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "y = 'x' + 'x'",
+				"correct": false,
+				"feedback": "No! These are strings of characters, not variables. This would result in y being 'xx'. Variables (like the x and y in the question) are NOT surrounded by quotes."
+			},
+			{
+				"answer": "x + x",
+				"correct": false,
+				"feedback": "No! While this WOULD produce 'appleapple', it would NOT assign it to the variable y."
+			},
+			{
+				"answer": "y = x + x",
+				"correct": true,
+				"feedback": "Yes! This makes proper use of the assignment operator (=) and the concatenation of strings (+)."
+			},
+            {
+                "answer": "y = x * 2",
+                "correct": true,
+                "feedback": "Yes! Multiplying a string by an integer concatenates it to itself that many times."
+            },
+            {
+                "answer": "y = x * 2.0",
+                "correct": false,
+                "feedback": "No! While 2 and 2.0 are the same value, python differentiates between integers (2) and floats (2.0)."
+            },
+            {
+                "answer": "y = x * x",
+                "correct": false,
+                "feedback": "No! Multiplying two strings by each other does not do anything."
+            }
+		]
+	},
+    {
+		"question": "Suppose that a bag of apples costs 8 dollars, and each bag contains 12 apples. If bag_cost is 8, and apples_per_bag is 12, what would be the best way to compute the price of a single apple?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "apple_cost = 8 / 12",
+				"correct": false,
+				"feedback": "No! While this will get you the correct answer, the practice of using the numbers themselves instead of the variables is called Hard-coding the answer, and it's not efficient."
+			},
+			{
+				"answer": "apple_cost = bag_cost / apples_per_bag",
+				"correct": true,
+				"feedback": "Yes! This makes proper use of variables and the correct operation. Note that the variable names themselves carry the context of what the numbers represent."
+			},
+			{
+				"answer": "apple_cost = bag_cost * apples_per_bag",
+				"correct": false,
+				"feedback": "No! Multiplication is not the operation you want to do here."
+			}
+		]
+	}
+]

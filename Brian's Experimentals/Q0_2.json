@@ -1,0 +1,87 @@
+[{
+		"question": "What are the two ways in which Python (and most computer languages in general) differ from languages used for communication (like English)?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "The rules of Python are relatively straightforward and intuitive.",
+				"correct": true,
+				"feedback": "Yes! You won't have to learn about any exceptions to any rules, and the structures of Python can be grouped into just four main categories (that you'll learn later)."
+			},
+			{
+				"answer": "Python has a kernel, so it has much higher capabilities than English.",
+				"correct": false,
+				"feedback": "No! The kernel isn't part of the Python language itself, but is best thought of as the person you are speaking Python (aka giving instructions) to. And much like how you are the mind behind the words you speak, you must know what your code means and intends to do."
+			},
+			{
+				"answer": "The rules are never broken.",
+				"correct": true,
+				"feedback": "Yes! All Python code, no matter the location, will follow the same rules. However, if you are off by even a single character, the kernel interprets it as straight gibberish."
+			},
+			{
+				"answer": "Python is very lenient about what characters you use where.",
+				"correct": false,
+				"feedback": "No! In most cases, Python is exceptionally punishing when it comes to improperly-placed syntax (except space-bars), and this refusal to deviate from the rules is something you'll inevitably have to get used to."
+			}
+		]
+	},
+	{
+		"question": "Where can you check the status of the kernel?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Just run a few cells",
+				"correct": false,
+				"feedback": "No! Any sort of complication or error (or even just toiling away at a large task) inextricably results in cells being unable to run. There is just so many reasons that cells aren't being run that this is not a good diagnostic."
+			},
+			{
+				"answer": "The circle in the top-right corner (next to 'Python 3 (ipykernel)')",
+				"correct": true,
+				"feedback": "Yes! This will be filled in if it is busy, white if idle, and with a lightning bolt if disconnected."
+			},
+			{
+				"answer": "Check the Canvas page",
+				"correct": false,
+				"feedback": "No! The Canvas page is only for course materials and doesn't have much pertaining to the Jupyter server and the tech side of things"
+			}
+		]
+	},
+    {
+		"question": "How do you save your notebook?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "ctrl-s",
+				"correct": true,
+				"feedback": "Yes! Often the simplest way."
+			},
+			{
+				"answer": "The leftmost button on the top toolbar (below the tabs, and shaped like a floppy disk)",
+				"correct": true,
+				"feedback": "Yes! Does the same thing as ctrl-s. You'll always want extra confidence regarding saving your work."
+			},
+			{
+				"answer": "Running a bunch of cells",
+				"correct": false,
+				"feedback": "No! While the autosave feature might kick in, I really wouldn't rely on it, and running many cells might mess up your variables."
+			}
+		]
+	},
+    {
+		"question": "How do you know if your page is saved?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Check the page's tab (in the top toolbar) for a small black circle.",
+				"correct": true,
+				"feedback": "Yes! The black circle signifies an UNSAVED page."
+			},
+			{
+				"answer": "Look at the bottom bar for text.",
+				"correct": true,
+				"feedback": "Yes! This bottom bar will show 'Saving Started' when you tell it to save, and 'Saving Completed' when it has correctly saved."
+			},
+			{
+				"answer": "Hope for the best",
+				"correct": false,
+				"feedback": "No! You picked this just for the gimmicky feedback response, right? You knew this was wrong. And you still picked it."
+			}
+		]
+	}
+]
+ 
