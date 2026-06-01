@@ -1,0 +1,503 @@
+<div id="uc-root-%%UID%%"
+     style="
+       font-family:Segoe UI,Arial,sans-serif;
+       max-width:1200px;
+       margin:20px auto;
+       display:flex;
+       flex-direction:column;
+       gap:18px;">
+
+  <!-- TITLE -->
+  <div style="
+      font-size:28px;
+      font-weight:700;">
+    Unit Conversion Builder
+  </div>
+
+  <!-- PROBLEM -->
+  <div id="uc-problem-%%UID%%"
+       style="
+         background:#eef5ff;
+         border:1px solid #cfe0ff;
+         border-radius:14px;
+         padding:16px;
+         font-size:22px;
+         font-weight:600;">
+  </div>
+
+  <!-- WORD BANK -->
+  <div style="
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:16px;
+      padding:16px;">
+
+    <div style="
+        font-size:18px;
+        font-weight:700;
+        margin-bottom:12px;">
+      Conversion Blocks
+    </div>
+
+    <div id="uc-bank-%%UID%%"
+         style="
+           display:flex;
+           flex-wrap:wrap;
+           gap:12px;">
+    </div>
+  </div>
+
+  <!-- WORKSPACE -->
+  <div style="
+      background:#fff;
+      border:1px solid #ddd;
+      border-radius:16px;
+      padding:20px;">
+
+    <div style="
+        font-size:18px;
+        font-weight:700;
+        margin-bottom:14px;">
+      Workspace
+    </div>
+
+    <div id="uc-workspace-%%UID%%"
+         style="
+           display:flex;
+           align-items:center;
+           gap:14px;
+           flex-wrap:wrap;">
+    </div>
+  </div>
+
+  <!-- CANCEL VIEW -->
+  <div id="uc-cancel-%%UID%%"
+       style="
+         background:#fafafa;
+         border:1px solid #ddd;
+         border-radius:16px;
+         padding:16px;
+         min-height:60px;">
+  </div>
+
+  <!-- BUTTONS -->
+  <div style="display:flex;gap:12px;">
+
+    <button id="uc-check-%%UID%%"
+            style="
+              background:#4caf50;
+              color:white;
+              border:none;
+              padding:12px 18px;
+              border-radius:12px;
+              font-weight:700;
+              cursor:pointer;">
+      Check Answer
+    </button>
+
+    <button id="uc-clear-%%UID%%"
+            style="
+              background:#d64545;
+              color:white;
+              border:none;
+              padding:12px 18px;
+              border-radius:12px;
+              font-weight:700;
+              cursor:pointer;">
+      Clear
+    </button>
+  </div>
+
+  <!-- FEEDBACK -->
+  <div id="uc-feedback-%%UID%%"
+       style="
+         font-size:18px;
+         font-weight:700;">
+  </div>
+</div>
+
+<script type='text/javascript' src='https://temple.2i2c.cloud/bnqKNXPTQe9luB4MeNeCH0f78z1HYojH0UlWWFQrX-iNdrmtLj_8C1jAKtS7ZsUxB3Nr9C94gBu2hxp8avoDWubIPfsHJUtpoFQs-lnPrKMZdwxmUkep5tZiUSPUxohn5LIFYqEzcerkx8D8nUTwIXuQoaOr9OrcfG-ki4KcwsE2kRjd2SYw1WI2M9u0CUf61idu0W-6TQkuYK05a5kuFwMfBHqHm1KWytJmUgfKbAR8XlS9MZcQERzs3GdcUSKqim04Pgh5bp26Kve8PZV4NerPnqH10Gv2cdQBOVTmUBa89a1fdlEN1Ghsa7rVMKQrmLTiVLb3PrBson9zpjF5PMfoc4RJm6MAcI-6oCylHH4zoXDTJy4t0GUfJW9QVayoD-BYcrSsXvh-3rl-N6fRRSfvfLWIAv6pgwgnzYH1OrUm3JUIzH0HZiiC46-NPbcwuGzyUAWkyo3-qpjmSULxp9f0bpm-4McsK8t0ErlmTXrvkcTzPHs6a2lURwj0HmUodG2pDUlmeQWLur6sjfrpr5624z7rMbBGTkbytBwns-AXRelMnYoS9nB3RQ_-ruJ9N-2DedxNbGqKmJyjq9UQMsYd6R4k9vFpZSrpQCGzvxcUN1pLT69UzDO-licVdevb0GT8jb5gPA'></script><script>
+(function() {
+
+  const UID = %%UID%%;
+
+  /* ------------------------------------------------ */
+  /* DATA                                             */
+  /* ------------------------------------------------ */
+
+  const DATA = {
+    levels: {
+      level0: {
+        problem: { start: "5 kilometers", target: "centimeters" },
+        blocks: [
+          { num: ["1000","meters"], den: ["1","kilometer"] },
+          { num: ["100","centimeters"], den: ["1","meter"] },
+          { num: ["60","seconds"], den: ["1","minute"] }
+        ],
+        answers: [
+          [
+            "1000 meters / 1 kilometer",
+            "100 centimeters / 1 meter"
+          ]
+        ]
+      },
+
+      level1: {
+        problem: { start: "2 hours", target: "seconds" },
+        blocks: [
+          { num: ["60","minutes"], den: ["1","hour"] },
+          { num: ["60","seconds"], den: ["1","minute"] },
+          { num: ["1000","milliseconds"], den: ["1","second"] }
+        ],
+        answers: [
+          [
+            "60 minutes / 1 hour",
+            "60 seconds / 1 minute"
+          ]
+        ]
+      },
+
+      level2: {
+        problem: { start: "2 miles/hour", target: "m/s" },
+        blocks: [
+          { num: ["1","mile"], den: ["1609.34","meters"] },
+          { num: ["1609.34","meters"], den: ["1","mile"] },
+          { num: ["60","minutes"], den: ["1","hour"] },
+          { num: ["1","hour"], den: ["60","minutes"] },
+          { num: ["1","minute"], den: ["60","seconds"] },
+          { num: ["60","seconds"], den: ["1","minute"] }
+        ],
+        answers: [
+          [
+            "1609.34 meters / 1 mile",
+            "1 hour / 60 minutes",
+            "1 minute / 60 seconds"
+          ],
+          [
+            "1 hour / 60 minutes",
+            "1 minute / 60 seconds",
+            "1609.34 meters / 1 mile"
+          ]
+        ]
+      }
+    }
+  };
+
+  const LEVEL = DATA.levels["__LEVEL__"];
+
+  /* ------------------------------------------------ */
+  /* ELEMENTS                                         */
+  /* ------------------------------------------------ */
+
+  const bankEl = document.getElementById("uc-bank-" + UID);
+  const workspaceEl = document.getElementById("uc-workspace-" + UID);
+  const problemEl = document.getElementById("uc-problem-" + UID);
+  const cancelEl = document.getElementById("uc-cancel-" + UID);
+  const feedbackEl = document.getElementById("uc-feedback-" + UID);
+  const checkBtn = document.getElementById("uc-check-" + UID);
+  const clearBtn = document.getElementById("uc-clear-" + UID);
+
+  /* ------------------------------------------------ */
+  /* STATE                                            */
+  /* ------------------------------------------------ */
+
+  let dragged = null;
+  let workspace = [];
+
+  /* ------------------------------------------------ */
+  /* PARSING                                          */
+  /* ------------------------------------------------ */
+
+  function parseUnit(str) {
+    if (str.includes("/")) {
+      const [num, den] = str.split("/");
+      return {
+        number: [num.split(' ')[0].trim()],
+        num: [num.split(' ')[1].trim()],
+        den: [den.trim()]
+      };
+    }
+    else {
+        return {
+            number: [str.split(' ')[0].trim()],
+            num: [str.split(' ')[1].trim()],
+            den: []
+        };
+    }
+
+    const parts = str.split(" ");
+    if (parts.length === 2) {
+      return {
+        num: [parts[0]],
+        den: [parts[1]]
+      };
+    }
+
+    return { num: [str], den: [] };
+  }
+
+  function fracString(f) {
+    if (f.den && f.den.length > 0) {
+        return f.number + ' ' + f.num + " / " + f.den;
+    }
+    else {
+        return f.number + ' ' + f.num;
+    }
+  }
+
+function normalizeUnit(u) {
+  return u.toLowerCase()
+    .replace(/s$/, "")
+    .replace(/meters?/, "meter")
+    .replace(/seconds?/, "second")
+    .replace(/minutes?/, "minute")
+    .replace(/hours?/, "hour")
+    .replace(/miles?/, "mile");
+}
+
+  /* ------------------------------------------------ */
+  /* FRACTION CREATION                                */
+  /* ------------------------------------------------ */
+
+  function makeFraction(frac, draggable=true) {
+    const el = document.createElement("div");
+
+    el.style.cssText =
+      "display:flex;flex-direction:column;align-items:center;" +
+      "justify-content:center;padding:10px;border-radius:12px;" +
+      "background:#f8f8f8;border:1px solid #ccc;min-width:90px;" +
+      (draggable ? "cursor:grab;" : "");
+
+    const top = document.createElement("div");
+    top.textContent = frac.num.join(" ");
+
+    const line = document.createElement("div");
+    line.style.cssText = "width:80px;height:2px;background:#222;margin:4px 0;";
+
+    const bottom = document.createElement("div");
+    bottom.textContent = frac.den.join(" ");
+
+    el.appendChild(top);
+    if (frac.den && frac.den[0]) {
+        el.appendChild(line);
+        el.appendChild(bottom);
+    }
+
+    if (draggable) {
+      el.draggable = true;
+      el.addEventListener("dragstart", () => dragged = frac);
+    }
+
+    return el;
+  }
+
+  /* ------------------------------------------------ */
+  /* RENDER BANK                                      */
+  /* ------------------------------------------------ */
+
+  function renderBank() {
+    bankEl.innerHTML = "";
+    LEVEL.blocks.forEach(b => bankEl.appendChild(makeFraction(b, true)));
+  }
+
+  /* ------------------------------------------------ */
+  /* START STATE                                      */
+  /* ------------------------------------------------ */
+
+  function renderStart() {
+    const start = parseUnit(LEVEL.problem.start);
+
+    const wrap = document.createElement("div");
+    wrap.style.cssText =
+      "font-size:24px;font-weight:700;display:flex;flex-direction:column;align-items:center;";
+
+    const top = document.createElement("div");
+    top.textContent = start.number +' '+start.num;
+
+    const line = document.createElement("div");
+    line.style.cssText = "width:80px;height:2px;background:#222;margin:4px 0;";
+
+    const bottom = document.createElement("div");
+    bottom.textContent = start.den.join(" ");
+
+    wrap.appendChild(top);
+
+    if (start.den && start.den[0]) {
+        wrap.appendChild(line);
+        wrap.appendChild(bottom);
+    }
+    return wrap;
+  }
+
+  /* ------------------------------------------------ */
+  /* WORKSPACE                                        */
+  /* ------------------------------------------------ */
+
+  function renderWorkspace() {
+    workspaceEl.innerHTML = "";
+    workspaceEl.appendChild(renderStart());
+
+    workspace.forEach((f, i) => {
+      const mult = document.createElement("div");
+      mult.textContent = "×";
+      mult.style.cssText = "font-size:28px;font-weight:700;";
+      workspaceEl.appendChild(mult);
+
+      const el = makeFraction(f, false);
+
+      el.addEventListener("click", () => {
+        workspace.splice(i, 1);
+        renderWorkspace();
+        renderCancellation();
+      });
+
+      workspaceEl.appendChild(el);
+    });
+  }
+
+  /* ------------------------------------------------ */
+  /* CANCELLATION ENGINE                              */
+  /* ------------------------------------------------ */
+
+function renderCancellation() {
+
+  cancelEl.innerHTML = "";
+
+  let state = parseUnit(LEVEL.problem.start);
+
+  // active "frontier" unit (start from denominator first)
+  let activeDen = state.den[0] || null;
+  let activeNum = state.num[0] || null;
+
+  workspace.forEach(block => {
+
+    const from = block.den[1];
+    const to = block.num[1];
+
+    let canCancelDen;
+
+    if (activeDen != null) {
+        canCancelDen = normalizeUnit(to) === normalizeUnit(activeDen);
+    }
+    else {
+        canCancelDen = false;
+    }
+    const canCancelNum = normalizeUnit(from) === normalizeUnit(activeNum);
+
+    console.log(activeNum.substring(0, activeNum.length-1))
+    console.log(canCancelNum)
+
+    console.log(to, activeDen)
+    console.log(from, activeNum)
+
+    const div = document.createElement("div");
+    div.style.marginBottom = "8px";
+
+    // CASE 1: valid cancellation on denominator
+    if (canCancelDen == true) {
+
+      div.textContent =
+        `✓ cancelled denominator: to→{from}`;
+
+      div.style.color = "green";
+      activeDen = from;
+
+    }
+
+    // CASE 2: valid cancellation on numerator
+    else if (canCancelNum) {
+
+      div.textContent =
+        `✓ cancelled numerator: from→{to}`;
+
+      div.style.color = "green";
+      activeNum = to;
+
+    }
+
+    // CASE 3: invalid for BOTH
+    else {
+        if (activeDen != null) {
+            div.textContent =
+                `✗ cannot cancel either activeDen||"∅"using{to} or activeNum||"∅"using{from}.`;
+        }
+        else {
+            div.textContent =
+                `✗ cannot cancel activeNum||"∅"using{from}.`;
+        }
+
+
+
+      div.style.color = "red";
+    }
+
+    cancelEl.appendChild(div);
+  });
+
+  if (!workspace.length) {
+    cancelEl.textContent = "No conversions added yet.";
+  }
+}
+
+  /* ------------------------------------------------ */
+  /* DROP                                             */
+  /* ------------------------------------------------ */
+
+  workspaceEl.addEventListener("dragover", e => e.preventDefault());
+
+  workspaceEl.addEventListener("drop", e => {
+    e.preventDefault();
+    if (!dragged) return;
+
+    workspace.push(dragged);
+    renderWorkspace();
+    renderCancellation();
+  });
+
+  /* ------------------------------------------------ */
+  /* CHECK                                            */
+  /* ------------------------------------------------ */
+
+  checkBtn.addEventListener("click", () => {
+    const user = workspace.map(fracString);
+    for (let i = 0; i < user.length; i++) {
+        user[i] = user[i].replace('undefined', '').substring(1, user[i].length).replace(',', ' ').replace(',', ' ')
+    }
+    const targets = LEVEL.answers;
+
+    console.log(user);
+console.log(targets);
+
+    const correct = targets.some(t =>
+      t.length === user.length &&
+      t.every((v, i) => v === user[i])
+    );
+
+    feedbackEl.textContent = correct ? "✓ Correct!" : "✗ Try again";
+    feedbackEl.style.color = correct ? "green" : "red";
+  });
+
+  /* ------------------------------------------------ */
+  /* CLEAR                                            */
+  /* ------------------------------------------------ */
+
+  clearBtn.addEventListener("click", () => {
+    workspace = [];
+    renderWorkspace();
+    renderCancellation();
+    feedbackEl.textContent = "";
+  });
+
+  /* ------------------------------------------------ */
+  /* INIT                                             */
+  /* ------------------------------------------------ */
+
+  problemEl.textContent =
+    `Convert LEVEL.problem.startto{LEVEL.problem.target}`;
+
+  renderBank();
+  renderWorkspace();
+  renderCancellation();
+
+})();
+</script>
