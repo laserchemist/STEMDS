@@ -317,7 +317,8 @@ if __name__ == "__main__":
     print("SHARE WITH STUDENTS:")
     print("  Middle school → TOC_student.ipynb link above")
     print("  High school   → TOC_hs_student.ipynb link above")
+    print("  Chemistry     → TOC_chem.ipynb link above")
     print("\nKEEP PRIVATE (instructor section):")
     print("  Middle school → TOC.ipynb link above")
     print("  High school   → TOC_hs.ipynb link above")
-    print("  Chemistry     → TOC_chem.ipynb link above")
+    
