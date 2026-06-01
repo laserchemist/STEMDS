@@ -213,7 +213,7 @@ def _review_section(color=GREEN):
     return '---\n\n## 🧠 Reviews\n\n' + button_group(REVIEWS, color)
 def _exercise_section(color=GOLD):
     return '---\n\n## 💪 Exercises\n\n' + button_group(EXERCISES, color)
-def chemistry_section(color=LIGHTBLUE):
+def _chem_section(color=LIGHTBLUE):
     return '---\n\n## 🧪 Chemistry Postlabs and Activities\n\n' + button_group(CHEMISTREES, color)
 
 def _instructor_section(color=GREY):
