@@ -229,12 +229,12 @@ def _write_toc(output, header, activities, btn_color, include_reviews, include_e
         + button_group(activities, btn_color),
         _resources_section(),
     ]
+    if include_chemistry:
+        sections.append(_chem_section())
     if include_reviews:
         sections.append(_review_section())
     if include_exercises:
         sections.append(_exercise_section())
-    if include_chemistry:
-        sections.append(_chem_section())
     if include_instructor:
         sections.append(_instructor_section())
 
@@ -302,7 +302,7 @@ def build_toc_chemistry():
     """Chemistry coolthings"""
     print("\n🧪 Chemistry - Student TOC")
     _write_toc("TOC_chem.ipynb", _hs_header(), HS_ACTIVITIES, 
-               GOLD, include_reviews=True, include_exercises=True, include_chemistry=True, include_instructor=True, dark_bg=True)
+               GOLD, include_reviews=True, include_exercises=True, include_chemistry=True, include_instructor=False, dark_bg=False)
 
 # ── run ───────────────────────────────────────────────────────────────────────
 
