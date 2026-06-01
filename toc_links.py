@@ -10,6 +10,7 @@ Generates:
     TOC_student.ipynb      — Middle school, student-only
     TOC_hs.ipynb           — High school, full (instructor section included)
     TOC_hs_student.ipynb   — High school, student-only
+    TOC_chem.ipynb         — Chem, student-only
 
 All nbgitpuller URL logic and button styling lives here.
 TOC notebooks are pure markdown — no code cells, no execution needed.
