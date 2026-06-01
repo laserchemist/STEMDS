@@ -182,6 +182,15 @@ def _chem_colorz():
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 
+def toc_linker(filename):
+    urlpath = f"tree/{FOLDER}/{filename}"
+    return (
+        f"{HUB}/hub/user-redirect/git-pull"
+        f"?repo={quote(REPO, safe='')}"
+        f"&urlpath={quote(urlpath, safe='')}"
+        f"&branch={BRANCH}"
+    )
+
 def nbgitpuller(filename):
     urlpath = f"lab/tree/{FOLDER}/{filename}"
     return (
@@ -291,7 +300,7 @@ def _write_toc(output, header, activities, btn_color, include_reviews, include_e
     with open(output, "w") as f:
         json.dump(nb, f, indent=1)
     print(f"  Written → {output}")
-    print(f"  Link    → {nbgitpuller(output)}")
+    print(f"  Link    → {toc_linker(output)}")
 
 # ── public builders ───────────────────────────────────────────────────────────
 
