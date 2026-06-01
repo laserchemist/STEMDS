@@ -1,0 +1,373 @@
+<div id="cb-root-%%UID%%" style="
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  font-family:Segoe UI,Arial,sans-serif;
+  max-width:1100px;
+  margin:12px auto;">
+
+  <!-- WORD BANK -->
+  <div id="cb-wordbank-%%UID%%"
+       style="background:#fff;border:1px solid #e5e5e5;
+              border-radius:16px;padding:14px;">
+
+    <div style="font-size:20px;font-weight:700;margin-bottom:12px;">
+      Ions and Numbers
+    </div>
+
+    <div id="cb-wordbank-items-%%UID%%"
+         style="display:flex;flex-wrap:wrap;gap:10px;">
+    </div>
+  </div>
+
+  <!-- WORKSPACE -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+
+    <div>
+      <h3>Reactants</h3>
+      <div id="cb-reactants-%%UID%%"
+           style="border:2px solid #ccc;padding:12px;border-radius:12px;">
+      </div>
+    </div>
+
+    <div>
+      <h3>Products</h3>
+      <div id="cb-products-%%UID%%"
+           style="border:2px solid #ccc;padding:12px;border-radius:12px;">
+      </div>
+    </div>
+
+  </div>
+
+  <button id="cb-check-%%UID%%"
+          style="background:#4caf50;color:white;border:none;
+                 padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer;">
+    Check Answer
+  </button>
+
+  <div id="cb-feedback-%%UID%%" style="font-weight:700;"></div>
+    <div id="cb-counts-%%UID%%"
+     style="
+       border:1px solid #ddd;
+       border-radius:12px;
+       padding:12px;
+       background:#fafafa;
+       font-size:15px;
+       line-height:1.7;">
+</div>
+</div>
+
+
+<script type='text/javascript' src='https://temple.2i2c.cloud/cjDIZZeONRzazEQ0Zc8eJq7nWMsvLiTt2mP9lJg32rh-v3AFpu7mHpYqFGIa85AwOsLZau7DVBdOEsU3KkqWXJtzOdPCAduQ-BSoFfL_3J80jS3bj6o6aIOrhXnXiPXUZ0YbHecVHzNqXgfCk8JNLyO0OSZaxVYbF-bZ5ofb1358BsTtNwP5-2TVOpa1KKr-nIc1OsnzhBwPhIzwjjaQwqKdqktWep3x24Sd6x9B8r8ZsTTPulUFgs9W1VV-L1IxUM5TPzqXvCRpAYUVJLM-vc18OB-6uH-aKjZnKZgGDdANcmTh0UcHJicWsqIcF_99dnabnDVfC4q3Aqp4_eMsdRIJxUR_QmKiarbkyaW7DzkfoWt01lQXQu1Nv_MiifK8uymmccsHQQ2TK3_uvtCuu8uS07mZKmVgPoN_7o2L1xmoWZaJhljGywVu7cWhQmE6a1xJOFMlvozQBH4MjsYT61fKb7iQgSbTf_xT-ZRFbc6UfQHa_md11TMS4CuBNQ9T7g6oM0CtE_4gp09paMc5I7ySyIkjtxj6RUZDjjwzGPndKcOlwCd42ViAdipff2t-t2nyfZFrBI6b7AT1GtVBOYivChvhm4rYWcDgjsz0MsJdnM63O4hDkF_kUYAvfXP5niHdK7-q40fPUmw'></script><script>
+(function () {
+
+  const UID = %%UID%%;
+
+  const wordbankEl = document.getElementById('cb-wordbank-items-' + UID);
+  const reactantsEl = document.getElementById('cb-reactants-' + UID);
+  const productsEl  = document.getElementById('cb-products-' + UID);
+  const checkBtn    = document.getElementById('cb-check-' + UID);
+  const feedbackEl  = document.getElementById('cb-feedback-' + UID);
+    const countsEl = document.getElementById('cb-counts-' + UID);
+
+  let dragged = null;
+
+  /* ---------------- WORD BANK ---------------- */
+
+  const wordbank = [
+    "Na", "Cu", "PO4", "Cl", "2", "3", "4", "5", "6"
+  ];
+
+function formatIon(text) {
+
+  return text
+
+    // subscripts
+    .replace(/([A-Za-z])(\d+)/g, (_, a, b) => {
+      return a + "<sub>" + b + "</sub>";
+    })
+
+    // superscript charges
+    .replace(/\^([0-9]*[+-])/g, (_, c) => {
+      return "<sup>" + c + "</sup>";
+    });
+}
+
+function normalize(v) {
+  return String(v ?? "").trim();
+}
+    
+function flattenMol(mol) {
+  return [
+    normalize(mol.coeff),
+    normalize(mol.ion1),
+    normalize(mol.sub1),
+    normalize(mol.ion2),
+    normalize(mol.sub2)
+  ];
+}
+
+    function flattenSide(side) {
+  return side.map(flattenMol);
+}
+    
+  function makeToken(text) {
+    const div = document.createElement("div");
+    div.innerHTML = formatIon(text);
+
+    div.draggable = true;
+
+    div.style.cssText =
+      'padding:10px 14px;background:#444;color:white;border-radius:12px;' +
+      'cursor:grab;font-weight:600;user-select:none;';
+
+    div.addEventListener("dragstart", e => {
+      dragged = text;
+      e.dataTransfer.setData("text/plain", text);
+    });
+
+    return div;
+  }
+
+  function renderWordBank() {
+    wordbankEl.innerHTML = "";
+    wordbank.forEach(w => wordbankEl.appendChild(makeToken(w)));
+  }
+
+  /* ---------------- SLOT SYSTEM ---------------- */
+
+function makeSlot(obj, field, type) {
+  const box = document.createElement("div");
+
+  const base =
+    "display:flex;align-items:center;justify-content:center;" +
+    "border-radius:8px;font-weight:600;user-select:none;" +
+    "border:1px dashed #ccc;";
+
+  if (type === "coeff") {
+    box.style.cssText = base +
+      "min-width:28px;height:38px;font-size:16px;" +
+      "background:rgba(33,150,243,0.06);";
+  }
+
+  if (type === "ion") {
+    box.style.cssText = base +
+      "min-width:60px;height:38px;font-size:16px;" +
+      "background:rgba(76,175,80,0.06);";
+  }
+
+  if (type === "sub") {
+    box.style.cssText = base +
+      "min-width:20px;height:22px;font-size:11px;" +
+      "background:rgba(255,152,0,0.06);" +
+      "transform:translateY(9px);"; // 👈 pushes it lower
+  }
+
+  function render() {
+    box.innerHTML = obj[field] ? formatIon(obj[field]) : "";
+  }
+
+  render();
+renderCounts();
+
+  box.addEventListener("dragover", e => e.preventDefault());
+
+  box.addEventListener("drop", e => {
+    e.preventDefault();
+    obj[field] = String(dragged);
+    render();
+renderCounts();
+  });
+
+    box.addEventListener("click", () => {
+  obj[field] = "";
+  render();
+renderCounts();
+});
+
+  return box;
+}
+
+  /* ---------------- MOLECULE STRUCTURE ---------------- */
+
+function makeMolecule() {
+  return {
+    coeff: "",
+    ion1: "",
+    sub1: "",
+    ion2: "",
+    sub2: ""
+  };
+}
+
+let reactants = [makeMolecule(), makeMolecule()];
+let products  = [makeMolecule(), makeMolecule()];
+
+  /* ---------------- RENDER ---------------- */
+
+function renderMolecule(container, arr) {
+  container.innerHTML = "";
+
+  const wrapper = document.createElement("div");
+
+  wrapper.style.cssText =
+    "display:flex;align-items:flex-end;gap:8px;flex-wrap:nowrap;";
+
+  arr.forEach((mol, i) => {
+    const row = document.createElement("div");
+
+    row.style.cssText =
+  "display:flex;align-items:center;gap:6px;";
+
+    row.appendChild(makeSlot(mol, "coeff", "coeff"));
+    row.appendChild(makeSlot(mol, "ion1", "ion"));
+    row.appendChild(makeSlot(mol, "sub1", "sub"));
+    row.appendChild(makeSlot(mol, "ion2", "ion"));
+    row.appendChild(makeSlot(mol, "sub2", "sub"));
+
+    wrapper.appendChild(row);
+
+    // ✅ ONLY add plus if not last
+    if (i !== arr.length - 1) {
+      const plus = document.createElement("div");
+      plus.textContent = "+";
+      plus.style.cssText =
+        "padding:0 6px;" +
+        "font-weight:700;" +
+        "align-self:center;" +
+        "transform:translateY(-2px);";
+      wrapper.appendChild(plus);
+    }
+  });
+
+  container.appendChild(wrapper);
+}
+
+    function countAtoms(side) {
+
+  const counts = {};
+
+  side.forEach(mol => {
+
+    const coeff = Number(mol.coeff || 1);
+
+    [
+      [mol.ion1, mol.sub1],
+      [mol.ion2, mol.sub2]
+    ].forEach(([ion, sub]) => {
+
+      if (!ion) return;
+
+      const multiplier = Number(sub || 1);
+
+      // split ions into atoms
+      const matches = ion.match(/[A-Z][a-z]?\d*/g) || [];
+
+      matches.forEach(piece => {
+
+        const atomMatch = piece.match(/^([A-Z][a-z]?)(\d*)$/);
+
+        const atom = atomMatch[1];
+        const atomCount = Number(atomMatch[2] || 1);
+
+        const total = coeff * multiplier * atomCount;
+
+        counts[atom] = (counts[atom] || 0) + total;
+      });
+    });
+  });
+
+  return counts;
+}
+
+function renderCounts() {
+
+  const reactantCounts = countAtoms(reactants);
+  const productCounts = countAtoms(products);
+
+  const atoms = [...new Set([
+    ...Object.keys(reactantCounts),
+    ...Object.keys(productCounts)
+  ])];
+
+  let html = `
+    <div style="font-weight:700;margin-bottom:8px;">
+      Atom Counts
+    </div>
+  `;
+
+  atoms.forEach(atom => {
+
+    const r = reactantCounts[atom] || 0;
+    const p = productCounts[atom] || 0;
+
+    const balanced = r === p;
+
+    html += `
+      <div>
+        ${atom}: 
+        Reactants = <b>${r}</b>,
+        Products = <b>${p}</b>
+        <span style="
+          color:${balanced ? 'green' : 'red'};
+          font-weight:700;">
+          ${balanced ? '✓' : '✗'}
+        </span>
+      </div>
+    `;
+  });
+
+  countsEl.innerHTML = html;
+}
+
+function renderAll() {
+  renderWordBank();
+  renderMolecule(reactantsEl, reactants);
+  renderMolecule(productsEl, products);
+  renderCounts();
+}
+
+  /* ---------------- CHECK ---------------- */
+
+    const answerKey = {
+  reactants: [
+    [['3', 'Cu', '', 'Cl', '2'], ['2', 'Na', '3', 'PO4', '']],
+    [['2', 'Na', '3', 'PO4', ''], ['3', 'Cu', '', 'Cl', '2']]
+  ],
+  products: [
+    [['', 'Cu', '3', 'PO4', '2'], ['6', 'Na', '', 'Cl', '']],
+    [['6', 'Na', '', 'Cl', ''], ['', 'Cu', '3', 'PO4', '2']]
+  ]
+};
+
+function exactMatch(a, b) {
+  if (a.length !== b.length) return false;
+  return a.length === b.length &&
+       a.every((v, i) => normalize(v) === normalize(b[i]));
+}
+function matchesAny(userArr, options) {
+  return options.some(option => exactMatch(userArr, option));
+}
+
+checkBtn.addEventListener("click", () => {
+  const userReactants = flattenSide(reactants);
+  const userProducts  = flattenSide(products);
+
+    console.log("USER:", userReactants);
+console.log("EXPECTED:", answerKey.reactants);
+
+  const r = matchesAny(userReactants, answerKey.reactants);
+  const p = matchesAny(userProducts, answerKey.products);
+
+  const correct = r && p;
+
+  feedbackEl.textContent = correct ? "✓ Correct!" : "✗ Try again";
+  feedbackEl.style.color = correct ? "green" : "red";
+});
+
+  /* ---------------- INIT ---------------- */
+
+  renderAll();
+
+})();
+</script>
