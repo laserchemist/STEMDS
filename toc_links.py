@@ -125,7 +125,7 @@ HS_PURPLE   = "#5C2D91"   # Deep violet    — high school buttons
 GREY        = "#555555"   # Instructor section (both)
 GREEN       = "#06402B"   # green for reviews :)
 GOLD        = "#EFBF04"   # gold exercises because they retrieve your memory like a GOlden Retriever haHAHA
-LIGHTBLUE  = "#90D5FF"   # light blue because drinking chemicals makes you go into the sky
+LIGHTBLUE   = "#90D5FF"   # light blue because drinking chemicals makes you go into the sky
 
 # ── header HTML ───────────────────────────────────────────────────────────────
 
@@ -183,7 +183,7 @@ def _chem_colorz():
 # ── helpers ───────────────────────────────────────────────────────────────────
 
 def nbgitpuller(filename):
-    urlpath = f"tree/{FOLDER}/{filename}"
+    urlpath = f"lab/tree/{FOLDER}/{filename}"
     return (
         f"{HUB}/hub/user-redirect/git-pull"
         f"?repo={quote(REPO, safe='')}"
@@ -191,10 +191,10 @@ def nbgitpuller(filename):
         f"&branch={BRANCH}"
     )
 
-def button(label, desc, url, color):
+def button(label, desc, url, color, color_text):
     return (
         f'<a href="{url}" target="_blank" style="text-decoration:none;">\n'
-        f'  <div style="background:{color};color:white;border-radius:10px;'
+        f'  <div style="background:{color};color:{color_text};border-radius:10px;'
         f'padding:16px 24px;margin:8px 4px;display:inline-block;'
         f'min-width:340px;max-width:420px;vertical-align:top;'
         f'box-shadow:2px 2px 6px rgba(0,0,0,0.18);">\n'
@@ -204,7 +204,7 @@ def button(label, desc, url, color):
         f'</a>'
     )
 
-def button_group(items, color):
+def button_group(items, color, color_text):
     for entry in items:
         if len(entry) != 3:
             raise ValueError(
@@ -215,7 +215,7 @@ def button_group(items, color):
             )
     return (
         '<div style="margin:12px 0;">\n'
-        + "\n".join(button(lbl, desc, nbgitpuller(fname), color)
+        + "\n".join(button(lbl, desc, nbgitpuller(fname), color, color_text)
                     for fname, lbl, desc in items)
         + '\n</div>'
     )
@@ -231,14 +231,14 @@ def _resources_section():
     )
 
 def _review_section(color=GREEN):
-    return '---\n\n## 🧠 Reviews\n\n' + button_group(REVIEWS, color)
+    return '---\n\n## 🧠 Reviews\n\n' + button_group(REVIEWS, color, 'white')
 def _exercise_section(color=GOLD):
-    return '---\n\n## 💪 Exercises\n\n' + button_group(EXERCISES, color)
+    return '---\n\n## 💪 Exercises\n\n' + button_group(EXERCISES, color, 'black')
 def _chem_section(color=LIGHTBLUE):
-    return '---\n\n## 🧪 Chemistry Postlabs and Activities\n\n' + button_group(CHEMISTREES, color)
+    return '---\n\n## 🧪 Chemistry Postlabs and Activities\n\n' + button_group(CHEMISTREES, color, 'black')
 
 def _instructor_section(color=GREY):
-    return '---\n\n## 🔒 Instructor\n\n' + button_group(INSTRUCTOR, color)
+    return '---\n\n## 🔒 Instructor\n\n' + button_group(INSTRUCTOR, color, 'white')
 
 # ── notebook writer ───────────────────────────────────────────────────────────
 
@@ -246,18 +246,18 @@ def _write_toc(output, header, activities, btn_color, include_reviews, include_e
     sections = [
         header,
         '## 📚 Activities & Labs\n\n'
-        '*Click any button to open the notebook on the hub.*\n\n'
-        + button_group(activities, btn_color),
-        _resources_section(),
+        '*Click any button to open the notebook on the hub.*'
     ]
     if include_chemistry:
         sections.append(_chem_section())
+    sections.append(button_group(activities, btn_color, 'white'))
     if include_reviews:
         sections.append(_review_section())
     if include_exercises:
         sections.append(_exercise_section())
     if include_instructor:
         sections.append(_instructor_section())
+    sections.append(_resources_section())
 
     source = "\n\n".join(sections)
 
@@ -323,7 +323,7 @@ def build_toc_chemistry():
     """Chemistry coolthings"""
     print("\n🧪 Chemistry - Student TOC")
     _write_toc("TOC_chem.ipynb", _chem_colorz(), HS_ACTIVITIES, 
-               GOLD, include_reviews=True, include_exercises=True, include_chemistry=True, include_instructor=False, dark_bg=False)
+               HS_PURPLE, include_reviews=True, include_exercises=True, include_chemistry=True, include_instructor=False, dark_bg=False)
 
 # ── run ───────────────────────────────────────────────────────────────────────
 
