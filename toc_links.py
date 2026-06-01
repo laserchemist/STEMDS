@@ -93,6 +93,17 @@ REVIEWS = [
     ("lab01/ReviewMaterials/Review_1.ipynb", "Review for Lab 01", "cool beans"),
     ("lab02/ReviewMaterials/Review_2.ipynb", "Review for Lab 02", "cooler beans")]
 
+CHEMISTREES = [
+    ("Chemistry/CopperPhosphate/Copper Postlab Analysis.ipynb", "Copper Postlab", ":)"),
+    ("Chemistry/Density/Density.ipynb", "Density Activity", "Density :)"),
+    ("Chemistry/Tea/Caffeine Postlab Analysis.ipynb", "Tea: Caffeine Postlab", "I love caffeine :D"),
+    ("Chemistry/Tea/LTheanine Analysis UVvis.ipynb", "Tea: LTheanine UV-vis Postlab", "I love Theanine :D"),
+    ("Chemistry/Titrations/Titration Vinegar Postlab.ipynb", "Titration: Vinegar Postlab", "Smells godawful but it's for science I guess"),
+    ("Chemistry/Titrations/Titration Sprite Postlab.ipynb", "Titration: Sprite Postlab", "Anyone else fancy a pint of boiled soda?"),
+    ("Chemistry/Titrations/Titration Coca Cola Postlab.ipynb", "Titration: Coca-Cola Postlab", "I know I do"),
+    ("Chemistry/BestFit/Best Fit.ipynb", "Guide to getting the Best Fit Line", "Expect to use this a lot"),
+    ("Chemistry/UnitConvert/UnitConvert.ipynb", "Guide to Unit Conversion", "Unit Conversions :|")]
+
 # ── Instructor-only notebooks (same for both programs) ────────────────────────
 # NOTE: security-by-obscurity only — see LOCKING note below.
 
@@ -113,6 +124,7 @@ HS_PURPLE   = "#5C2D91"   # Deep violet    — high school buttons
 GREY        = "#555555"   # Instructor section (both)
 GREEN       = "#06402B"   # green for reviews :)
 GOLD        = "#EFBF04"   # gold exercises because they retrieve your memory like a GOlden Retriever haHAHA
+LIGHTBLUE  = "#90D5FF"   # light blue because drinking chemicals makes you go into the sky
 
 # ── header HTML ───────────────────────────────────────────────────────────────
 
@@ -200,13 +212,15 @@ def _review_section(color=GREEN):
     return '---\n\n## 🧠 Reviews\n\n' + button_group(REVIEWS, color)
 def _exercise_section(color=GOLD):
     return '---\n\n## 💪 Exercises\n\n' + button_group(EXERCISES, color)
+def chemistry_section(color=LIGHTBLUE):
+    return '---\n\n## 🧪 Chemistry Postlabs and Activities\n\n' + button_group(CHEMISTREES, color)
 
 def _instructor_section(color=GREY):
     return '---\n\n## 🔒 Instructor\n\n' + button_group(INSTRUCTOR, color)
 
 # ── notebook writer ───────────────────────────────────────────────────────────
 
-def _write_toc(output, header, activities, btn_color, include_reviews, include_exercises, include_instructor, dark_bg=False):
+def _write_toc(output, header, activities, btn_color, include_reviews, include_exercises, include_chemistry, include_instructor, dark_bg=False):
     sections = [
         header,
         '## 📚 Activities & Labs\n\n'
@@ -218,6 +232,8 @@ def _write_toc(output, header, activities, btn_color, include_reviews, include_e
         sections.append(_review_section())
     if include_exercises:
         sections.append(_exercise_section())
+    if include_chemistry:
+        sections.append(_chem_section())
     if include_instructor:
         sections.append(_instructor_section())
 
@@ -261,25 +277,31 @@ def build_ms_toc():
     """Middle school — full (with instructor section). Keep link private."""
     print("\n📘 Middle School — Full TOC")
     _write_toc("TOC.ipynb", _ms_header(), MS_ACTIVITIES,
-               CHERRY, include_reviews=True, include_exercises=True, include_instructor=True)
+               CHERRY, include_reviews=True, include_exercises=True, include_chemistry=False, include_instructor=True)
 
 def build_ms_toc_student():
     """Middle school — student-only. Share this link freely."""
     print("\n📘 Middle School — Student TOC")
     _write_toc("TOC_student.ipynb", _ms_header(), MS_ACTIVITIES,
-               CHERRY, include_reviews=True, include_exercises=True, include_instructor=True)
+               CHERRY, include_reviews=True, include_exercises=True, include_chemistry=False, include_instructor=True)
 
 def build_hs_toc():
     """High school — full (with instructor section). Keep link private."""
     print("\n🔥 High School — Full TOC")
     _write_toc("TOC_hs.ipynb", _hs_header(), HS_ACTIVITIES,
-               HS_PURPLE, include_reviews=True, include_exercises=True, include_instructor=True, dark_bg=True)
+               HS_PURPLE, include_reviews=True, include_exercises=True, include_chemistry=False, include_instructor=True, dark_bg=True)
 
 def build_hs_toc_student():
     """High school — student-only. Share this link freely."""
     print("\n🔥 High School — Student TOC")
     _write_toc("TOC_hs_student.ipynb", _hs_header(), HS_ACTIVITIES,
-               HS_PURPLE, include_reviews=True, include_exercises=True, include_instructor=True, dark_bg=True)
+               HS_PURPLE, include_reviews=True, include_exercises=True, include_chemistry=False, include_instructor=True, dark_bg=True)
+
+def build_toc_chemistry():
+    """Chemistry coolthings"""
+    print("\n🧪 Chemistry - Student TOC")
+    _write_toc("TOC_chem.ipynb", _hs_header(), HS_ACTIVITIES, 
+               GOLD, include_reviews=True, include_exercises=True, include_chemistry=True, include_instructor=True, dark_bg=True)
 
 # ── run ───────────────────────────────────────────────────────────────────────
 
@@ -288,6 +310,7 @@ if __name__ == "__main__":
     build_ms_toc_student()
     build_hs_toc()
     build_hs_toc_student()
+    build_toc_chemistry()
 
     print("\n" + "="*60)
     print("SHARE WITH STUDENTS:")
@@ -296,3 +319,4 @@ if __name__ == "__main__":
     print("\nKEEP PRIVATE (instructor section):")
     print("  Middle school → TOC.ipynb link above")
     print("  High school   → TOC_hs.ipynb link above")
+    print("  Chemistry     → TOC_chem.ipynb link above")
