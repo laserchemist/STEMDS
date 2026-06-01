@@ -159,6 +159,27 @@ def _hs_header():
     )
     return banner
 
+def _chem_colorz():
+    # Some mellower colors, because life is pain
+    banner = (
+        '<div style="'
+        'background:linear-gradient(135deg, #A10100, #DA1F05, #F33C04, #FE650D, #FFC11F, #FFF75D);'
+        'border-radius:14px;padding:28px 32px;margin-bottom:18px;'
+        'box-shadow:0 4px 24px rgba(200,0,160,0.35);">\n'
+        '  <img src="Temple_flag_morn.png" alt="Temple University" '
+        'style="width:140px;float:right;margin:0 0 8px 16px;'
+        'border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.4);"/>\n'
+        '  <span style="font-size:2.2em;font-weight:900;'
+        'background:linear-gradient(90deg, #FFF75D, #FFC11F, #FE650D, #F33C04, #DA1F05, #A10100);'
+        '-webkit-background-clip:text;-webkit-text-fill-color:transparent;'
+        'display:block;line-height:1.2;">⚡ STEM-UP Chemistry</span>\n'
+        '  <span style="color:#ffffff;font-size:1.15em;font-weight:600;'
+        'text-shadow:0 1px 4px rgba(0,0,0,0.5);">'
+        'Temple University · Summer Program · High School</span>\n'
+        '</div>\n\n---'
+    )
+    return banner
+
 # ── helpers ───────────────────────────────────────────────────────────────────
 
 def nbgitpuller(filename):
@@ -301,7 +322,7 @@ def build_hs_toc_student():
 def build_toc_chemistry():
     """Chemistry coolthings"""
     print("\n🧪 Chemistry - Student TOC")
-    _write_toc("TOC_chem.ipynb", _hs_header(), HS_ACTIVITIES, 
+    _write_toc("TOC_chem.ipynb", _chem_colorz(), HS_ACTIVITIES, 
                GOLD, include_reviews=True, include_exercises=True, include_chemistry=True, include_instructor=False, dark_bg=False)
 
 # ── run ───────────────────────────────────────────────────────────────────────
