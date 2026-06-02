@@ -254,11 +254,11 @@ def _instructor_section(color=GREY):
 def _write_toc(output, header, activities, btn_color, include_reviews, include_exercises, include_chemistry, include_instructor, dark_bg=False):
     sections = [
         header,
-        '## 📚 Activities & Labs\n\n'
         '*Click any button to open the notebook on the hub.*'
     ]
     if include_chemistry:
         sections.append(_chem_section())
+    sections.append('## 📚 Activities & Labs')
     sections.append(button_group(activities, btn_color, 'white'))
     if include_reviews:
         sections.append(_review_section())
