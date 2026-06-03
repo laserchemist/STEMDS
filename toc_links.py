@@ -314,7 +314,7 @@ def build_ms_toc_student():
     """Middle school — student-only. Share this link freely."""
     print("\n📘 Middle School — Student TOC")
     _write_toc("TOC_student.ipynb", _ms_header(), MS_ACTIVITIES,
-               CHERRY, include_reviews=True, include_exercises=True, include_chemistry=False, include_instructor=True)
+               CHERRY, include_reviews=True, include_exercises=True, include_chemistry=False, include_instructor=False)
 
 def build_hs_toc():
     """High school — full (with instructor section). Keep link private."""
@@ -326,7 +326,7 @@ def build_hs_toc_student():
     """High school — student-only. Share this link freely."""
     print("\n🔥 High School — Student TOC")
     _write_toc("TOC_hs_student.ipynb", _hs_header(), HS_ACTIVITIES,
-               HS_PURPLE, include_reviews=True, include_exercises=True, include_chemistry=False, include_instructor=True, dark_bg=True)
+               HS_PURPLE, include_reviews=True, include_exercises=True, include_chemistry=False, include_instructor=False, dark_bg=True)
 
 def build_toc_chemistry():
     """Chemistry coolthings"""
