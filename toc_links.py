@@ -37,9 +37,9 @@ FOLDER = "STEMDS"   # subfolder the repo clones into on the hub
 # ALL THREE fields are required — missing the description crashes at build time.
 
 MS_ACTIVITIES = [
-    ("lab00_middle_school.ipynb",
+    ("lab00.ipynb",
         "🔬 Lab 00",   "Introduction to Data Science"),
-    ("lab01_middle_school.ipynb",
+    ("lab01.ipynb",
         "🔬 Lab 01",   "Introduction to Python as a Tool"),
     ("Activity1_Planetary_Data_Lab.ipynb",
         "🪐 Activity 1", "Planetary Data Lab"),
@@ -64,9 +64,9 @@ MS_ACTIVITIES = [
 # ══════════════════════════════════════════════════════════════════════════════
 
 HS_ACTIVITIES = [
-    ("lab00_middle_school.ipynb",          # shared with MS — same intro lab
+    ("lab00.ipynb",          # shared with MS — same intro lab
         "🔬 Lab 00",   "Introduction to Data Science"),
-    ("lab01_middle_school.ipynb",
+    ("lab01.ipynb",
         "🔬 Lab 01",   "Introduction to Python as a Tool"),
     ("lab2_high_school.ipynb",
         "🧮 Lab 02",   "Data types — numbers, strings, arrays"),
