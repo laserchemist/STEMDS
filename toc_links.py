@@ -66,7 +66,7 @@ MS_ACTIVITIES = [
 HS_ACTIVITIES = [
     ("lab00_middle_school.ipynb",          # shared with MS — same intro lab
         "🔬 Lab 00",   "Introduction to Data Science"),
-    ("lab01_high_school.ipynb",
+    ("lab01_middle_school.ipynb",
         "🔬 Lab 01",   "Introduction to Python as a Tool"),
     ("lab2_high_school.ipynb",
         "🧮 Lab 02",   "Data types — numbers, strings, arrays"),
