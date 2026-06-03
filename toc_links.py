@@ -68,7 +68,7 @@ HS_ACTIVITIES = [
         "🔬 Lab 00",   "Introduction to Data Science"),
     ("lab01_high_school.ipynb",
         "🔬 Lab 01",   "Introduction to Python as a Tool"),
-    ("lab02/lab2_high_school.ipynb",
+    ("lab2_high_school.ipynb",
         "🧮 Lab 02",   "Data types — numbers, strings, arrays"),
     ("lab03/lab3_high_school.ipynb",
         "🗃️ Lab 03",   "Tables — organising & analysing data"),
