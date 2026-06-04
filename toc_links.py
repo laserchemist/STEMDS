@@ -37,25 +37,25 @@ FOLDER = "STEMDS"   # subfolder the repo clones into on the hub
 # ALL THREE fields are required — missing the description crashes at build time.
 
 MS_ACTIVITIES = [
-    ("lab00.ipynb",
+    ("lab00/lab00_middle_school.ipynb",
         "🔬 Lab 00",   "Introduction to Data Science"),
-    ("lab01.ipynb",
+    ("lab01/lab01_middle_school.ipynb",
         "🔬 Lab 01",   "Introduction to Python as a Tool"),
-    ("Activity1_Planetary_Data_Lab.ipynb",
+    ("Planet Activities/Activity1_Planetary_Data_Lab.ipynb",
         "🪐 Activity 1", "Planetary Data Lab"),
-    ("Activity2_Planet_Builder_Simulator.ipynb",
+    ("Planet Activities/Activity2_Planet_Builder_Simulator.ipynb",
         "🚀 Activity 2", "Planet Builder Simulator"),
-    ("lab02/lab2_middle_school.ipynb",
+    ("lab02/lab02_middle_school.ipynb",
         "🧮 Lab 02",   "Data types — numbers, strings, arrays"),
-    ("lab03/lab3_middle_school.ipynb",
+    ("lab03/lab03_middle_school.ipynb",
         "🗃️ Lab 03",   "Tables — organising data"),
-    ("Lab04-Functions-A.ipynb",
+    ("lab04/lab04_middle_school",
         "⚙️ Lab 04",   "Functions"),
-    ("lab05/lab5_middle_school.ipynb",
+    ("lab05/lab05_middle_school.ipynb",
         "🎲 Lab 05",   "Probability, Simulation & Hypothesis Testing"),
-    ("Plant_Explorer.ipynb",
+    ("Plant Activity/Plant_Explorer.ipynb",
         "🌿 Plant Similarity: Photo Investigation", "Plant Identification"),
-    ("Code_Library.ipynb",
+    ("Code Library/Code_Library.ipynb",
         "📖 Your Code Library", "For all your coding needs :)"),
 ]
 
@@ -64,21 +64,21 @@ MS_ACTIVITIES = [
 # ══════════════════════════════════════════════════════════════════════════════
 
 HS_ACTIVITIES = [
-    ("lab00.ipynb",          # shared with MS — same intro lab
+    ("lab00/lab00_high_school.ipynb",          # shared with MS — same intro lab
         "🔬 Lab 00",   "Introduction to Data Science"),
-    ("lab01.ipynb",
+    ("lab01/lab01_high_school.ipynb",
         "🔬 Lab 01",   "Introduction to Python as a Tool"),
-    ("lab2_high_school.ipynb",
+    ("lab02/lab02_high_school.ipynb",
         "🧮 Lab 02",   "Data types — numbers, strings, arrays"),
-    ("lab03/lab3_high_school.ipynb",
+    ("lab03/lab03_high_school.ipynb",
         "🗃️ Lab 03",   "Tables — organising & analysing data"),
-    ("Lab04-Functions-A.ipynb",
+    ("lab04/lab04_high_school.ipynb",
         "⚙️ Lab 04",   "Functions"),
-    ("lab05/lab5_high_school.ipynb",
+    ("lab05/lab05_high_school.ipynb",
         "🎲 Lab 05",   "Probability, Simulation & Hypothesis Testing"),
-    ("Plant_Explorer.ipynb",
+    ("Plant Activity/Plant_Explorer.ipynb",
         "🌿 Plant Similarity: Photo Investigation", "Plant Identification"),
-    ("Code_Library.ipynb",
+    ("Code Library/Code_Library.ipynb",
         "📖 Your Code Library", "For all your coding needs :)"),
 ]
 
