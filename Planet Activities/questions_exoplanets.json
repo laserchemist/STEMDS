@@ -1,0 +1,102 @@
+[
+  {
+    "question": "What does the term 'exoplanet' mean?",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "A planet outside our solar system, orbiting another star", "correct": true, "feedback": "Correct! 'Exo' means outside — exoplanets orbit stars other than our Sun."},
+      {"answer": "A planet that has been ejected from its solar system", "correct": false, "feedback": "Not quite. Rogue planets float freely, but exoplanets still orbit a host star."},
+      {"answer": "A very large planet made mostly of gas", "correct": false, "feedback": "That describes gas giants like Jupiter, not exoplanets specifically."},
+      {"answer": "A moon orbiting a planet outside Earth", "correct": false, "feedback": "Those would be exomoons! Exoplanets are the planets themselves."}
+    ]
+  },
+  {
+    "question": "The 'Goldilocks Zone' around a star is the region where:",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "Liquid water could exist on a planet's surface", "correct": true, "feedback": "Exactly! Not too hot, not too cold — just right for liquid water."},
+      {"answer": "A planet's gravity is equal to Earth's gravity", "correct": false, "feedback": "Gravity depends on a planet's mass and radius, not its distance from the star."},
+      {"answer": "Only rocky planets can form", "correct": false, "feedback": "Gas giants like Jupiter can also orbit in or near the habitable zone."},
+      {"answer": "Planets always have oxygen in their atmosphere", "correct": false, "feedback": "Being in the habitable zone doesn't guarantee any particular atmosphere."}
+    ]
+  },
+  {
+    "question": "Which unit do astronomers use to measure distances between planets and their stars?",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "Astronomical Unit (AU)", "correct": true, "feedback": "Right! 1 AU is the average Earth–Sun distance, about 150 million km."},
+      {"answer": "Light-year", "correct": false, "feedback": "Light-years measure distances between star systems, not within them."},
+      {"answer": "Parsec", "correct": false, "feedback": "Parsecs are used for stellar distances, not planet–star distances."},
+      {"answer": "Kilometer", "correct": false, "feedback": "Kilometers work but are too small a unit — the Earth–Sun distance is 150 billion meters!"}
+    ]
+  },
+  {
+    "question": "The TRAPPIST-1 system is special because it contains:",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "Seven Earth-sized planets, several in the habitable zone", "correct": true, "feedback": "Correct! TRAPPIST-1 holds the record for most habitable-zone rocky planets."},
+      {"answer": "The largest known gas giant ever discovered", "correct": false, "feedback": "TRAPPIST-1 planets are actually Earth-sized, not giant."},
+      {"answer": "A planet with confirmed liquid oceans on its surface", "correct": false, "feedback": "Liquid water on TRAPPIST-1 planets is possible but not yet confirmed."},
+      {"answer": "Two stars orbiting each other (a binary system)", "correct": false, "feedback": "TRAPPIST-1 is a single ultra-cool dwarf star, not a binary."}
+    ]
+  },
+  {
+    "question": "How do scientists most commonly detect exoplanets today?",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "The transit method — watching for a star to dim as a planet crosses in front", "correct": true, "feedback": "Great! The transit method (used by Kepler and TESS) found thousands of exoplanets."},
+      {"answer": "Taking direct photographs of the planet", "correct": false, "feedback": "Direct imaging works for a few large, bright planets, but is very rare."},
+      {"answer": "Listening for radio signals from the planet", "correct": false, "feedback": "That's part of SETI, searching for intelligent life — not how most planets are found."},
+      {"answer": "Measuring the planet's magnetic field from Earth", "correct": false, "feedback": "We can't measure exoplanet magnetic fields from Earth yet."}
+    ]
+  },
+  {
+    "question": "A planet's 'radius' tells us:",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "How big the planet is — the distance from its center to its surface", "correct": true, "feedback": "Correct! Radius measures size. Earth's radius is about 6,371 km."},
+      {"answer": "How heavy the planet is", "correct": false, "feedback": "That's mass! A large planet can still be low-mass if it's made of light gas."},
+      {"answer": "How far the planet is from its star", "correct": false, "feedback": "Distance from the star is measured in AU, not radius."},
+      {"answer": "How fast the planet orbits its star", "correct": false, "feedback": "Orbital speed depends on distance and mass, not planet radius directly."}
+    ]
+  },
+  {
+    "question": "Which of the following would INCREASE a planet's habitability score in our model?",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "Having a surface temperature near 20 °C and rocky terrain", "correct": true, "feedback": "Yes! Both conditions earn points: good temperature AND a rocky surface."},
+      {"answer": "Being a gas giant with no solid surface", "correct": false, "feedback": "Gas giants lose the rocky-surface bonus and can't support surface life."},
+      {"answer": "Having a surface temperature of 500 °C", "correct": false, "feedback": "That's way too hot — like Venus. No habitability points for extreme heat."},
+      {"answer": "Orbiting very far from its star (>20 AU)", "correct": false, "feedback": "Very distant planets are usually frozen solid — too cold for liquid water."}
+    ]
+  },
+  {
+    "question": "Proxima Centauri b is exciting to astronomers because:",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "It is the closest known exoplanet to Earth, orbiting our nearest star neighbor", "correct": true, "feedback": "Right! Proxima Cen is only ~4.2 light-years away — our nearest stellar neighbor."},
+      {"answer": "It is the largest exoplanet ever discovered", "correct": false, "feedback": "Proxima Cen b is roughly Earth-sized — there are much larger known exoplanets."},
+      {"answer": "It has a confirmed oxygen atmosphere", "correct": false, "feedback": "We don't yet know Proxima Cen b's atmospheric composition."},
+      {"answer": "Astronauts have already visited it", "correct": false, "feedback": "At 4.2 light-years away, no human spacecraft has come close — it would take tens of thousands of years with current technology!"}
+    ]
+  },
+  {
+    "question": "A planet has Mass = 0.8 Earth-masses and Radius = 0.9 Earth-radii. This planet is most likely:",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "A rocky, Earth-like planet", "correct": true, "feedback": "Correct! Small mass and radius together suggest a dense, rocky world similar to Earth."},
+      {"answer": "A gas giant like Jupiter", "correct": false, "feedback": "Jupiter has 318 Earth-masses and 11 Earth-radii — much larger than this planet."},
+      {"answer": "An ice giant like Neptune", "correct": false, "feedback": "Neptune has ~17 Earth-masses and ~4 Earth-radii — much bigger."},
+      {"answer": "A star", "correct": false, "feedback": "Stars are much more massive — the Sun has about 333,000 Earth-masses!"}
+    ]
+  },
+  {
+    "question": "In the data table, Mars has 'Has Water?' = 'Possibly'. This means:",
+    "type": "multiple_choice",
+    "answers": [
+      {"answer": "Evidence suggests water may exist, but it has not been fully confirmed on the surface", "correct": true, "feedback": "Exactly! Mars has ice at its poles and past river channels, but liquid water on the surface today is uncertain."},
+      {"answer": "Mars definitely has large liquid water oceans right now", "correct": false, "feedback": "Mars's thin atmosphere and cold temperatures make liquid surface water very unlikely today."},
+      {"answer": "Mars has no water in any form", "correct": false, "feedback": "Mars has confirmed water ice at its poles and possibly underground!"},
+      {"answer": "Scientists have never studied Mars for water", "correct": false, "feedback": "NASA has sent many missions specifically to look for water on Mars."}
+    ]
+  }
+]
