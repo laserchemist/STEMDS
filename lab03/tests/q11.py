@@ -6,14 +6,14 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> type(really_highly_rated) == tables.Table
+          >>> type(dance_floor) == tables.Table
           True
-          >>> really_highly_rated.num_rows == 9
+          >>> dance_floor.num_rows == 5
           True
-          >>> print(really_highly_rated.sort(0).take([2, 8]))
-          Votes   | Rating | Title                    | Year | Decade
-          692753  | 9      | The Godfather: Part II   | 1974 | 1970
-          1498733 | 9.2    | The Shawshank Redemption | 1994 | 1990
+          >>> print(dance_floor.sort(0).take(range(2)))
+          Track     | Artist  | Streams (millions) | Genre     | BPM  | Energy | Danceability
+          CUFF IT   | Beyoncé | 924                | Pop       | 106  | 78     | 87
+          Calm Down | Rema    | 1756               | Afrobeats | 106  | 80     | 90
           """,
           'hidden': False,
           'locked': False

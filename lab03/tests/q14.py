@@ -6,7 +6,7 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> num_odd_year_movies == 123
+          >>> num_odd_dance_tracks == 24
           True
           """,
           'hidden': False,

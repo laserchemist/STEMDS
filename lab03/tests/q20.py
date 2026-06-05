@@ -6,13 +6,13 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> eastern_markets.sort(0)
-          MarketName                                  | city        | State          | y       | x
-          Anne Heyliger Vegetable Market              | Saint Croix | Virgin Islands | 17.7099 | -64.8799
-          Christian "Shan" Hendricks Vegetable Market | Saint Croix | Virgin Islands | 17.7449 | -64.7043
-          Feria Agrícola de Luquillo                  | Luquillo    | Puerto Rico    | 18.3782 | -65.7207
-          La Reine Farmers Market                     | Saint Croix | Virgin Islands | 17.7322 | -64.7789
-          Rothschild Francis Vegetable Market         | St. Thomas  | Virgin Islands | 18.3428 | -64.9326
+          >>> top5_cities.sort(0)
+          City          | State      | Population | Area_km2 | Region
+          Chicago       | Illinois   | 2693976    | 606      | Midwest
+          Houston       | Texas      | 2304580    | 1777     | South
+          Los Angeles   | California | 3979576    | 1302     | West
+          New York City | New York   | 8336817    | 783      | Northeast
+          Phoenix       | Arizona    | 1608139    | 1341     | West
           """,
           'hidden': False,
           'locked': False

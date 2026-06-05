@@ -7,7 +7,7 @@ test = {
         {
           'code': r"""
           >>> ### Testing answer to open ended question if answer is not there or too short, fails
-          >>> test_open('describe your solution', notebook, 60) == 1
+          >>> test_open("Put your answer in the markdown cell below.", notebook, 60) == 1
           True
           """,
           'hidden': False,

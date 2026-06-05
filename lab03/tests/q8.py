@@ -6,7 +6,7 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> largest_positive_change == 'Bahrain'
+          >>> top_renewable_country == 'Iceland'
           True
           """,
           'hidden': False,

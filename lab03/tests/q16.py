@@ -6,7 +6,7 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> num_farmers_markets_columns == 59
+          >>> num_city_columns == 5
           True
           """,
           'hidden': False,

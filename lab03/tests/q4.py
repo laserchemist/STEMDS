@@ -6,11 +6,13 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> type(my_flower) == list
+          >>> type(my_record) == list
           True
-          >>> type(my_flower[0]) == int
+          >>> type(my_record[0]) == str
           True
-          >>> type(my_flower[1]) == str and my_flower[1] != ''
+          >>> type(my_record[1]) == str
+          True
+          >>> type(my_record[2]) == float or type(my_record[2]) == int
           True
           """,
           'hidden': False,

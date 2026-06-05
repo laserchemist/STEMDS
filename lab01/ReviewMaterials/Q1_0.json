@@ -1,50 +1,45 @@
 [{
-		"question": "What's the general structure of a function (like print)?",
+		"question": "What is the keyboard shortcut for running any cell in Jupyter?",
 		"type": "multiple_choice",
 		"answers": [{
-				"answer": "object.functionName(arguments)",
-				"correct": false,
-				"feedback": "No! This is the structure of a Method. You can think of it as a more complex version of a function, but Methods are not Functions."
+				"answer": "Shift + Enter",
+				"correct": true,
+				"feedback": "Yes! This will automatically select the next cell, so you can repeatedly press this to run a lot of cells at once."
 			},
 			{
-				"answer": "functionName(arguments)",
-				"correct": true,
-				"feedback": "Yes! The parentheses denote the extent of the function's arguments."
+				"answer": "Enter",
+				"correct": false,
+				"feedback": "No! This is used to make a new line in a cell, not to run it."
 			},
             {
-                "answer": "functionName[arguments]",
+                "answer": "Ctrl + Shift + Enter",
                 "correct": false,
-                "feedback": "No! This use of square brackets is called an index, and it specifies position in strings, lists, arrays, and tables, not functions."
-            },
-			{
-				"answer": "functionName arguments",
-				"correct": false,
-				"feedback": "No! You need a way to differentiate between the function's arguments and the rest of your code."
-			}
+                "feedback": "No! This has no use in Python."
+            }
 		]
 	},
 	{
-		"question": "Which of these is a string?",
+		"question": "In the code line name = 'Brian', what is the variable?",
 		"type": "multiple_choice",
 		"answers": [{
-				"answer": "'5'",
-				"correct": true,
-				"feedback": "Yes! Any characters surrounded by quotation marks is a string, even if the character is a number."
+				"answer": "Brian",
+				"correct": false,
+				"feedback": "No! Brian is surrounded in quotes, meaning that it is a string."
 			},
 			{
-				"answer": "Hello World",
+				"answer": "'Brian'",
 				"correct": false,
-				"feedback": "No! This has NO quotation marks around it. Instead, Hello and World would each be a variable."
+				"feedback": "No! This string is what is being stored in a variable, but not the name of the variable itself"
 			},
             {
-                "answer": "\"'\"",
+                "answer": "name",
                 "correct": true,
-                "feedback": "While a bit confusing to the eyes, this does count as a string, with the single quotation mark as the character. This is a great way to differentiate between quotes actually inside the string and quotes serving as the ends of the string (called delimiters)."
+                "feedback": "Yes! A variable is a sequence of characters denoted with a black color, to which data types (strings, numbers) are assigned (=)."
             },
 			{
-				"answer": "5",
+				"answer": "=",
 				"correct": false,
-				"feedback": "No! This is an integer, another data type separate from a string."
+				"feedback": "No! This is the symbol for assignment. It assigns whatever is to the right of it in the variable that is to the left of it."
 			}
 		]
 	},
@@ -68,53 +63,53 @@
 			}
 		]
 	},
-    {
-		"question": "Which of these would bring up a coding error?",
+	{
+		"question": "Which of these is a good example of including quotes within a string?",
 		"type": "multiple_choice",
 		"answers": [{
-				"answer": "'5'+'5'",
+				"answer": "\"I typed \"Hello World\"\"",
 				"correct": false,
-				"feedback": "No! Adding two strings up will just concatenate them (55)."
+				"feedback": "No! Python will form strings between each pair of quotations, and so the Hello wrld will not be counted as part of it."
 			},
 			{
-				"answer": "4 * '5'",
+				"answer": "'I typed \"Hello World'\"",
 				"correct": false,
-				"feedback": "No! The multiplication symbol on strings causes the string to concatenate itself that many times (5555)."
-			},
-			{
-				"answer": "'5'*'5'",
-				"correct": true,
-				"feedback": "Yes! There is no such thing as multiplying two strings together."
+				"feedback": "No! This features a mismatch. The outermost pair of quotation marks must match (either single-single or double-double)."
 			},
             {
-                "answer": "4+'5'",
+                "answer": "'I typed \"Hello World\"'",
                 "correct": true,
-                "feedback": "Yes! integers and strings can't be added together."
-            }
+                "feedback": "Yes! This correctly includes the inner pair of quotation marks (the double quotes) in the string. (\"text\")"
+            },
+			{
+				"answer": "\"I typed 'Hello World'\"",
+				"correct": true,
+				"feedback": "Yes! This correctly includes the inner pair of quotation marks (the single quotes) in the string. ('text')"
+			}
 		]
 	},
     {
-		"question": "In what circumstances would the code cell output a value?",
+		"question": "In Question 1b, you calculated the average distance. How did you do so?",
 		"type": "multiple_choice",
 		"answers": [{
-				"answer": "When it is in the last line of your cell",
+				"answer": "Add up all the terms and divide by how many terms there are.",
 				"correct": true,
-				"feedback": "Yes! Just putting a value in the last line of a code cell by itself (e.g. y) will cause python to output it."
+				"feedback": "Yes! This is what the function np.average (or np.mean) does."
 			},
 			{
-				"answer": "Putting it in a print function",
-				"correct": true,
-				"feedback": "Yes! This works no matter where the print function is in the cell."
-			},
-			{
-				"answer": "Defining it anywhere in the cell",
+				"answer": "Add up all the terms.",
 				"correct": false,
-				"feedback": "Defining a variable or value (e.g. y = 5) by itself will never put that value in the output."
+				"feedback": "No! This is only part of the calculations."
+			},
+			{
+				"answer": "Multiply the terms together and divide by how many terms there are.",
+				"correct": false,
+				"feedback": "No! This is not the formula for the average."
 			},
             {
-                "answer": "Adding a question mark to it",
+                "answer": "Get the term that is in the middle.",
                 "correct": false,
-                "feedback": "No! This is used on functions and methods (not variables) to see what they do."
+                "feedback": "No! This is the median, which is different from the average."
             }
 		]
 	},

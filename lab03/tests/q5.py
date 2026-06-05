@@ -6,18 +6,18 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> type(seven_flowers) == Table
+          >>> type(seven_records) == Table
           True
-          >>> seven_flowers.num_rows
+          >>> seven_records.num_rows
           7
-          >>> seven_flowers.take([0, 1, 2, 4, 5, 6])
-          Number of petals | Name
-          8                | lotus
-          34               | sunflower
-          5                | rose
-          10               | lavender
-          3                | birds of paradise
-          6                | tulip
+          >>> seven_records.take([0, 1, 2, 4, 5, 6])
+          Athlete           | Event        | Record
+          Usain Bolt        | 100m sprint  | 9.58
+          Eliud Kipchoge    | Marathon     | 7269
+          Sydney McLaughlin | 400m hurdles | 50.68
+          Armand Duplantis  | Pole vault   | 6.26
+          Mondo Duplantis   | High jump    | 2.45
+          Ryan Crouser      | Shot put     | 23.37
           """,
           'hidden': False,
           'locked': False

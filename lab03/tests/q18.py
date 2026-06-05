@@ -6,9 +6,9 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> average_latitude >= 38.0
+          >>> round(average_population, 0) == 1376350
           True
-          >>> average_longitude <= -90.0
+          >>> round(average_area, 0) == 799
           True
           """,
           'hidden': False,

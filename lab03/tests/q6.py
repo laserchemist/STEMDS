@@ -6,7 +6,7 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> highest_rating == 82.5
+          >>> highest_renewable == 99.9
           True
           """,
           'hidden': False,

@@ -6,10 +6,10 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> type(epi_changes) == tables.Table
+          >>> type(renewables_sorted) == tables.Table
           True
-          >>> list(epi_changes.column('Country').take(range(3)))
-          ['Bahrain', 'Seychelles', 'Croatia']
+          >>> list(renewables_sorted.column('Country').take(range(3)))
+          ['Iceland', 'Bhutan', 'Paraguay']
           """,
           'hidden': False,
           'locked': False

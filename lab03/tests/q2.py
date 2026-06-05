@@ -6,20 +6,20 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> type(top_10_epi) == tables.Table
+          >>> type(renewables) == tables.Table
           True
-          >>> top_10_epi.select('Score', 'Country').sort('Country')
-          Score | Country
-          79.6  | Austria
-          82.5  | Denmark
-          78.9  | Finland
-          80    | France
-          77.2  | Germany
-          82.3  | Luxembourg
-          77.7  | Norway
-          78.7  | Sweden
-          81.5  | Switzerland
-          81.3  | United Kingdom
+          >>> renewables.select('Country', 'Renewable %').sort('Country')
+          Country    | Renewable %
+          Albania    | 97.2
+          Bhutan     | 99.9
+          Costa Rica | 99.2
+          Ethiopia   | 97
+          Iceland    | 99.9
+          Nepal      | 98.2
+          Norway     | 98.5
+          Paraguay   | 99.7
+          Tajikistan | 98.5
+          Zambia     | 84.7
           """,
           'hidden': False,
           'locked': False

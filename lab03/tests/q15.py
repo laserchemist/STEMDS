@@ -6,11 +6,11 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> farmers_markets.select(range(3)).take(range(3)).sort(0)
-          FMID    | MarketName                                       | Website
-          1011871 |  Stearns Homestead Farmers' Market               | http://Stearnshomestead.com
-          1011878 | 100 Mile Market                                  | http://www.pfcmarkets.com
-          1012063 |  Caledonia Farmers Market Association - Danville | https://sites.google.com/site/caledoniafarmersmarket/
+          >>> cities.take(range(3)).sort(0, descending=True)
+          City          | State      | Population | Area_km2 | Region
+          New York City | New York   | 8336817    | 783      | Northeast
+          Los Angeles   | California | 3979576    | 1302     | West
+          Chicago       | Illinois   | 2693976    | 606      | Midwest
           """,
           'hidden': False,
           'locked': False

@@ -6,7 +6,11 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> abs(average_rating_in_eighties - 8.241935483870968) < 1e-5
+          >>> type(mega_hits) == Table
+          True
+          >>> mega_hits.num_rows
+          36
+          >>> abs(average_bpm_mega_hits - 115.08333) < 1e-5
           True
           """,
           'hidden': False,

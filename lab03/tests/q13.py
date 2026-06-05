@@ -6,9 +6,7 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> proportion_in_20th_century == 0.684
-          True
-          >>> proportion_in_21st_century == 0.316
+          >>> proportion_pop == 0.58
           True
           """,
           'hidden': False,

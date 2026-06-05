@@ -6,15 +6,15 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> ninety_nine.num_rows == 5
+          >>> pop_tracks.num_rows == 29
           True
-          >>> ninety_nine.sort(0)
-          Votes   | Rating | Title           | Year | Decade
-          630994  | 8.1    | The Sixth Sense | 1999 | 1990
-          672878  | 8.5    | The Green Mile  | 1999 | 1990
-          735056  | 8.4    | American Beauty | 1999 | 1990
-          1073043 | 8.7    | The Matrix      | 1999 | 1990
-          1177098 | 8.8    | Fight Club      | 1999 | 1990
+          >>> pop_tracks.sort(0).take(range(5))
+          Track           | Artist          | Streams (millions) | Genre | BPM  | Energy | Danceability
+          About Damn Time | Lizzo           | 1128               | Pop   | 110  | 85     | 80
+          Anti-Hero       | Taylor Swift    | 1546               | Pop   | 97   | 64     | 66
+          Arcade          | Duncan Laurence | 1010               | Pop   | 130  | 44     | 51
+          As It Was       | Harry Styles    | 2459               | Pop   | 174  | 73     | 82
+          Bam Bam         | Camila Cabello  | 913                | Pop   | 100  | 72     | 83
           """,
           'hidden': False,
           'locked': False

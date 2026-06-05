@@ -6,17 +6,17 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> type(epi) == tables.Table
+          >>> type(spotify) == tables.Table
           True
-          >>> epi.num_rows == 180
+          >>> spotify.num_rows == 50
           True
-          >>> epi.select('Rank', 'Country', 'Score', 'Decade Change').sort(3).take(range(5))
-          Rank | Country       | Score | Decade Change
-          163  | Vanuatu       | 28.9  | -11.9
-          170  | Burundi       | 27    | -11.1
-          107  | Bhutan        | 39.3  | -9.6
-          176  | Cote d'Ivoire | 25.8  | -8.5
-          39   | Singapore     | 58.1  | -8.4
+          >>> spotify.select('Track', 'Artist', 'Streams (millions)', 'Genre', 'BPM', 'Energy', 'Danceability').sort(0).take(range(5))
+          Track           | Artist          | Streams (millions) | Genre | BPM  | Energy | Danceability
+          About Damn Time | Lizzo           | 1128               | Pop   | 110  | 85     | 80
+          Anti-Hero       | Taylor Swift    | 1546               | Pop   | 97   | 64     | 66
+          Arcade          | Duncan Laurence | 1010               | Pop   | 130  | 44     | 51
+          As It Was       | Harry Styles    | 2459               | Pop   | 174  | 73     | 82
+          Bad Habit       | Steve Lacy      | 1187               | R&B   | 95   | 60     | 73
           """,
           'hidden': False,
           'locked': False

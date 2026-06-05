@@ -6,15 +6,17 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> sorted(farmers_markets_locations.labels)
-          ['MarketName', 'State', 'city', 'x', 'y']
-          >>> farmers_markets_locations.num_rows == 8546
+          >>> sorted(city_locations.labels)
+          ['City', 'Region', 'State']
+          >>> city_locations.num_rows == 29
           True
-          >>> farmers_markets_locations.sort(0).take(range(3))
-          MarketName                                       | city      | State    | y       | x
-           Caledonia Farmers Market Association - Danville | Danville  | Vermont  | 44.411  | -72.1403
-           Stearns Homestead Farmers' Market               | Parma     | Ohio     | 41.3751 | -81.7286
-          100 Mile Market                                  | Kalamazoo | Michigan | 42.296  | -85.5749
+          >>> city_locations.sort(0).take(range(5))
+          City      | State          | Region
+          Austin    | Texas          | South
+          Baltimore | Maryland       | Northeast
+          Boston    | Massachusetts  | Northeast
+          Charlotte | North Carolina | South
+          Chicago   | Illinois       | Midwest
           """,
           'hidden': False,
           'locked': False
