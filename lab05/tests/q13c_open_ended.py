@@ -1,5 +1,5 @@
 test = {
-  'name': 'q14_open_ended',
+  'name': 'q13a_open_ended',
   'points': 1,
   'suites': [
     {
@@ -7,7 +7,7 @@ test = {
         {
           'code': r"""
           >>> ### Testing answer to open ended question if answer is not there or too short, fails
-          >>> test_open('How long did the lab take?', notebook, 60) == 1
+          >>> test_open('Look at the plot above.', notebook, 30) == 1
           True
           """,
           'hidden': False,
