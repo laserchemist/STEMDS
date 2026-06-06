@@ -16,7 +16,7 @@ Expected layout:
         ├── GroundHogData/
         └── tests/
 In the notebook:
-    from lab05_init import *
+    from lab05_init import *"""
 import sys, os
 # ── add parent directory so shared files are importable ──────────────────────
 _parent = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
