@@ -7,7 +7,7 @@ test = {
         {
           'code': r"""
           >>> ### Testing answer to open ended question if answer is not there or too short, fails
-          >>> test_open('Spring or would a coin toss at the 50 yard line', notebook, 30) == 1
+          >>> test_open('Run the simulation cell above several times.', notebook, 30) == 1
           True
           """,
           'hidden': False,
