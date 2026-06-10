@@ -6,31 +6,36 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> import numpy as np
-          >>> type(interesting_array) == np.ndarray
-          True
-          >>> type(interesting_list) == list
-          True
+          >>> # Your index is too high!
+          >>> import math
+          >>> pi == math.e
+          False
           """,
           'hidden': False,
           'locked': False
         },
         {
           'code': r"""
-          >>> len(interesting_array)
-          5
-          >>> len(interesting_list)
-          5
+          >>> # Your index is too low.
+          >>> pi == 1 or pi == 0
+          False
           """,
           'hidden': False,
           'locked': False
         },
         {
           'code': r"""
-          >>> import numpy as np
-          >>> sum(interesting_array == np.array([0, 1, -1, math.pi, math.e]))
-          5
-          >>> interesting_list == [0, 1, -1, math.pi, math.e]
+          >>> # Index start at 0, so count from 0 instead of 1
+          >>> pi == -1
+          False
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> import math
+          >>> pi == math.pi
           True
           """,
           'hidden': False,
