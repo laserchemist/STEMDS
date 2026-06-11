@@ -55,7 +55,7 @@ MS_ACTIVITIES = [
         "🧮 Lab 02",   "Data types — numbers, strings, arrays"),
     ("lab03/lab03_middle_school.ipynb",
         "🗃️ Lab 03",   "Tables — organising data"),
-    ("lab04/lab04_middle_school",
+    ("lab04/lab04_middle_school.ipynb",
         "⚙️ Lab 04",   "Functions"),
     ("lab05/lab05_middle_school.ipynb",
         "🎲 Lab 05",   "Probability, Simulation & Hypothesis Testing"),
