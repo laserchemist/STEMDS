@@ -114,6 +114,13 @@ CHEMISTREES = [
     ("Chemistry/UnitConvert/UnitConvert.ipynb", "Guide to Unit Conversion", "Unit Conversions :|"),
 ]
 
+GROUP_PROJ = [
+    ("Group-Project/Group_Project_Datasets.ipynb", "View Datasets", "I love numberz"),
+    ("Group-Project/GroupProject_Submission.ipynb", "Submit Group Choice", "No refunds lol"),
+    ("Group-Project/GroupProject_Dashboard.ipynb", "View Groups", "In case you forgot"),
+    ("Group-Project/example_group_project-indego_bikes/Indego.ipynb", "Example Final Project", "For your reference")
+]
+
 # ── Instructor-only notebooks ─────────────────────────────────────────────────
 # NOTE: security-by-obscurity only — see LOCKING note below.
 
@@ -135,6 +142,7 @@ GREY      = "#555555"   # Instructor section (both)
 GREEN     = "#06402B"   # green for reviews
 GOLD      = "#EFBF04"   # gold exercises
 LIGHTBLUE = "#90D5FF"   # light blue for chemistry
+CRIMSON   = "#990000"   # blood for final proj
 
 # ── URL helpers ───────────────────────────────────────────────────────────────
 
@@ -257,7 +265,7 @@ def _chem_header_html():
 def _write_toc_html(
     output, title, header_html, activities,
     btn_color, include_reviews, include_exercises,
-    include_chemistry, include_instructor, dark_bg=False,
+    include_chemistry, include_instructor, include_final,dark_bg=False,
 ):
     body_parts = [
         header_html,
@@ -276,6 +284,8 @@ def _write_toc_html(
         body_parts.append(_section_html("🧠 Reviews", REVIEWS, GREEN, "white"))
     if include_exercises:
         body_parts.append(_section_html("💪 Exercises", EXERCISES, GOLD, "black"))
+    if include_final:
+        body_parts.append(_section_html("😱 Final Project", GROUP_PROJ, GOLD, "white"))
     if include_instructor:
         body_parts.append(_section_html("🔒 Instructor", INSTRUCTOR, GREY, "white"))
 
@@ -331,7 +341,7 @@ def build_ms_toc():
         "TOC.html", "STEM Data Science — Middle School",
         _ms_header_html(), MS_ACTIVITIES, CHERRY,
         include_reviews=True, include_exercises=True,
-        include_chemistry=False, include_instructor=True,
+        include_chemistry=False, include_instructor=True, include_final=False
     )
 
 def build_ms_toc_student():
@@ -341,7 +351,7 @@ def build_ms_toc_student():
         "TOC_student.html", "STEM Data Science — Middle School",
         _ms_header_html(), MS_ACTIVITIES, CHERRY,
         include_reviews=True, include_exercises=True,
-        include_chemistry=False, include_instructor=False,
+        include_chemistry=False, include_instructor=False, include_final=False
     )
 
 def build_hs_toc():
@@ -351,7 +361,7 @@ def build_hs_toc():
         "TOC_hs.html", "STEM Data Science — High School",
         _hs_header_html(), HS_ACTIVITIES, HS_PURPLE,
         include_reviews=True, include_exercises=True,
-        include_chemistry=False, include_instructor=True,
+        include_chemistry=False, include_instructor=True, include_final=True,
         dark_bg=True,
     )
 
@@ -362,7 +372,7 @@ def build_hs_toc_student():
         "TOC_hs_student.html", "STEM Data Science — High School",
         _hs_header_html(), HS_ACTIVITIES, HS_PURPLE,
         include_reviews=True, include_exercises=True,
-        include_chemistry=False, include_instructor=False,
+        include_chemistry=False, include_instructor=False, include_final=True,
         dark_bg=True,
     )
 
@@ -373,7 +383,7 @@ def build_toc_chemistry():
         "TOC_chem.html", "STEM-UP Chemistry",
         _chem_header_html(), HS_ACTIVITIES, HS_PURPLE,
         include_reviews=True, include_exercises=True,
-        include_chemistry=True, include_instructor=False,
+        include_chemistry=True, include_instructor=False, include_final=False
     )
 
 # ── run ───────────────────────────────────────────────────────────────────────
