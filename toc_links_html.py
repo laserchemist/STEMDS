@@ -285,7 +285,7 @@ def _write_toc_html(
     if include_exercises:
         body_parts.append(_section_html("💪 Exercises", EXERCISES, GOLD, "black"))
     if include_final:
-        body_parts.append(_section_html("😱 Final Project", GROUP_PROJ, GOLD, "white"))
+        body_parts.append(_section_html("😱 Final Project", GROUP_PROJ, CRIMSON, "white"))
     if include_instructor:
         body_parts.append(_section_html("🔒 Instructor", INSTRUCTOR, GREY, "white"))
 
