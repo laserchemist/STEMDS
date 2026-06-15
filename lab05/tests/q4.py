@@ -7,7 +7,7 @@ test = {
         {
           'code': r"""
           >>> # A result of 99 may arise because you did not consider
-          >>> # Bird or Birds (capital B at start of sentence). Try using word.lower() for each word test.
+          >>> # Bird or Birds (capital B at start of sentence). 
           >>> birds == 99
           False
           """,
@@ -34,8 +34,17 @@ test = {
         },
         {
           'code': r"""
-          >>> # That's all of the isolated birds and birds in Darwin's work.
+          >>> # Did you use the raw data or the cleaned data?
           >>> birds == 100
+          False
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Hooray! This is the correct number of words.
+          >>> birds == 177
           True
           """,
           'hidden': False,

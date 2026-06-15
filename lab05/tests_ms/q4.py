@@ -34,8 +34,17 @@ test = {
         },
         {
           'code': r"""
-          >>> # That's all of the isolated birds and birds in Darwin's work.
+          >>> # Did you use the raw data or the cleaned data?
           >>> birds == 100
+          False
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Hooray! This is the correct number of words.
+          >>> birds == 177
           True
           """,
           'hidden': False,
