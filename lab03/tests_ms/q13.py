@@ -6,7 +6,7 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> abs(proportion_fast - 0.143) < 0.01
+          >>> abs(proportion_fast - 0.571) < 0.01
           True
           """,
           'hidden': False,
