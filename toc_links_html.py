@@ -84,6 +84,8 @@ HS_ACTIVITIES = [
         "🎲 Lab 05",   "Probability, Simulation & Hypothesis Testing"),
     ("Plant Activity/Plant_Explorer.ipynb",
         "🌿 Plant Similarity: Photo Investigation", "Plant Identification"),
+    ("Hypothesis_Test/Hypothesis_Test.ipynb",
+        "Hypothesis Test Activity", "Guide to doing the P-test"),
     ("Code Library/Code_Library.ipynb",
         "📖 Your Code Library", "For all your coding needs :)"),
 ]
