@@ -268,7 +268,7 @@ def _chem_header_html():
 
 def _write_toc_html(
     output, title, header_html, activities,
-    btn_color, include_reviews, include_exercises,
+    btn_color, include_main, include_reviews, include_exercises,
     include_chemistry, include_instructor, include_final,dark_bg=False,
 ):
     body_parts = [
@@ -281,8 +281,9 @@ def _write_toc_html(
             _section_html("🧪 Chemistry Postlabs and Activities", CHEMISTREES, LIGHTBLUE, "black")
         )
 
-    body_parts.append("<h2>📚 Activities &amp; Labs</h2>")
-    body_parts.append(_button_group_html(activities, btn_color, "white"))
+    if include_main:
+        body_parts.append("<h2>📚 Activities &amp; Labs</h2>")
+        body_parts.append(_button_group_html(activities, btn_color, "white"))
 
     if include_reviews:
         body_parts.append(_section_html("🧠 Reviews", REVIEWS, GREEN, "white"))
@@ -343,7 +344,7 @@ def build_ms_toc():
     print("\n📘 Middle School — Full TOC")
     _write_toc_html(
         "TOC.html", "STEM Data Science — Middle School",
-        _ms_header_html(), MS_ACTIVITIES, CHERRY,
+        _ms_header_html(), MS_ACTIVITIES, CHERRY, include_main=True,
         include_reviews=True, include_exercises=True,
         include_chemistry=False, include_instructor=True, include_final=False
     )
@@ -353,7 +354,7 @@ def build_ms_toc_student():
     print("\n📘 Middle School — Student TOC")
     _write_toc_html(
         "TOC_student.html", "STEM Data Science — Middle School",
-        _ms_header_html(), MS_ACTIVITIES, CHERRY,
+        _ms_header_html(), MS_ACTIVITIES, CHERRY, include_main=True,
         include_reviews=True, include_exercises=True,
         include_chemistry=False, include_instructor=False, include_final=False
     )
@@ -363,7 +364,7 @@ def build_hs_toc():
     print("\n🔥 High School — Full TOC")
     _write_toc_html(
         "TOC_hs.html", "STEM Data Science — High School",
-        _hs_header_html(), HS_ACTIVITIES, HS_PURPLE,
+        _hs_header_html(), HS_ACTIVITIES, HS_PURPLE, include_main=True,
         include_reviews=True, include_exercises=True,
         include_chemistry=False, include_instructor=True, include_final=True,
         dark_bg=True,
@@ -374,7 +375,7 @@ def build_hs_toc_student():
     print("\n🔥 High School — Student TOC")
     _write_toc_html(
         "TOC_hs_student.html", "STEM Data Science — High School",
-        _hs_header_html(), HS_ACTIVITIES, HS_PURPLE,
+        _hs_header_html(), HS_ACTIVITIES, HS_PURPLE, include_main=True,
         include_reviews=True, include_exercises=True,
         include_chemistry=False, include_instructor=False, include_final=True,
         dark_bg=True,
@@ -386,7 +387,7 @@ def build_toc_chemistry():
     _write_toc_html(
         "TOC_chem.html", "STEM-UP Chemistry",
         _chem_header_html(), HS_ACTIVITIES, HS_PURPLE,
-        include_reviews=True, include_exercises=True,
+        include_reviews=True, include_exercises=True, include_main=False,
         include_chemistry=True, include_instructor=False, include_final=False
     )
 
