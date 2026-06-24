@@ -112,8 +112,10 @@ CHEMISTREES = [
     ("Chemistry/Titrations/Titration Vinegar Postlab.ipynb", "Titration: Vinegar Postlab", "Smells godawful but it's for science I guess"),
     ("Chemistry/Titrations/Titration Sprite Postlab.ipynb", "Titration: Sprite Postlab", "Anyone else fancy a pint of boiled soda?"),
     ("Chemistry/Titrations/Titration Coca Cola Postlab.ipynb", "Titration: Coca-Cola Postlab", "I know I do"),
-    ("Chemistry/BestFit/Best Fit.ipynb", "Guide to getting the Best Fit Line", "Expect to use this a lot"),
-    ("Chemistry/UnitConvert/UnitConvert.ipynb", "Guide to Unit Conversion", "Unit Conversions :|"),
+    ("Chemistry/GasLaw/PvV.ipynb", "Pressure vs. Volume Activity", "Gas Law Experiment 1"),
+    ("Chemistry/GasLaw/PvN.ipynb", "Pressure vs. Number of Molecules Activity", "Gas Law Experiment 2"),
+    ("Chemistry/GasLaw/PvT.ipynb", "Pressure vs. Temperature Activity", "Gas Law Experiment 3"),
+    ("Chemistry/UnitConvert/UnitConvert.ipynb", "Guide to Unit Conversion", "Unit Conversions :|")
 ]
 
 GROUP_PROJ = [
