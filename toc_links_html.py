@@ -105,17 +105,18 @@ REVIEWS = [
 ]
 
 CHEMISTREES = [
-    ("Chemistry/CopperPhosphate/Copper Postlab Analysis.ipynb", "Copper Postlab", ":)"),
-    ("Chemistry/Density/Density.ipynb", "Density Activity", "Density :)"),
-    ("Chemistry/Tea/Caffeine Postlab Analysis.ipynb", "Tea: Caffeine Postlab", "I love caffeine :D"),
-    ("Chemistry/Tea/LTheanine Analysis UVvis.ipynb", "Tea: LTheanine UV-vis Postlab", "I love Theanine :D"),
-    ("Chemistry/Titrations/Titration Vinegar Postlab.ipynb", "Titration: Vinegar Postlab", "Smells godawful but it's for science I guess"),
-    ("Chemistry/Titrations/Titration Sprite Postlab.ipynb", "Titration: Sprite Postlab", "Anyone else fancy a pint of boiled soda?"),
-    ("Chemistry/Titrations/Titration Coca Cola Postlab.ipynb", "Titration: Coca-Cola Postlab", "I know I do"),
-    ("Chemistry/GasLaw/PvV.ipynb", "Pressure vs. Volume Activity", "Gas Law Experiment 1"),
+    [("Chemistry/Density/Density.ipynb", "Density Activity", "Density :)"),
+    ("Chemistry/CopperPhosphate/Copper Postlab Analysis.ipynb", "Copper Postlab", ":)")],
+    [("Chemistry/BurningFood/BurningFood.ipynb", "Burning Food Postlab", "It's a Scientist's job to set things on fire")],
+    [("Chemistry/GasLaw/PvV.ipynb", "Pressure vs. Volume Activity", "Gas Law Experiment 1"),
     ("Chemistry/GasLaw/PvN.ipynb", "Pressure vs. Number of Molecules Activity", "Gas Law Experiment 2"),
-    ("Chemistry/GasLaw/PvT.ipynb", "Pressure vs. Temperature Activity", "Gas Law Experiment 3"),
-    ("Chemistry/UnitConvert/UnitConvert.ipynb", "Guide to Unit Conversion", "Unit Conversions :|")
+    ("Chemistry/GasLaw/PvT.ipynb", "Pressure vs. Temperature Activity", "Gas Law Experiment 3")],
+    [("Chemistry/Titrations/Titration Vinegar Postlab.ipynb", "Titration: Vinegar Postlab", "Smells godawful but it's for science I guess"),
+    ("Chemistry/Titrations/Titration Sprite Postlab.ipynb", "Titration: Sprite Postlab", "Anyone else fancy a pint of boiled soda?"),
+    ("Chemistry/Titrations/Titration Coca Cola Postlab.ipynb", "Titration: Coca-Cola Postlab", "I know I do")],
+    [("Chemistry/Tea/Caffeine Postlab Analysis.ipynb", "Tea: Caffeine Postlab", "I love caffeine :D"),
+    ("Chemistry/Tea/LTheanine Analysis UVvis.ipynb", "Tea: LTheanine UV-vis Postlab", "I love Theanine :D")],
+    [("Chemistry/UnitConvert/UnitConvert.ipynb", "Guide to Unit Conversion", "Unit Conversions :|")]
 ]
 
 GROUP_PROJ = [
@@ -277,9 +278,12 @@ def _write_toc_html(
     ]
 
     if include_chemistry:
-        body_parts.append(
-            _section_html("🧪 Chemistry Postlabs and Activities", CHEMISTREES, LIGHTBLUE, "black")
-        )
+        labels = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Miscellaneous']
+        for i in range(6):
+            body_parts.append(
+                _section_html(labels[i], CHEMISTREES[i], LIGHTBLUE, "black")
+            )
+
 
     if include_main:
         body_parts.append("<h2>📚 Activities &amp; Labs</h2>")
