@@ -4,6 +4,10 @@ stemds_quiz.py
 Self-contained quiz widget for STEMDS JupyterHub notebooks.
 All lockout logic lives here — quiz notebooks stay clean (2 lines of student code).
 
+Lockout persistence uses Google Sheets (a dedicated tab) so it works for
+ALL hub users — no shared filesystem required.
+Per-question state falls back to the student's home directory.
+
 Student notebook usage (all that students ever see or need)
 ────────────────────────────────────────────────────────────
     from stemds_quiz import open_quiz
@@ -11,24 +15,17 @@ Student notebook usage (all that students ever see or need)
 
 Instructor configuration (edit this file only)
 ───────────────────────────────────────────────
-    MAX_ATTEMPTS     — 1 (strict) or 2 (one retry per question)
     QUIZ_ID          — unique string per quiz, e.g. "Quiz03"
-    INSTRUCTOR_USERS — set of hub usernames who bypass the lockout
-    ATTEMPTS_DIR     — where attempt state files are stored
+    MAX_ATTEMPTS     — 1 (strict) or 2 (one retry per question)
+    INSTRUCTOR_USERS — hub usernames that bypass lockout
+    SHEET_ID         — same Google Sheet used by lab_submit.py
+    CREDS_PATH       — credentials in /home/jovyan/shared/ (readable by all)
 
-Instructor reset (run in any notebook or terminal on the hub)
+Instructor reset
 ─────────────────────────────────────────────────────────────
     from stemds_quiz import reset_attempt
-    reset_attempt("jsmith", "Quiz03")     # reset one student
-    reset_attempt("*",      "Quiz03")     # reset ALL students for this quiz
-
-Returns from open_quiz()
-────────────────────────
-    A QuizResult object with:
-        .score   — int, number correct (live, updates as student answers)
-        .total   — int, total questions
-        .locked  — bool, True if student was locked out before seeing quiz
-    Supports tuple unpacking: score, total = open_quiz(...)
+    reset_attempt("jsmith@temple.edu", "Quiz03")   # reset one student
+    reset_attempt("*", "Quiz03")                   # reset ALL for this quiz
 """
 
 import json, os, time, glob
@@ -36,17 +33,20 @@ import ipywidgets as widgets
 from IPython.display import display, HTML
 
 # ══════════════════════════════════════════════════════════════════════════════
-#  INSTRUCTOR CONFIGURATION — edit these values for each quiz
+#  INSTRUCTOR CONFIGURATION
 # ══════════════════════════════════════════════════════════════════════════════
 
-QUIZ_ID      = "Quiz03"   # ← unique ID for this quiz
-MAX_ATTEMPTS = 1          # ← 1 = one shot; 2 = one retry per question
+QUIZ_ID      = "Quiz03"
+MAX_ATTEMPTS = 1
 
-# Hub usernames that bypass the lockout entirely (can re-run freely)
-INSTRUCTOR_USERS = {"laserchemist", "instructor", "admin"}
+INSTRUCTOR_USERS = {"laserchemist", "jmsmith1@temple.edu", "instructor", "admin"}
 
-# Where attempt files are stored (shared-readwrite so kernel-restart-proof)
-ATTEMPTS_DIR = "/home/jovyan/shared-readwrite/quiz_attempts"
+# Google Sheets — same sheet as lab_submit.py, second tab named "quiz_attempts"
+SHEET_ID   = "1JTlIyJCAGE7obspq04ERJkQHOku_d8jZn1sxmIedWJU"
+CREDS_PATH = "/home/jovyan/shared/nordic-knowledge-6598a7fdb7c8.json"
+
+# Per-student state file fallback (home dir — always writable)
+_STATE_DIR = os.path.expanduser("~/.stemds_quiz")
 
 # ── colours ────────────────────────────────────────────────────────────────────
 _C = dict(
@@ -64,75 +64,217 @@ _C = dict(
     light_grey = "#f5f5f5",
 )
 
-# ── persistence ────────────────────────────────────────────────────────────────
+# ══════════════════════════════════════════════════════════════════════════════
+#  GOOGLE SHEETS LOCKOUT PERSISTENCE
+# ══════════════════════════════════════════════════════════════════════════════
 
-def _open_path(user, quiz_id):
-    return os.path.join(ATTEMPTS_DIR, f"{user}_{quiz_id}.json")
+def _get_sheet_tab(tab_name="quiz_attempts"):
+    """
+    Open (or create) a worksheet tab in the shared Google Sheet.
+    Returns the worksheet object or None on failure.
+    """
+    try:
+        import gspread
+    except ImportError:
+        return None, "gspread not installed"
+
+    if not os.path.exists(CREDS_PATH):
+        return None, f"Credentials not found: {CREDS_PATH}"
+
+    try:
+        try:
+            gc = gspread.service_account(filename=CREDS_PATH)
+        except AttributeError:
+            from google.oauth2.service_account import Credentials
+            scopes = ["https://www.googleapis.com/auth/spreadsheets"]
+            creds  = Credentials.from_service_account_file(CREDS_PATH, scopes=scopes)
+            gc     = gspread.authorize(creds)
+
+        spreadsheet = gc.open_by_key(SHEET_ID)
+
+        # Get or create the quiz_attempts tab
+        try:
+            ws = spreadsheet.worksheet(tab_name)
+        except gspread.WorksheetNotFound:
+            ws = spreadsheet.add_worksheet(title=tab_name, rows=1000, cols=6)
+            ws.append_row(["user", "quiz_id", "name", "timestamp", "status"],
+                          value_input_option="RAW")
+        return ws, ""
+
+    except Exception as e:
+        return None, str(e)
+
+
+def _sheet_read_attempt(user, quiz_id):
+    """
+    Look up existing attempt record in the Sheet.
+    Returns record dict or None if not found.
+    """
+    ws, err = _get_sheet_tab()
+    if ws is None:
+        return None   # can't read — treat as no attempt (fail open)
+
+    try:
+        records = ws.get_all_records()
+        for r in records:
+            if r.get("user") == user and r.get("quiz_id") == quiz_id:
+                return r
+    except Exception:
+        pass
+    return None
+
+
+def _sheet_write_attempt(user, quiz_id, name):
+    """
+    Write a new attempt record to the Sheet.
+    Returns (True, "") or (False, error).
+    """
+    ws, err = _get_sheet_tab()
+    if ws is None:
+        return False, err
+
+    try:
+        ws.append_row(
+            [user, quiz_id, name, time.asctime(), "opened"],
+            value_input_option="USER_ENTERED"
+        )
+        return True, ""
+    except Exception as e:
+        return False, str(e)
+
+
+def _sheet_delete_attempt(user, quiz_id):
+    """
+    Delete attempt rows for user+quiz_id. Used by reset_attempt().
+    Returns count of rows deleted.
+    """
+    ws, err = _get_sheet_tab()
+    if ws is None:
+        return 0
+
+    try:
+        all_values = ws.get_all_values()
+        if not all_values:
+            return 0
+
+        header = all_values[0]
+        user_col = header.index("user") if "user" in header else 0
+        quiz_col = header.index("quiz_id") if "quiz_id" in header else 1
+
+        # Find rows to delete (work backwards so indices stay valid)
+        to_delete = [
+            i + 1   # 1-indexed for gspread
+            for i, row in enumerate(all_values[1:], start=1)
+            if (user == "*" or row[user_col] == user)
+            and row[quiz_col] == quiz_id
+        ]
+
+        for row_idx in reversed(to_delete):
+            ws.delete_rows(row_idx)
+
+        return len(to_delete)
+    except Exception:
+        return 0
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  PER-QUESTION STATE (home directory — always writable)
+# ══════════════════════════════════════════════════════════════════════════════
 
 def _state_path(user, quiz_id):
-    return os.path.join(ATTEMPTS_DIR, f"{user}_{quiz_id}_state.json")
-
-def _read_open_record(user, quiz_id):
-    path = _open_path(user, quiz_id)
-    if not os.path.exists(path):
-        return None
-    with open(path) as f:
-        return json.load(f)
-
-def _write_open_record(user, quiz_id, name):
-    os.makedirs(ATTEMPTS_DIR, exist_ok=True)
-    record = {"quiz_id": quiz_id, "user": user, "name": name,
-              "timestamp": time.asctime()}
-    with open(_open_path(user, quiz_id), "w") as f:
-        json.dump(record, f, indent=2)
+    safe_user = user.replace("@", "_").replace(".", "_")
+    return os.path.join(_STATE_DIR, f"{safe_user}_{quiz_id}_state.json")
 
 def _load_state(user, quiz_id):
     path = _state_path(user, quiz_id)
     if not os.path.exists(path):
         return None
-    with open(path) as f:
-        return json.load(f)
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except Exception:
+        return None
 
 def _save_state(user, quiz_id, state):
-    os.makedirs(ATTEMPTS_DIR, exist_ok=True)
-    tmp = _state_path(user, quiz_id) + ".tmp"
-    with open(tmp, "w") as f:
-        json.dump(state, f, indent=2)
-    os.replace(tmp, _state_path(user, quiz_id))
+    os.makedirs(_STATE_DIR, exist_ok=True)
+    path = _state_path(user, quiz_id)
+    tmp  = path + ".tmp"
+    try:
+        with open(tmp, "w") as f:
+            json.dump(state, f, indent=2)
+        os.replace(tmp, path)
+    except Exception:
+        pass   # silent — state is best-effort
 
-# ── public instructor tool ─────────────────────────────────────────────────────
-
-def reset_attempt(user, quiz_id=None):
-    """
-    Remove attempt lock and state for one student or all students.
-
-        reset_attempt("jsmith")          # reset jsmith for QUIZ_ID
-        reset_attempt("jsmith", "Quiz03")
-        reset_attempt("*", "Quiz03")     # reset everyone for Quiz03
-    """
-    quiz_id = quiz_id or QUIZ_ID
-    removed = []
-
-    if user == "*":
-        pattern = os.path.join(ATTEMPTS_DIR, f"*_{quiz_id}.json")
-        targets = glob.glob(pattern)
-        targets += glob.glob(os.path.join(ATTEMPTS_DIR, f"*_{quiz_id}_state.json"))
-    else:
-        targets = [_open_path(user, quiz_id), _state_path(user, quiz_id)]
-
-    for path in targets:
-        if os.path.exists(path):
-            os.remove(path)
-            removed.append(os.path.basename(path))
-
-    if removed:
-        print(f"✅ Removed: {', '.join(removed)}")
-    else:
-        print(f"ℹ️  No attempt files found for user='{user}' quiz='{quiz_id}'")
+def _delete_state(user, quiz_id):
+    path = _state_path(user, quiz_id)
+    if os.path.exists(path):
+        os.remove(path)
+        return True
+    return False
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-#  Question widget (internal)
+#  PUBLIC INSTRUCTOR TOOLS
+# ══════════════════════════════════════════════════════════════════════════════
+
+def reset_attempt(user, quiz_id=None):
+    """
+    Reset quiz attempt for one student or all students.
+
+        reset_attempt("jsmith@temple.edu", "Quiz03")
+        reset_attempt("*", "Quiz03")   # reset everyone
+    """
+    quiz_id = quiz_id or QUIZ_ID
+
+    # Delete Sheet lockout record
+    n_sheet = _sheet_delete_attempt(user, quiz_id)
+
+    # Delete local state file(s)
+    if user == "*":
+        n_state = 0
+        if os.path.isdir(_STATE_DIR):
+            for f in glob.glob(os.path.join(_STATE_DIR, f"*_{quiz_id}_state.json")):
+                os.remove(f)
+                n_state += 1
+    else:
+        n_state = 1 if _delete_state(user, quiz_id) else 0
+
+    if n_sheet or n_state:
+        print(f"✅ Reset {quiz_id} for user='{user}'")
+        print(f"   Sheet rows removed : {n_sheet}")
+        print(f"   State files removed: {n_state}")
+    else:
+        print(f"ℹ️  No attempt found for user='{user}' quiz='{quiz_id}'")
+
+
+def list_attempts(quiz_id=None):
+    """
+    Print all attempt records for a quiz from the Sheet.
+
+        list_attempts("Quiz03")
+    """
+    quiz_id = quiz_id or QUIZ_ID
+    ws, err = _get_sheet_tab()
+    if ws is None:
+        print(f"❌ Cannot read Sheet: {err}")
+        return
+
+    try:
+        records = [r for r in ws.get_all_records()
+                   if r.get("quiz_id") == quiz_id]
+        if not records:
+            print(f"No attempts recorded for {quiz_id}")
+            return
+        print(f"\n{quiz_id} — {len(records)} attempt(s):\n")
+        for r in records:
+            print(f"  {r.get('user','?'):35s} {r.get('name','?'):20s} {r.get('timestamp','?')}")
+    except Exception as e:
+        print(f"❌ Error: {e}")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  QUESTION WIDGET (unchanged from previous version)
 # ══════════════════════════════════════════════════════════════════════════════
 
 class _QuestionWidget:
@@ -173,7 +315,7 @@ class _QuestionWidget:
 
         self._attempt_label = widgets.HTML(self._attempt_html(remaining))
         self._feedback      = widgets.Output()
-        self._answer_btns   = []   # list of (html_widget, click_btn)
+        self._answer_btns   = []
         btn_children        = []
 
         for i, ans in enumerate(answers):
@@ -184,7 +326,6 @@ class _QuestionWidget:
             else:
                 bg, fg, cursor = _C["light_grey"], "#222", "pointer"
 
-            # HTML widget renders <code>, <em>, <b> etc. correctly
             html_w = widgets.HTML(
                 f'<div style="background:{bg};color:{fg};'
                 f'border-radius:6px;padding:9px 16px;'
@@ -193,11 +334,7 @@ class _QuestionWidget:
                 f'{ans["answer"]}</div>'
             )
             html_w._ans_index = i
-            html_w._bg_default = bg
-            html_w._fg_default = fg
 
-            # Narrow click button sits to the left; acts as the event source
-            # Label is an arrow so the row still looks like a choice
             click_btn = widgets.Button(
                 description = "▶",
                 tooltip     = "Select this answer",
@@ -224,12 +361,8 @@ class _QuestionWidget:
         btn_area = widgets.VBox(btn_children,
                                 layout=widgets.Layout(padding="4px 10px"))
 
-        if self.locked and self.answered_correctly:
-            border = _C["green"]
-        elif self.locked:
-            border = _C["red"]
-        else:
-            border = _C["blue"]
+        border = (_C["green"] if (self.locked and self.answered_correctly)
+                  else _C["red"] if self.locked else _C["blue"])
 
         self.widget = widgets.VBox(
             [header, self._attempt_label, btn_area, self._feedback],
@@ -260,7 +393,6 @@ class _QuestionWidget:
         self.attempts_used += 1
         remaining = self.max_attempts - self.attempts_used
 
-        # Colour the clicked row
         row_bg = _C["green"] if is_correct else _C["red"]
         row_fg = _C["white"]
         html_w.value = (
@@ -296,7 +428,8 @@ class _QuestionWidget:
                   f'❌ <b>No attempts remaining.</b>'
                   + (f' &nbsp;— {feedback}' if feedback else '')
                   + f'<br><br>✅ <b>Correct answer:</b> {correct_ans["answer"]}'
-                  + (f'<br><i>{correct_ans.get("feedback","")}</i>' if correct_ans.get("feedback") else '')
+                  + (f'<br><i>{correct_ans.get("feedback","")}</i>'
+                     if correct_ans.get("feedback") else '')
                   + '</div>')
 
         with self._feedback:
@@ -307,29 +440,29 @@ class _QuestionWidget:
             for html_w2, btn2 in self._answer_btns:
                 btn2.disabled = True
                 ans2 = self.data["answers"][btn2._ans_index]
-                if ans2["correct"]:
-                    # Highlight correct answer in pale green if not already green
-                    if not self.answered_correctly or btn2._ans_index != i:
-                        html_w2.value = (
-                            f'<div style="background:{_C["pale_green"]};color:#1a3a2e;'
-                            f'border-radius:6px;padding:9px 16px;'
-                            f'font-size:0.97em;font-weight:600;cursor:default;'
-                            f'border:1px solid {_C["green"]};line-height:1.4;">'
-                            f'{ans2["answer"]}</div>'
-                        )
+                if ans2["correct"] and not (is_correct and btn2._ans_index == i):
+                    html_w2.value = (
+                        f'<div style="background:{_C["pale_green"]};color:#1a3a2e;'
+                        f'border-radius:6px;padding:9px 16px;'
+                        f'font-size:0.97em;font-weight:600;cursor:default;'
+                        f'border:1px solid {_C["green"]};line-height:1.4;">'
+                        f'{ans2["answer"]}</div>'
+                    )
                     btn2.style.button_color = _C["pale_green"]
 
         self._attempt_label.value = self._attempt_html(remaining)
         self._on_change()
 
     def get_state(self):
-        return {"attempts_used": self.attempts_used,
-                "locked": self.locked,
-                "answered_correctly": self.answered_correctly}
+        return {
+            "attempts_used":      self.attempts_used,
+            "locked":             self.locked,
+            "answered_correctly": self.answered_correctly,
+        }
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-#  Public API
+#  PUBLIC API
 # ══════════════════════════════════════════════════════════════════════════════
 
 def open_quiz(questions_source, name, user,
@@ -340,42 +473,38 @@ def open_quiz(questions_source, name, user,
     Parameters
     ──────────
     questions_source : str — path to JSON file
-    name             : str — student's name (entered in notebook)
+    name             : str — student name
     user             : str — JupyterHub username (from lab_init: user)
-    quiz_id          : str — overrides module-level QUIZ_ID if given
-    max_attempts     : int — overrides module-level MAX_ATTEMPTS if given
-    n_questions      : int — if set, randomly select this many questions
-                             from the full bank. Each student gets the same
-                             subset every time (seeded by username + quiz_id)
-                             so kernel restarts restore correctly.
-
-    Returns a QuizResult with .score, .total, .locked
-    Supports tuple unpacking: score, total = open_quiz(...)
+    quiz_id          : str — overrides module-level QUIZ_ID
+    max_attempts     : int — overrides module-level MAX_ATTEMPTS
+    n_questions      : int — randomly select this many from the full bank
+                             (seeded by username+quiz_id for consistency)
     """
-    qid  = quiz_id      or QUIZ_ID
-    mxa  = max_attempts or MAX_ATTEMPTS
+    qid = quiz_id      or QUIZ_ID
+    mxa = max_attempts or MAX_ATTEMPTS
 
-    # ── instructor bypass ──────────────────────────────────────────────────
     is_instructor = (user in INSTRUCTOR_USERS)
+
+    # ── instructor banner ──────────────────────────────────────────────────
     if is_instructor:
         display(HTML(
             f'<div style="background:{_C["amber"]};color:{_C["white"]};'
             f'border-radius:8px;padding:10px 16px;margin:8px 0;font-weight:700;">'
-            f'🧪 Instructor mode — lockout bypassed for user <code>{user}</code>'
+            f'🧪 Instructor mode — lockout bypassed for <code>{user}</code>'
             f'</div>'
         ))
 
-    # ── lockout check (skip for instructors) ──────────────────────────────
+    # ── lockout check via Google Sheets ───────────────────────────────────
     if not is_instructor:
-        rec = _read_open_record(user, qid)
+        rec = _sheet_read_attempt(user, qid)
         if rec:
             display(HTML(
                 f'<div style="background:{_C["bg_lock"]};'
                 f'border-left:6px solid {_C["red"]};'
                 f'border-radius:8px;padding:16px 20px;margin:12px 0;">'
                 f'<b style="font-size:1.1em;">🔒 Quiz already opened</b><br><br>'
-                f'This quiz was opened by <b>{rec["name"]}</b> '
-                f'on {rec["timestamp"]}.<br>'
+                f'This quiz was opened by <b>{rec.get("name", user)}</b> '
+                f'on {rec.get("timestamp", "unknown time")}.<br>'
                 f'Only one attempt is allowed. '
                 f'Contact your instructor if this is an error.'
                 f'</div>'
@@ -388,8 +517,17 @@ def open_quiz(questions_source, name, user,
                 def __iter__(self): yield 0; yield 0
             return _Locked()
 
-        # Record the opening — from this point the quiz is locked
-        _write_open_record(user, qid, name)
+        # Record the opening in the Sheet
+        ok, err = _sheet_write_attempt(user, qid, name)
+        if not ok:
+            # Sheet write failed — warn but continue (fail open for students)
+            display(HTML(
+                f'<div style="background:#fff3cd;border-left:5px solid {_C["amber"]};'
+                f'padding:10px 14px;border-radius:6px;margin:6px 0;">'
+                f'⚠️ Could not record attempt ({err}). '
+                f'Please notify your instructor before closing this notebook.'
+                f'</div>'
+            ))
 
     # ── load questions ─────────────────────────────────────────────────────
     if isinstance(questions_source, str):
@@ -398,10 +536,10 @@ def open_quiz(questions_source, name, user,
     else:
         all_questions = list(questions_source)
 
-    # ── random subset (seeded per user so restarts give same questions) ────
+    # ── random subset (seeded per user — same questions on reconnect) ──────
     if n_questions and n_questions < len(all_questions):
         import random as _random
-        _rng = _random.Random(f"{user}:{qid}")   # deterministic per student
+        _rng = _random.Random(f"{user}:{qid}")
         questions = _rng.sample(all_questions, n_questions)
     else:
         questions = all_questions
@@ -409,10 +547,10 @@ def open_quiz(questions_source, name, user,
     total     = len(questions)
     q_widgets = []
 
-    # Restore per-question state (kernel-restart-proof)
+    # Restore per-question state from home dir (best-effort)
     persisted = _load_state(user, qid) if not is_instructor else None
 
-    # ── score + completion ─────────────────────────────────────────────────
+    # ── score bar + completion ─────────────────────────────────────────────
     score_bar  = widgets.HTML()
     finish_out = widgets.Output()
 
@@ -430,18 +568,14 @@ def open_quiz(questions_source, name, user,
             f'</div>'
         )
 
-        # Save state
+        # Save per-question state to home dir
         if not is_instructor:
-            try:
-                _save_state(user, qid, {
-                    "quiz_id": qid, "user": user, "timestamp": time.asctime(),
-                    "score": score, "total": total,
-                    "questions": [qw.get_state() for qw in q_widgets],
-                })
-            except Exception:
-                pass
+            _save_state(user, qid, {
+                "quiz_id": qid, "user": user, "timestamp": time.asctime(),
+                "score": score, "total": total,
+                "questions": [qw.get_state() for qw in q_widgets],
+            })
 
-        # Completion banner
         if answered == total:
             grade_col = (_C["green"] if pct >= 80 else
                          _C["amber"] if pct >= 60 else _C["red"])
@@ -484,7 +618,7 @@ def open_quiz(questions_source, name, user,
         qw = _QuestionWidget(i, q, mxa, _update, init)
         q_widgets.append(qw)
 
-    _update()   # initial render
+    _update()
 
     display(widgets.VBox(
         [header, score_bar] + [qw.widget for qw in q_widgets] + [finish_out],
