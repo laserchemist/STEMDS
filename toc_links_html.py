@@ -105,8 +105,8 @@ REVIEWS = [
 ]
 
 CHEMISTREES = [
-    [("Chemistry/Density/Density.ipynb", "Density Activity", "Density :)"),
-    ("Chemistry/CopperPhosphate/Copper Postlab Analysis.ipynb", "Copper Postlab", ":)")],
+    [("Chemistry/Density/Density.ipynb", "Density Activity", "Your first lab!"),
+    ("Chemistry/CopperPhosphate/Copper Postlab Analysis.ipynb", "Copper Postlab", "Your first Actual lab!!")],
     [("Chemistry/BurningFood/BurningFood.ipynb", "Burning Food Postlab", "It's a Scientist's job to set things on fire")],
     [("Chemistry/GasLaw/PvV.ipynb", "Pressure vs. Volume Activity", "Gas Law Experiment 1"),
     ("Chemistry/GasLaw/PvN.ipynb", "Pressure vs. Number of Molecules Activity", "Gas Law Experiment 2"),
