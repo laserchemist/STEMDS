@@ -21,16 +21,33 @@ In the notebook, the entire setup is just:
 import sys, os
 
 # ── add parent directory so shared files are importable ──────────────────────
-_parent = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-if _parent not in sys.path:
-    sys.path.insert(0, _parent)
+# Works whether the notebook is in a lab subdirectory (lab05/) or the root.
+# Adds both the current directory and its parent so lab_submit, notebook_style,
+# and stemds_quiz are always findable.
+_cwd = os.getcwd()
+_parent = os.path.abspath(os.path.join(_cwd, '..'))
+for _p in [_cwd, _parent]:
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 
 # ── standard imports ──────────────────────────────────────────────────────────
+# ── ensure required packages are installed ───────────────────────────────────
+import subprocess as _sp, sys as _sys
+def _install(pkg):
+    _sp.run(
+        [_sys.executable, "-m", "pip", "install", pkg,
+         "--quiet", "--break-system-packages"],
+        capture_output=True
+    )
+for _pkg in ["gspread", "google-auth"]:
+    _install(_pkg)
+print("✅ Required packages ready (gspread, google-auth)")
+del _install, _pkg
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
-get_ipython().run_line_magic("matplotlib", "inline")
 plt.style.use("ggplot")
+# Note: %matplotlib inline must be called in the notebook setup cell
 import math
 import json, glob
 import nbformat as nbf
