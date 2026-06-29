@@ -393,7 +393,7 @@ def build_toc_chemistry():
     _write_toc_html(
         "TOC_chem.html", "STEM-UP Chemistry",
         _chem_header_html(), HS_ACTIVITIES, HS_PURPLE,
-        include_reviews=True, include_exercises=True, include_main=False,
+        include_reviews=False, include_exercises=False, include_main=False,
         include_chemistry=True, include_instructor=False, include_final=False
     )
 
