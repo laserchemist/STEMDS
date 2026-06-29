@@ -95,6 +95,15 @@ def load_all(sheet_id=None, creds_path=None, local_json=None):
     messages.append(f"Labs: {sorted(df['lab'].unique().tolist())}")
     messages.append(f"Students: {df['user'].nunique()}")
 
+    # ── auto-export to CSV on every load ─────────────────────────────────────
+    if not df_latest.empty:
+        try:
+            csv_path = os.path.join(os.getcwd(), "submissions_all.csv")
+            df_latest.to_csv(csv_path, index=False)
+            messages.append(f"✅ submissions_all.csv updated ({len(df_latest)} rows)")
+        except Exception as e:
+            messages.append(f"⚠️  Could not write submissions_all.csv: {e}")
+
     return df, df_latest, messages
 
 
