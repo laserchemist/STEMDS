@@ -1,5 +1,5 @@
 test = {
-  'name': 'q7_open_ended',
+  'name': 'q7a_open_ended',
   'points': 1,
   'suites': [
     {
@@ -7,7 +7,7 @@ test = {
         {
           'code': r"""
           >>> ### Testing answer to open ended question if answer is not there or too short, fails
-          >>> test_open('Put your answer to the reflection in the markdown cell below', notebook, 60) == 1
+          >>> test_open('Put your answer in the markdown cell below', notebook, 40) == 1
           True
           """,
           'hidden': False,
