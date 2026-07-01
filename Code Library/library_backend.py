@@ -5,7 +5,7 @@ import tempfile
 
 FILE = "student_library.json"
 
-# VERSION 1.3 (5/26/2026)
+# VERSION 1.4 (6/29/2026)
 
 # ---------------------------------------------
 # FILE MANAGEMENT
@@ -91,9 +91,7 @@ def collect_inputs(inputs_widgets):
         collected.append({
             "input": identifier,
             "represents": w["represents"].value,
-            "type": w["type"].value,
-            "status": w["status"].value,
-            "assumed": w["assumed"].value.strip()
+            "type": w["type"].value
         })
 
     return collected

@@ -6,7 +6,7 @@ import ipywidgets as widgets
 from IPython.display import display, HTML
 import uuid
 
-# VERSION 1.3 (5/26/2026)
+# VERSION 1.4 (6/29/2026)
 
 FILE = "student_library.json"
 
@@ -30,11 +30,6 @@ DATA_TYPES = [
     'table',
     'boolean',
     'anything'
-]
-
-STATUS = [
-    'Required',
-    'Optional'
 ]
 
 class LibraryViewer:
@@ -154,7 +149,7 @@ class LibraryViewer:
         
             children = []
         
-            for i, (n, r, t, s, a) in enumerate(rows):
+            for i, (n, r, t) in enumerate(rows):
         
                 border = ''
                 if i < len(rows) - 1:
@@ -178,21 +173,16 @@ class LibraryViewer:
                 children.append(
         
                     widgets.VBox([
-        
+                    
                         n,
                         r,
-        
+                    
                         widgets.HBox([
                             t,
-                            s
-                        ]),
-        
-                        widgets.HBox([
-                            a,
                             btn_delete
                         ],
                         layout=widgets.Layout(gap='10px', align_items='center'))
-        
+                    
                     ],
         
                     layout=widgets.Layout(
@@ -226,20 +216,7 @@ class LibraryViewer:
                 layout=widgets.Layout(width='220px')
             )
     
-            status = widgets.Dropdown(
-                options=STATUS,
-                value=inp.get("status", "Required"),
-                description="Status:",
-                layout=widgets.Layout(width='220px')
-            )
-    
-            assumed = widgets.Text(
-                value=inp.get("assumed", ""),
-                description="Assumed:",
-                layout=widgets.Layout(width='220px')
-            )
-    
-            rows.append((name, rep, typ, status, assumed))
+            rows.append((name, rep, typ))
     
         rebuild()
     
@@ -253,15 +230,7 @@ class LibraryViewer:
                     options=DATA_TYPES,
                     value="anything",
                     description="Type:"
-                ),
-    
-                widgets.Dropdown(
-                    options=STATUS,
-                    value="Required",
-                    description="Status:"
-                ),
-    
-                widgets.Text(description="Assumed:")
+                )
             ))
     
             rebuild()
@@ -270,7 +239,7 @@ class LibraryViewer:
     
             new_inputs = []
     
-            for (n, r, t, s, a) in rows:
+            for (n, r, t) in rows:
     
                 if not n.value.strip():
                     continue
@@ -278,9 +247,7 @@ class LibraryViewer:
                 new_inputs.append({
                     "input": n.value,
                     "represents": r.value,
-                    "type": t.value,
-                    "status": s.value,
-                    "assumed": a.value
+                    "type": t.value
                 })
     
             self.data[index]["Inputs"] = new_inputs
@@ -667,18 +634,6 @@ class LibraryViewer:
     
         for inp in entry.get('Inputs', []):
         
-            assumed_html = ""
-        
-            if inp.get('status', '') == 'Optional':
-        
-                assumed = inp.get('assumed', '').strip()
-        
-                if assumed:
-                    assumed_html = f"""
-                    |
-                    Assumed: {assumed}
-                    """
-        
             inputs_html += f"""
             <div style='margin-left:20px;margin-top:8px;'>
         
@@ -689,9 +644,6 @@ class LibraryViewer:
         
                 <span style='color:#666;'>
                     Type: {inp.get('type', '')}
-                    |
-                    Status: {inp.get('status', '')}
-                    {assumed_html}
                 </span>
         
             </div>

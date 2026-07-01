@@ -2,7 +2,7 @@ import ipywidgets as widgets
 from IPython.display import display, HTML
 import numpy as np
 
-# VERSION 1.3 (5/26/2026)
+# VERSION 1.4 (6/29/2026)
 
 class LibraryUI:
 
@@ -50,11 +50,6 @@ class LibraryUI:
             'a math expression'
         ]
 
-        self.STATUS = [
-            'Required',
-            'Optional'
-        ]
-
         self.create_identity_widgets()
         self.create_input_widgets()
         self.create_example_widgets()
@@ -82,14 +77,14 @@ class LibraryUI:
 
         self.w_library = widgets.Text(
             description='Library:',
-            placeholder='e.g. numpy, datascience, etc.',
+            placeholder="e.g. numpy",
             style=self.style_lbl,
             layout=widgets.Layout(width='600px')
         )
 
         self.w_num_inputs = widgets.Text(
             description='Number of Arguments:',
-            placeholder='e.g. 4 (if unlimited, enter -1)',
+            placeholder='e.g. 4',
             style=self.style_lbl,
             layout=widgets.Layout(width='600px')
         )
@@ -106,7 +101,7 @@ class LibraryUI:
 
         self.w_additional = widgets.Textarea(
             description='Any additional details:',
-            placeholder='Optional notes...',
+            placeholder='...',
             style=self.style_lbl,
             layout=widgets.Layout(
                 width='600px',
@@ -257,25 +252,13 @@ class LibraryUI:
     
         role_w = widgets.Textarea(
             description="Represents:",
-            placeholder="meaning / role",
+            placeholder=np.random.choice(self.SAMPLE_ROLES),
             layout=widgets.Layout(width='95%', height='70px')
         )
     
         type_w = widgets.Dropdown(
             description="Type:",
             options=['---'] + self.DATA_TYPES,
-            layout=widgets.Layout(width='220px')
-        )
-    
-        status_w = widgets.Dropdown(
-            description="Status:",
-            options=['---'] + self.STATUS,
-            layout=widgets.Layout(width='220px')
-        )
-    
-        assume_w = widgets.Text(
-            description="Assumed:",
-            placeholder="optional default",
             layout=widgets.Layout(width='220px')
         )
     
@@ -292,10 +275,7 @@ class LibraryUI:
         body = widgets.VBox([
             identifier_w,
             role_w,
-            widgets.VBox([
-                widgets.HBox([type_w, status_w]),
-                assume_w
-            ])
+            type_w
         ])
     
         card = widgets.VBox([header, body])
@@ -314,9 +294,7 @@ class LibraryUI:
             "widgets": {
                 "input": identifier_w,
                 "represents": role_w,
-                "type": type_w,
-                "status": status_w,
-                "assumed": assume_w
+                "type": type_w
             }
         }
     
@@ -348,9 +326,7 @@ class LibraryUI:
             result.append({
                 "input": inp,
                 "represents": w["represents"].value,
-                "type": w["type"].value,
-                "status": w["status"].value,
-                "assumed": w["assumed"].value
+                "type": w["type"].value
             })
     
         return result
@@ -367,7 +343,7 @@ class LibraryUI:
         self.btn_submit = widgets.Button(
             description="Submit Entry",
             button_style='danger',
-            icon='plus'
+            icon='check'
         )
 
         self.out_submit = widgets.Output()
@@ -393,7 +369,7 @@ class LibraryUI:
             )
         )
 
-        display(
+        main_form = widgets.VBox([
             self.w_struc,
             self.w_name,
             self.w_library,
@@ -401,6 +377,75 @@ class LibraryUI:
             self.w_description,
             self.w_additional,
             self.w_source
+        ])
+        
+        main_form.layout = widgets.Layout(width='68%')
+
+        main_guide = widgets.HTML("""
+        <div style="
+            border:1px solid #DDD;
+            border-radius:10px;
+            padding:15px;
+            background:#FAFAFA;
+            font-size:11.5px;
+            line-height:1.45;
+        ">
+        
+        <h3 style="margin-top:0;color:#9E1B34;">
+        💡 Entry Guide
+        </h3>
+        
+        <ul style="padding-left:20px;">
+        
+        <li><b>Structure Type</b><br>
+        Refer to Exercises 1 for an overview on the Code Structures.</li>
+        
+        <br>
+        
+        <li><b>General Structure</b><br>
+        Use arbitrary variable names for whatever arguments this code accepts. You'll refer to these variable names in the 'Inputs' section.</li>
+        
+        <br>
+
+        <li><b>Library</b><br>
+        If it's available by default in Python, leave this blank.</li>
+        
+        <br>
+        
+        <li><b>Number of Arguments</b><br>
+        Enter -1 if the function accepts any number of arguments.</li>
+        
+        <br>
+        
+        <li><b>Description</b><br>
+        Keep this to one concise sentence explaining what the structure does.</li>
+        
+        <br>
+        
+        <li><b>Additional Details</b><br>
+        When/where to use it, things to watch out for, etc. You can leave this blank if it is pretty straightforward.</li>
+        
+        <br>
+        
+        <li><b>Source</b><br>
+        Record where this was introduced (Lab, Lecture, Homework, etc.).</li>
+        
+        </ul>
+        
+        </div>
+        """)
+        
+        main_guide.layout = widgets.Layout(width='50%')
+
+        display(
+            widgets.HBox(
+                [main_form, main_guide],
+                layout=widgets.Layout(
+                    width='99%',
+                    justify_content='space-between',
+                    align_items='flex-start'
+                )
+            )
         )
 
         display(
@@ -422,27 +467,26 @@ class LibraryUI:
         display(self.inputs_grid)
         display(self.btn_add_input)
 
-        display(
-            widgets.HTML('<div style="font-size:20px;font-weight:600;color:#9E1B34;margin-top:10px;">Guide:</div>'
-        ))
-        display(widgets.HTML(
-            '<div style="color:#888;font-size:15px;margin-top:3px;">Leave unused input rows blank; If entering a method, make the first row the Object.</div>'
-        ))
-        display(widgets.HTML(
-            '<div style="color:#888;font-size:15px;margin-top:3px;"><b>Input:</b> The same name you gave this input in the general structure.</div>'
-        ))
-        display(widgets.HTML(
-            '<div style="color:#888;font-size:15px;margin-top:3px;"><b>Represents:</b> Oftentimes, inputs will not just be any old string or list, but something that has a relationship with the other inputs or is of a certain quality.</div>'
-        ))
-        display(widgets.HTML(
-            '<div style="color:#888;font-size:15px;margin-top:3px;"><b>Type:</b> The datatype. If this is more complex (e.g. a list <i>of strings</i>), indicate as such in the Represents box.</div>'
-        ))
-        display(widgets.HTML(
-            '<div style="color:#888;font-size:15px;margin-top:3px;"><b>Status:</b> Is the input required, or can you omit it? (only about 5 or so things in this whole course have omissable inputs that actually matter and will be used often; you do not have to scour the dictionary to find all known omissable inputs for a given function/method.)</div>'
-        ))
-        display(widgets.HTML(
-            '<div style="color:#888;font-size:15px;margin-top:3px;"><b>Assumed:</b> Only fill this out if the input in question is omissable. An example of an omissible argument is the start and step of np.arange, which, when omitted, are assumed to be 0 and 1 respectively. (You will learn this in Lab 2.)</div>'
-        ))
+        guide = widgets.VBox([
+            widgets.HTML(
+                '<div style="color:#888;font-size:15px;margin-top:3px;">If entering a method, make the first row the Object.</div>'
+            ),
+            widgets.HTML(
+                '<div style="color:#888;font-size:15px;margin-top:3px;"><b>Input:</b> The same name you gave this input in the general structure.</div>'
+            ),
+            widgets.HTML(
+                '<div style="color:#888;font-size:15px;margin-top:3px;"><b>Represents:</b> Oftentimes, inputs will not just be any old string or list, but something that has a relationship with the other inputs or is of a certain quality.</div>'
+            ),
+            widgets.HTML(
+                '<div style="color:#888;font-size:15px;margin-top:3px;"><b>Type:</b> The datatype. If this is more complex (e.g. a list <i>of strings</i>), indicate that in the Represents box.</div>'
+            )
+        ])
+        
+        guide_accordion = widgets.Accordion(children=[guide])
+        guide_accordion.set_title(0, "Input Guide")
+        guide_accordion.selected_index = None   # starts collapsed
+        
+        display(guide_accordion)
 
         display(
             widgets.HTML(
@@ -463,6 +507,33 @@ class LibraryUI:
         display(self.examples_grid)
         display(self.btn_add_example)
 
+        display(widgets.HTML("""
+        <hr style="
+            margin-top:35px;
+            margin-bottom:20px;
+            border:none;
+            border-top:2px solid #DDD;
+        ">
+        """))
+        
+        display(widgets.HTML("""
+        <div style="
+            font-size:22px;
+            font-weight:700;
+            color:#9E1B34;
+            margin-bottom:12px;
+        ">
+        Ready to Submit?
+        </div>
+        """))
+        
+        self.btn_submit.layout = widgets.Layout(
+            width='320px',
+            height='55px'
+        )
+        
+        self.btn_submit.style.button_color = "#9E1B34"
+        
         display(
             self.btn_submit,
             self.out_submit
