@@ -1,45 +1,45 @@
 [{
-		"question": "What is the symbol for assignment?",
+		"question": "What does a markdown cell do?",
 		"type": "multiple_choice",
 		"answers": [{
-				"answer": "Equals sign (=)",
+				"answer": "It formats and displays its contents as plain text.",
 				"correct": true,
-				"feedback": "Correct! Anything on the right side of this equals sign will be stored in the variable to the left of the equals sign."
+				"feedback": "Correct! It doesn't run its contents as code."
 			},
 			{
-				"answer": "Arrow (->)",
+				"answer": "It runs anything inside it via the python language.",
 				"correct": false,
-				"feedback": "No! You won't be using this symbol as part of your programming syntax here."
+				"feedback": "No! That is the job of the code cell."
 			},
 			{
-				"answer": "Double equals sign (==)",
+				"answer": "It runs anything inside it via the MATLAB language.",
 				"correct": false,
-				"feedback": "No! This is used to compare the values of both sides and see if they are the same. You'll be using this later."
+				"feedback": "No! Matlab and Python are distinctly separate languages."
 			}
 		]
 	},
     {
-		"question": "Which of these would bring up a coding error?",
+		"question": "How can you visually distinguish code and markdown cells?",
 		"type": "multiple_choice",
 		"answers": [{
-				"answer": "x = 0",
-				"correct": false,
-				"feedback": "No! Zero and negative numbers are treated the same as positive numbers."
-			},
-			{
-				"answer": "x = '0'",
-				"correct": false,
-				"feedback": "No! When surrounded in quotes, the character 0 becomes a string. Strings can be stored in variables."
-			},
-			{
-				"answer": "'x' = '0'",
+				"answer": "Code cells are greyish, while Markdown cells are typically white or multicolored.",
 				"correct": true,
-				"feedback": "Yes! The left side must consist exclusively of variables, and turning x into a string violates this rule."
+				"feedback": "Yes! Only markdown cells have the ability to color their background as anything. Code cells are strictly greyish."
+			},
+			{
+				"answer": "The font is different",
+				"correct": true,
+				"feedback": "Although markdown cells are very flexible (they can display things as codescript), in general you'll see code cells consisting of the characteristic blocky text."
+			},
+			{
+				"answer": "Code cells have a [] on their left margin.",
+				"correct": true,
+				"feedback": "Yes! If not run yet, the bracket will be empty. If run, it will have a number; for example, [3] means that it was the third code cell that was run."
 			},
             {
-                "answer": "'0' = x",
-                "correct": true,
-                "feedback": "Yes! The variable in which information is being stored (in this case x) MUST be on the left side. And '0' is far from a variable."
+                "answer": "Markdown cells are the outputs of code cells.",
+                "correct": false,
+                "feedback": "No! Outputs of code cells are typically considered still part of the code cell."
             }
 		]
 	},
