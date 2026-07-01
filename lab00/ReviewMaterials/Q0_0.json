@@ -44,57 +44,41 @@
 		]
 	},
     {
-        "question": "Given that x is 'apple', what should you type to make y equal to 'appleapple'?",
+        "question": "Suppose x = 'apple'. What does print('I like', x) output?",
 		"type": "multiple_choice",
 		"answers": [{
-				"answer": "y = 'x' + 'x'",
+				"answer": "'I like apples'",
 				"correct": false,
-				"feedback": "No! These are strings of characters, not variables. This would result in y being 'xx'. Variables (like the x and y in the question) are NOT surrounded by quotes."
+				"feedback": "No! This is very close, but we never added the 's' at the end of 'apple'."
 			},
 			{
-				"answer": "x + x",
+				"answer": "'I like x'",
 				"correct": false,
-				"feedback": "No! While this WOULD produce 'appleapple', it would NOT assign it to the variable y."
+				"feedback": "No! print takes what is stored in the variable x, not x itself."
 			},
 			{
-				"answer": "y = x + x",
+				"answer": "'I like apple'",
 				"correct": true,
-				"feedback": "Yes! This makes proper use of the assignment operator (=) and the concatenation of strings (+)."
-			},
-            {
-                "answer": "y = x * 2",
-                "correct": true,
-                "feedback": "Yes! Multiplying a string by an integer concatenates it to itself that many times."
-            },
-            {
-                "answer": "y = x * 2.0",
-                "correct": false,
-                "feedback": "No! While 2 and 2.0 are the same value, python differentiates between integers (2) and floats (2.0)."
-            },
-            {
-                "answer": "y = x * x",
-                "correct": false,
-                "feedback": "No! Multiplying two strings by each other does not do anything."
-            }
+				"feedback": "Yes! This prints the contents of x without changing it, which leads to this somewhat clumsy sentence."
+			}
 		]
 	},
     {
-		"question": "Suppose that a bag of apples costs 8 dollars, and each bag contains 12 apples. If bag_cost is 8, and apples_per_bag is 12, what would be the best way to compute the price of a single apple?",
-		"type": "multiple_choice",
+		"question": "Suppose a and b are defined as numbers. What code will compute a multiplied by itself b times?",
 		"answers": [{
-				"answer": "apple_cost = 8 / 12",
+				"answer": "a^b",
 				"correct": false,
-				"feedback": "No! While this will get you the correct answer, the practice of using the numbers themselves instead of the variables is called Hard-coding the answer, and it's not efficient."
+				"feedback": "No! The carat (^) is a totally different operation in python; you won't need it in this course."
 			},
 			{
-				"answer": "apple_cost = bag_cost / apples_per_bag",
+				"answer": "a**b",
 				"correct": true,
-				"feedback": "Yes! This makes proper use of variables and the correct operation. Note that the variable names themselves carry the context of what the numbers represent."
+				"feedback": "Yes! The double asterisk is python's way of expressing exponentiation."
 			},
 			{
-				"answer": "apple_cost = bag_cost * apples_per_bag",
+				"answer": "a*b",
 				"correct": false,
-				"feedback": "No! Multiplication is not the operation you want to do here."
+				"feedback": "No! This is simple multiplication, not exponentiation."
 			}
 		]
 	}
