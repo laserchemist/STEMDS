@@ -65,6 +65,7 @@
 	},
     {
 		"question": "Suppose a and b are defined as numbers. What code will compute a multiplied by itself b times?",
+		"type": "multiple_choice",
 		"answers": [{
 				"answer": "a^b",
 				"correct": false,
