@@ -90,14 +90,6 @@ HS_ACTIVITIES = [
         "📖 Your Code Library", "For all your coding needs :)"),
 ]
 
-EXERCISES = [
-    ("lab01/E1_v1.1.ipynb", "Exercises 01", "Supplemental for Lab 01"),
-    ("lab02/E2_v1.3.ipynb", "Exercises 02", "Supplemental for Lab 02"),
-    ("lab03/E3_v1.3.ipynb", "Exercises 03", "Supplemental for Lab 03"),
-    ("lab04/E4_v1.2.ipynb", "Exercises 04", "Supplemental for Lab 04"),
-    ("lab05/E1_v1.5.ipynb", "Exercises 05", "Supplemental for Lab 05"),
-]
-
 REVIEWS = [
     ("lab00/ReviewMaterials/Review_0.ipynb", "Review for Lab 00", "alright beans"),
     ("lab01/ReviewMaterials/Review_1.ipynb", "Review for Lab 01", "cool beans"),
@@ -271,7 +263,7 @@ def _chem_header_html():
 
 def _write_toc_html(
     output, title, header_html, activities,
-    btn_color, include_main, include_reviews, include_exercises,
+    btn_color, include_main, include_reviews,
     include_chemistry, include_instructor, include_final,dark_bg=False,
 ):
     body_parts = [
@@ -293,8 +285,6 @@ def _write_toc_html(
 
     if include_reviews:
         body_parts.append(_section_html("🧠 Reviews", REVIEWS, GREEN, "white"))
-    if include_exercises:
-        body_parts.append(_section_html("💪 Exercises", EXERCISES, GOLD, "black"))
     if include_final:
         body_parts.append(_section_html("😱 Final Project", GROUP_PROJ, CRIMSON, "white"))
     if include_instructor:
@@ -351,7 +341,7 @@ def build_ms_toc():
     _write_toc_html(
         "TOC.html", "STEM Data Science — Middle School",
         _ms_header_html(), MS_ACTIVITIES, CHERRY, include_main=True,
-        include_reviews=True, include_exercises=True,
+        include_reviews=True,
         include_chemistry=False, include_instructor=True, include_final=False
     )
 
@@ -361,7 +351,7 @@ def build_ms_toc_student():
     _write_toc_html(
         "TOC_student.html", "STEM Data Science — Middle School",
         _ms_header_html(), MS_ACTIVITIES, CHERRY, include_main=True,
-        include_reviews=True, include_exercises=True,
+        include_reviews=True,
         include_chemistry=False, include_instructor=False, include_final=False
     )
 
@@ -371,7 +361,7 @@ def build_hs_toc():
     _write_toc_html(
         "TOC_hs.html", "STEM Data Science — High School",
         _hs_header_html(), HS_ACTIVITIES, HS_PURPLE, include_main=True,
-        include_reviews=True, include_exercises=True,
+        include_reviews=True,
         include_chemistry=False, include_instructor=True, include_final=True,
         dark_bg=True,
     )
@@ -382,7 +372,7 @@ def build_hs_toc_student():
     _write_toc_html(
         "TOC_hs_student.html", "STEM Data Science — High School",
         _hs_header_html(), HS_ACTIVITIES, HS_PURPLE, include_main=True,
-        include_reviews=True, include_exercises=True,
+        include_reviews=True,
         include_chemistry=False, include_instructor=False, include_final=True,
         dark_bg=True,
     )
@@ -393,7 +383,7 @@ def build_toc_chemistry():
     _write_toc_html(
         "TOC_chem.html", "STEM-UP Chemistry",
         _chem_header_html(), HS_ACTIVITIES, HS_PURPLE,
-        include_reviews=False, include_exercises=False, include_main=False,
+        include_reviews=False, include_main=False,
         include_chemistry=True, include_instructor=False, include_final=False
     )
 
