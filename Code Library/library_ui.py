@@ -2,7 +2,7 @@ import ipywidgets as widgets
 from IPython.display import display, HTML
 import numpy as np
 
-# VERSION 1.4 (6/29/2026)
+# VERSION 1.5 (7/2/2026)
 
 class LibraryUI:
 
@@ -19,6 +19,7 @@ class LibraryUI:
             'Function',
             'Method',
             'Index',
+            'Conditional',
             'Other'
         ]
 
@@ -68,7 +69,7 @@ class LibraryUI:
             layout=widgets.Layout(width='600px')
         )
 
-        self.w_name = widgets.Text(
+        self.w_name = widgets.Textarea(
             description='General Structure:',
             placeholder='e.g. print(a, b)',
             style=self.style_lbl,
@@ -398,7 +399,7 @@ class LibraryUI:
         <ul style="padding-left:20px;">
         
         <li><b>Structure Type</b><br>
-        Refer to Exercises 1 for an overview on the Code Structures.</li>
+        Refer to the sections below this cell for an overview on the Code Structures.</li>
         
         <br>
         

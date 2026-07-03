@@ -1,30 +1,5 @@
 [{
-		"question": "Assume that the equation from Question 1 was reproduced, with all the needed variables being defined exactly as they show up in the equation. Which of these code snippets is acceptable?",
-		"type": "multiple_choice",
-		"answers": [{
-				"answer": "x = 0.5 * G * M / R**2 * t**2",
-				"correct": false,
-				"feedback": "No! While this WILL get you the right answer, it's very disorganized and hard to read."
-			},
-			{
-				"answer": "x = 0.5 * G * M * t**2 / R**2",
-				"correct": true,
-				"feedback": "Yes! A great way to mak your code much more legible is to put all the terms in the numerator on one side, and those in the denominator in the other side."
-			},
-            {
-                "answer": "x = 0.5 * G * (M/R**2) * t**2",
-                "correct": true,
-                "feedback": "Yes! Using parentheses to safely isolate fractions and other potentially confusing math expressions is always a great option."
-            },
-			{
-				"answer": "x = 0.5 * G * M / (R**2 * t**2)",
-				"correct": false,
-				"feedback": "No! This groups the R^2 and t^2 terms together in the denominator even though the t^2 term is in the numerator."
-			}
-		]
-	},
-    {
-		"question": "What function do I use to get the data type of a variable x?",
+		"question": "What function do I use to <g>et the data type of a variable x?",
 		"type": "multiple_choice",
 		"answers": [{
 				"answer": "x?",
@@ -43,68 +18,243 @@
 			}
 		]
 	},
-	{
-		"question": "How can we put quotations inside a string?",
+    {
+		"question": "What code will turn 'fizz' into 'fuzz'?",
 		"type": "multiple_choice",
 		"answers": [{
-				"answer": "\"\"text\"\"",
+				"answer": "'fizz'.replace('z', 'u')",
 				"correct": false,
-				"feedback": "No! Python will form strings between each pair of quotations, and so the text will not be counted as part of it."
+				"feedback": "No! This replaces the wrong letter!"
 			},
 			{
-				"answer": "'\"text'\"",
-				"correct": false,
-				"feedback": "No! This features a mismatch. The outermost pair of quotation marks must match (either single-single or double-double)."
-			},
-            {
-                "answer": "'\"text\"'",
-                "correct": true,
-                "feedback": "Yes! This correctly includes the inner pair of quotation marks (the double quotes) in the string. (\"text\")"
-            },
-			{
-				"answer": "\"'text'\"",
+				"answer": "'fizz'.replace('i', 'u')",
 				"correct": true,
-				"feedback": "Yes! This correctly includes the inner pair of quotation marks (the single quotes) in the string. ('text')"
+				"feedback": "Yes! This replaces the 'i' with 'u', which is exactly what happens in the transformation."
+			},
+			{
+				"answer": "fizz.replace(i, u)",
+				"correct": false,
+				"feedback": "No! You need quotation marks around these arguments!"
 			}
 		]
 	},
 	{
-		"question": "What is the meaning of the absolute value as it is used in Question 4?",
+		"question": "What is the best w<a>y to turn 'better' into 'bitter'?",
 		"type": "multiple_choice",
 		"answers": [{
-				"answer": "It gets the distance between streets and avenues regardless of direction",
+				"answer": "'better'.replace('et', 'it')",
 				"correct": true,
-				"feedback": "Yes! This ensures that when you are getting the distance between any two streets, whatever number you get is Positive."
+				"feedback": "Yes! This differentiates between the two e's enough such that only the first e is replaced."
 			},
 			{
-				"answer": "It converts between different units of length",
+				"answer": "'better'.replace('e', 'i')",
 				"correct": false,
-				"feedback": "No! There is no change in units."
+				"feedback": "No! Remember, the .replace method replaces ALL instances of a certain string. Here, both e's will be replaced."
+			},
+            {
+                "answer": "'bitter'.replace('i', 'e')",
+                "correct": false,
+                "feedback": "No! You are going in the wrong direction."
+            },
+			{
+				"answer": "'better'.replace('better', 'bitter')",
+				"correct": false,
+				"feedback": "No! While this will get you the correct result, it's long and cumbersome, and there's a much shorter code that will do it."
+			}
+		]
+	},
+	{
+		"question": "How do we get rid of a certain s<n>ippet in a string?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Use .replace, but make the second argument 0",
+				"correct": false,
+				"feedback": "No! .replace doesn't recognize numbers"
 			},
 			{
-				"answer": "It gets the maximum length between them",
+				"answer": "Use .replace, but make the second argument an empty string",
+				"correct": true,
+				"feedback": "Yes! This empty string is simply ''."
+			},
+			{
+				"answer": "Use .replace with only one argument.",
 				"correct": false,
-				"feedback": "No! The max function wasn't used in Question 4."
+				"feedback": "No! You'll get an error."
+			},
+			{
+				"answer": "Use subtraction with two strings",
+				"correct": false,
+				"feedback": "No! Python does not recognize this kind of operation."
 			}
 		]
 	},
     {
-		"question": "What will this output? max(20, 21+4, -abs(-150/5), 30-6)",
+		"question": "Suppose that the variable mood is defined as 'I am feeling happy'. What code will get the length of this string, and what will it output?",
 		"type": "multiple_choice",
 		"answers": [{
-				"answer": "24",
+				"answer": "len(mood) and the output will be 15",
 				"correct": false,
-				"feedback": "No! Look closely at what each argument evaluates to."
+				"feedback": "No! Spaces are counted as any other character."
 			},
 			{
-				"answer": "30",
-				"correct": false,
-				"feedback": "No! Remember that the abs() function will turn any number positive, but doesn't act on anything *outside* its parentheses."
-			},
-			{
-				"answer": "25",
+				"answer": "len(mood) and the output will be 18",
 				"correct": true,
-				"feedback": "Yes! This is the maximum value."
+				"feedback": "Yes! This has the correct function and the correct output."
+			},
+			{
+				"answer": "range(mood) and the output will be 18",
+				"correct": false,
+				"feedback": "No! range is not used in this way."
+			},
+            {
+				"answer": "mood.len() and the output will be 18",
+				"correct": false,
+				"feedback": "No! len is NOT a method."
+			}
+		]
+	},
+    {
+		"question": "What code will turn 'banana' into ['b', 'n', 'n', '']?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "'banana'.split()",
+				"correct": false,
+				"feedback": "No! We need an argument inside the parentheses!"
+			},
+			{
+				"answer": "'banana'.replace('a')",
+				"correct": false,
+				"feedback": "No! .replace should not be used here!"
+			},
+			{
+				"answer": "'banana'.split('a')",
+				"correct": true,
+				"feedback": "Yes! This correctly identifies the method name, the structure, and the split boundary. Mmm, I could go for a banana split right about now..."
+			},
+            {
+				"answer": "split('banana', 'a')",
+				"correct": false,
+				"feedback": "No! This is the wrong format."
+			}
+		]
+	},
+    {
+		"question": "How do <y>ou create a list of numbers from 0 to 5?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "numbers = [0, 1, 2, 3, 4, 5]",
+				"correct": true,
+				"feedback": "Yes! The means of creating lists is quite simple, almost deceptively so."
+			},
+			{
+				"answer": "numbers = list[0, 5]",
+				"correct": false,
+				"feedback": "No! Remember the code structures!"
+			},
+            {
+                "answer": "numbers = [0, 5]",
+                "correct": false,
+                "feedback": "No! This will only put the terms 0 and 5 in the list!"
+            },
+			{
+				"answer": "numbers = np.arange(0, 6)",
+				"correct": false,
+				"feedback": "No! This will indeed make the numbers, but the format will be an array, not a list."
+			}
+		]
+	},
+    {
+		"question": "What code will create a new list with ele<m>ents [1, 3, 5, 7, 9, 11]? Assume that the variable numbers has been defined as [0, 1, 2, 3, 4, 5].",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "[2*x-1 for x in numbers]",
+				"correct": false,
+				"feedback": "No! This is the correct format but it will not lead to the correct numbers."
+			},
+			{
+				"answer": "[2*x+1 for x in numbers]",
+				"correct": true,
+				"feedback": "Yes! This structure, called list comprehension, allows us to modify each term in a list at once."
+			},
+			{
+				"answer": "2 * numbers + 1 ",
+				"correct": false,
+				"feedback": "No! This would work IF numbers was an array."
+			},
+			{
+				"answer": "2*x+1 for x in numbers",
+				"correct": false,
+				"feedback": "No! This structure is missing something."
+			}
+		]
+	},
+	{
+		"question": "What cod<e> will best remove all the e's from ['asteroid', 'comet', 'meteor']? Assume this list is stored in the variable space_things.",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "space_things.replace('e', '')",
+				"correct": false,
+				"feedback": "No! Lists cannot be treated the same way as strings."
+			},
+			{
+				"answer": "replace(space_things, 'e', '')",
+				"correct": false,
+				"feedback": "No! This is the entirely wrong format."
+			},
+            {
+                "answer": "[x.replace('e', '') for x in space_things]",
+                "correct": true,
+                "feedback": "Yes! You MUST use List Comprehension when working with each element in a list."
+            },
+			{
+				"answer": "[x.replace('e','') in space_things]",
+				"correct": false,
+				"feedback": "No! You are missing something here."
+			}
+		]
+	},
+	{
+		"question": "What will pro<d>uce the output array([0, 5, 10, 15, 20])?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "np.arange(0, 20)",
+				"correct": false,
+				"feedback": "No! This assumes that you are going up by 1 each term, but that is not the case."
+			},
+			{
+				"answer": "np.arange(0, 20, 5)",
+				"correct": false,
+				"feedback": "No! Remember, the sequence as coded here will stop BEFORE 20."
+			},
+			{
+				"answer": "np.arange(0, 21, 5)",
+				"correct": true,
+				"feedback": "Yes! This will go up by five, from 0 to before 21 (so, 20)."
+			}
+		]
+	},
+    {
+		"question": "Suppos<e> you store the array from the previous quiz question as the variable numbers. What code will get you the output array([100, 95, 90, 85, 80])?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "100 - numbers",
+				"correct": true,
+				"feedback": "Yes! Remember that operations between single numbers and arrays (not lists!) will automatically apply to All terms inside."
+			},
+			{
+				"answer": "[100-x for x in numbers]",
+				"correct": true,
+				"feedback": "Yes! List Comprehension still works on arrays (though there is a much easier way to calculate this)."
+			},
+			{
+				"answer": "numbers + 100",
+				"correct": false,
+				"feedback": "No! This won't get you the correct sequence of numbers."
+			},
+            {
+				"answer": "numbers + 80",
+				"correct": false,
+				"feedback": "No! This won't get you the correct sequence of numbers."
 			}
 		]
 	}

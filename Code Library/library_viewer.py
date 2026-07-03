@@ -6,7 +6,7 @@ import ipywidgets as widgets
 from IPython.display import display, HTML
 import uuid
 
-# VERSION 1.4 (6/29/2026)
+# VERSION 1.5 (7/2/2026)
 
 FILE = "student_library.json"
 
@@ -661,8 +661,7 @@ class LibraryViewer:
                         background:#F7F7F7;
                         padding:10px;
                         border-radius:6px;
-                        overflow-x:auto;">
-                    {ex.get('code', '')}</pre>
+                        overflow-x:auto;">{ex.get('code', '')}</pre>
                 </div>
         
                 <div>
@@ -671,8 +670,7 @@ class LibraryViewer:
                         background:#F7F7F7;
                         padding:10px;
                         border-radius:6px;
-                        overflow-x:auto;">
-                    {ex.get('output', '')}</pre>
+                        overflow-x:auto;">{ex.get('output', '')}</pre>
                 </div>
         
                 <div style='color:#666;'>
