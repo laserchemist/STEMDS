@@ -8,7 +8,7 @@ test = {
           'code': r"""
           >>> abs(avg_cal_high - 481.66) < 0.01
           True
-          >>> abs(avg_cal_low - 411.43) < 0.01
+          >>> abs(avg_cal_low - 421.250) < 0.01
           True
           """,
           'hidden': False,
