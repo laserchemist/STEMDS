@@ -1,5 +1,5 @@
 test = {
-  'name': 'q8_open_ended',
+  'name': 'q10_open_ended',
   'points': 1,
   'suites': [
     {
@@ -7,7 +7,7 @@ test = {
         {
           'code': r"""
           >>> ### Testing answer to open ended question if answer is not there or too short, fails
-          >>> test_open('What countries did you compare', notebook, 60) == 1
+          >>> test_open('reported to the WHO', notebook, 60) == 1
           True
           """,
           'hidden': False,
