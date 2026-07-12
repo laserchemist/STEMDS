@@ -94,6 +94,7 @@ REVIEWS = [
     ("lab00/ReviewMaterials/Review_0.ipynb", "Review for Lab 00", "alright beans"),
     ("lab01/ReviewMaterials/Review_1.ipynb", "Review for Lab 01", "cool beans"),
     ("lab02/ReviewMaterials/Review_2.ipynb", "Review for Lab 02", "cooler beans"),
+    ("lab03/ReviewMaterials/Review_3.ipynb", "Review for Lab 03", "coolest beans"),
 ]
 
 CHEMISTREES = [
