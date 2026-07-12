@@ -1,0 +1,161 @@
+[{
+		"question": "Suppose we want to make a table with three columns. How should we organize the arguments in Table().with_columns?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Table().with_columns([label1, label2, label3], [array1, array2, array3])",
+				"correct": false,
+				"feedback": "No! This is not the correct order or format."
+			},
+			{
+				"answer": "Table().with_columns(array1, label1, array2, label2, array3, label3)",
+				"correct": false,
+				"feedback": "No! This is not the correct order."
+			},
+			{
+				"answer": "Table().with_columns(label1, array1, label2, array2, label3, array3)",
+				"correct": true,
+				"feedback": "Yes! For each column, the label comes first, and then the array."
+			}
+		]
+	},
+    {
+		"question": "Table.sort will naturally go from lowest to highest. What must we do to reverse this direction?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "Use the Table.opposite_sort method instead.",
+				"correct": false,
+				"feedback": "No! There is no such table method with that name."
+			},
+			{
+				"answer": "Add descending=True as another argument.",
+				"correct": true,
+				"feedback": "Yes! Table.sort can modify its direction through just that argument."
+			},
+			{
+				"answer": "We can only do it manually.",
+				"correct": false,
+				"feedback": "No! This would be literal torture."
+			}
+		]
+	},
+	{
+		"question": "Suppose that you have a list and want to add it as another row to a table. What method works best?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": ".with_row",
+				"correct": true,
+				"feedback": "Yes! This naturally accepts a list and adds it to the table."
+			},
+			{
+				"answer": ".with_rows",
+				"correct": false,
+				"feedback": "No! This is for adding mutiple rows, not just one. It expects a list of lists."
+			},
+            {
+                "answer": ".append",
+                "correct": false,
+                "feedback": "No! This would work if the row you wanted to add was already in a table format, but that isn't the case."
+            },
+			{
+				"answer": ".add",
+				"correct": false,
+				"feedback": "No! There is no such table method with that name."
+			}
+		]
+	},
+	{
+		"question": "Before we can apply statistical functions to data in a table, what method must we use?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": ".select",
+				"correct": false,
+				"feedback": "No! This method keeps the data in the table format, and tables are not well-equipped to deal with statistical functions."
+			},
+			{
+				"answer": ".extract",
+				"correct": false,
+				"feedback": "No! There is no such table method with this name."
+			},
+			{
+				"answer": ".column",
+				"correct": true,
+				"feedback": "Yes! This will give you a column array, which is perfect for statistical functions."
+			}
+		]
+	},
+    {
+		"question": "Suppose we must get the rows in a table that range between 80 and 90. What predicate must we use?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "are.between(80, 90)",
+				"correct": true,
+				"feedback": "Yes! This is one of the most useful predicates that you'll see."
+			},
+			{
+				"answer": "between(80, 90)",
+				"correct": false,
+				"feedback": "No! Recall that all .where predicates must adhere to a certain format."
+			},
+			{
+				"answer": "range(80, 90)",
+				"correct": false,
+				"feedback": "No! range is not used in this way."
+			},
+            {
+				"answer": "are.range(80, 90)",
+				"correct": false,
+				"feedback": "No! There is no predicate with this name."
+			}
+		]
+	},
+    {
+		"question": "What's the main difference between .select and .drop?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": ".select deals with table columns, but .drop deals with table rows.",
+				"correct": false,
+				"feedback": "No! Both of these deal with table columns."
+			},
+			{
+				"answer": ".select can take multiple arguments, but .drop can only take one.",
+				"correct": false,
+				"feedback": "No! Both of them can accept multiple arguments."
+			},
+			{
+				"answer": ".select specifies the columns you want to keep, but .drop specifies the columns you want to get rid of.",
+				"correct": true,
+				"feedback": "Yes! Both serve the same purpose (reducing the number of columns) but one can be more convenient than the other."
+			},
+            {
+				"answer": ".select can accept indices, while .drop can't",
+				"correct": false,
+				"feedback": "No! Both accept indices."
+			}
+		]
+	},
+    {
+		"question": "How do you get the first 10 rows of a table?",
+		"type": "multiple_choice",
+		"answers": [{
+				"answer": "table[10]",
+				"correct": false,
+				"feedback": "No! Usng indices on a table would get you the first ten columns, not the rows."
+			},
+			{
+				"answer": "table.get(10)",
+				"correct": false,
+				"feedback": "No! This table method does not even exist!"
+			},
+            {
+                "answer": "table.take(10)",
+                "correct": false,
+                "feedback": "No! This wil only get the tenth row, and nothing more."
+            },
+			{
+				"answer": "table.take(np.arange(10))",
+				"correct": true,
+				"feedback": "Yes! np.arange will specify the indices of the first ten rows, and .take grabs them all."
+			}
+		]
+	}
+]

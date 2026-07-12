@@ -1,0 +1,633 @@
+<div id="cb-root-%%UID%%"
+     style="
+        display:grid;
+        grid-template-columns:450px 1fr;
+        gap:18px;
+        max-width:1400px;
+        margin:12px auto;
+        font-family:Segoe UI,Arial,sans-serif;
+        align-items:start;">
+
+  <!-- LEFT PANEL -->
+<div style="
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:16px;
+    padding:18px;
+    max-height:600px;
+    overflow-y:auto;">
+
+    <div style="font-size:20px;
+                font-weight:700;
+                margin-bottom:14px;">
+      Code Blocks
+    </div>
+
+    <div id="cb-blocks-%%UID%%"
+         style="display:flex;
+                flex-wrap:wrap;
+                gap:10px;">
+    </div>
+
+    <button id="cb-clear-%%UID%%"
+            style="margin-top:18px;
+                   width:100%;
+                   background:#d64545;
+                   color:white;
+                   border:none;
+                   border-radius:10px;
+                   padding:10px;
+                   font-size:14px;
+                   font-weight:600;
+                   cursor:pointer;">
+      Clear Workspace
+    </button>
+  </div>
+
+  <!-- RIGHT PANEL -->
+<div style="background:#fff;
+            border:1px solid #e5e5e5;
+            border-radius:16px;
+            padding:18px;
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;">
+
+    <div style="font-size:20px;
+                font-weight:700;
+                margin-bottom:14px;">
+      Workspace
+    </div>
+
+    <!-- DROP SLOTS -->
+    <div id="cb-slots-%%UID%%"
+         style="display:flex;
+                flex-wrap:wrap;
+                gap:12px;
+                margin-bottom:22px;">
+    </div>
+
+    <!-- LIVE CODE -->
+    <div id="cb-code-%%UID%%"
+         style="background:#111;
+                color:#5cff87;
+                font-family:Consolas,monospace;
+                border-radius:12px;
+                min-height:70px;
+                padding:16px;
+                font-size:18px;
+                margin-bottom:20px;">
+      Your code will appear here...
+    </div>
+
+    <!-- TEMPLATE PREVIEW -->
+    <div style="background:#eef5ff;
+                border:1px solid #cfe0ff;
+                border-radius:12px;
+                padding:16px;">
+
+      <div style="font-size:11px;
+                  font-weight:700;
+                  letter-spacing:1.5px;
+                  color:#4d79d8;
+                  margin-bottom:8px;
+                  text-transform:uppercase;">
+        Function Structure
+      </div>
+
+      <div id="cb-template-%%UID%%"
+           style="font-family:Consolas,monospace;
+                  font-size:18px;
+                  color:#222;">
+        Click or drag a function block.
+      </div>
+    </div>
+    <button id="cb-check-%%UID%%"
+        style="
+          margin-top:10px;
+          width:100%;
+          background:#4caf50;
+          color:white;
+          border:none;
+          padding:10px;
+          border-radius:10px;
+          font-weight:600;
+          cursor:pointer;">
+  Check Answer
+</button>
+
+<div id="cb-feedback-%%UID%%"
+     style="margin-top:10px;font-weight:600;"></div>
+  </div>
+</div>
+
+<script type='text/javascript' src='https://temple.2i2c.cloud/ssPzzJpwiyxyo2MP0CWrZX82W5mbFt8MiVwIAGr-trDHFbVtIvk6HDSBgrgBpznR4PX_ju98Lsef5OqQX23OdxVP51GCTyr0HBRkkjjriVe8eAWrwgdN7xMqtQQlgAHJsriWXrznsBCmsKMhqUWpVSBa-brr4ZMEDawNbaWgyXyUbTojzpI55DjRwelOqRZ114Hq7e4xqlY5lBJAYP3CK3uLs_zYzhKjUZwCUHgy2fZSxW4n_s8CCDS_2fZIkflWV8m76QpyBatnN_tt6ZwKa48KgPFXtAXJZR4Qd8d_ao4S7Mr5y1ZvanOziwQDFAehPGJyMLFz8ZaodzflTX88MGn3ymjgiJm_5lXehiOE3LV6PQGY-Qu_T5AW4lXC2B4q4ujyRgzeb4MlkFzYeS5NUfXjLxI27AO4YqK8OgSJOB8RH1Ni7PqEIRhV2GKSQzzsqNVtYZS_PLEwkXI_tDfALBIfUZpJcloTbhJyCZzWizagPoomkS2r2zRXuACcg14pmBP9C2PypqGTMyayP2l_SKnrXplmczMvtDa4wRm8OPuGgWqtVR5WqicWw34BF-9QNp0XCbN502ut5QPnb-7s4CNzDveO1YRxX2Lb7TOXDR-yF_NNLRXtQcvaC1IM3R0z8Js0aTDN-HMDml4_lh0'></script><script type='text/javascript' src='https://temple.2i2c.cloud/tUUsx09POk-heRLP6K9TGIgl5DspJmr4dJl57OxbyG3Kw2xLnCH_4fpxCqimBR3Uh77IDBvOhS_OeaAA6H8XZbr_Blo2ZHdcE_KjymUVbyCryp3nVTNWIJyaTBGaS3Z_wBx-kt-TeolO88_f5sZEHQuGhpkllr3hsG69qcLXfkJ2a0vACH7faLX0H_oivwl3GmOrK_dm4r3ie9BNkS3QVA_ombi5wTwKJV2VTFpLH4QGC6MqsH4ttsOy0sf9IrQ8WAz8QbSPPuofxB0wwVuAFglPFDvZuVhQknq6RsJInJBV51RYYhjoO5U9iiwMpLP2nlAxFAQVztn-WUb-1OMgvuZ0pMQtGVCQsnWFl8VeOeXk6ikn7xewqORgTSDqj_O0CZACtAd0EJ_KcEqWnIrf978oXK2UOR5emLg8qIdKsWlD_mj_rLOwK2GKPx77ktbwAeFcljGEa0W4T87NalDY0rwzp-WalhaayZGfZNEDW1YSS-Zh7BDGn8JkgzrxEYtOjE5GH-1nHe9VX5_utF00b8tUAl8InJ3SciYQltN5jIaKgp2DQufOS0clCzNBhdsg4Eq5Xy13bcptojRREjzsKd4jvCWRT8aR6Z61UIeNqesPCrJ_2EPRDLjm2Sp01LRSse6FDw-a8ZHm-mpY9Fk'></script><script type='text/javascript' src='https://temple.2i2c.cloud/L6hCcPZtkEcQTslmEEbPuBGbW9ZLWvtxVPdBd4lhZz9y9DESbOXoo4x9zxAMiqShYftCvL-uzfvB7EaZn-sYTGKaV8o6gvyd3Xd5khqMK2PFLBiAD9EI4f25MZBDlaK_HVNfGbcsitygW89KdxWRo9BMoLh_0tgq0WCWpjCGzoItzkIMwerHN4KOiAD2Boz2OkGPr44UuOoEIIhAQjzZ-JbplARA5Ax-fuLWj8FOc0aqgFPvVIXKOEY9n5nzbILKV6Uoe3UOeMFRcfUkkzqU_xXC7qYNi6lLet-3APt8drzt7W8G5kicGjyUaTB8nCDul3_3SxTOAcdQrw2-PXPB4La6xGmjFaAjUph7FC52wWwCMqjmhLOagXvP77giLanxZlCDr0Z-3C9HHKaFrl7jNheoJEIUEWurCuefRy8n6-5mU3cWAModoMtOaZrKsZDOj210F22bo8isdEQQlufsOQpxGTGGZGq2yHYgpLaRQncx3F7pUpAEVoKo0c5k58euC2lwmAt31khnPijtpANZ565SR9m8LIMj-vHJU7n8GnwPrzA374yPPo5rX1bs3Y0VnfTQDl-iEZwi5_wPs4iAJEONYeCClYRLApPyHQrEm3b_lqyWgY1fyMvLpaNP26dcpLXVOgvvmAowujQBHO4'></script><script type='text/javascript' src='https://temple.2i2c.cloud/kvOPcet6zzwNiey95w1QLqkytc3_BJqeHb3nRXLx135kuHCizHjdrJrAs1NoIh1Aic3q1cnJykG25NalRw386B4DpGtHjjPQ5eg6X4mDTXtMARdKLEnvzTx5ytzEwR3HScOQG97oavqYp--Dn2rqa2_-d1zFl79RybLmTxItVa4P1GtBdBWZdBgs2YygbNnTFPi0M6ScuyHlTrkksBynXZ_7iLRretVYNEN8KZJWIiHqRkYjNpggat8bxGaSgQpbP-XjjsVQssDUkweeFZS0KDNCsqT6ryXzbH6FR6Iab7zWZb7ptPxavDmA58TY5zYuwOMLfjdI2_ItZssvK0vw2sQa0UK1rtupV5CDFqQtwgg-MWvtWGtf3Tk1reeov3nnw5yfDsEh9wOhgH8v5km7uwEdyqt_HuPcZsxF4LC6n6-DksILpdNbPv9fp_w9vcrjKTctANjIiBSrU6Sbma5hiDGxcniawtnXM3N9i6b0elJQLnf1LfF7oBkyFbS7ftc7zej6m_0Zh4BnWF0AZcsqYz2hrgD3OzZr3kdiJbXbDh1Hmd0hBuL7CSD1g4ONOSqbdeCyq8o36QEwJgKIQENQZN3NhjuTgc6_feSsduSJTmFnFvHVCPCoDG1K3StiuZAQCtkLyL59K8s'></script><script>
+    console.log("CB SCRIPT LOADED");
+    
+(function (window, document) {
+
+    const DATA = {
+
+  globalBlocks: {
+    'Libraries': ['np', 'm'],
+    'Predicates': ['are', 'above', 'equal_to', 'not_equal_to', 'below', 'above_or_equal_to', 'below_or_equal_to', 'between'],
+    'Functions': ['average', 'mean', 'abs', 'len', 'arange'],
+    'Methods1': ['with_columns', 'with_row', 'with_rows', 'read_table'],
+    'Methods2': ['sort', 'select', 'drop', 'where', 'take'],
+    'Methods3': ['column', 'num_rows', 'num_columns'],
+    'Variables': [],
+    'Numbers': ['1', '2', '5', '10'],
+    'Operators': [' + ', ' - ', ' * ', ' / ', ' = '],
+    'Syntax': ['(', ')', '[', ']', ', ', ':', "'", "."],
+    'Strings': [],
+    'Booleans': ['True', 'False']
+  },
+
+  levelBlocks: {
+    level0: {
+      'Variables': ['Table', 'data'],
+      'Strings': ["'reviewdata.csv'"]
+    },
+    level1: {
+      'Numbers': ['12', '20'],
+      'Variables': ['bright_adjust', 'data'],
+      'Strings': ["'Brightness'"]
+    },
+
+    level2: {
+      'Variables': ['average_time_left', 'bright_adjust'],
+      'Strings': ["'Time Remaining (seconds)'"]
+    },
+    
+    level3: {
+      'Variables': ['average_time_left', 'bright_adjust', 'close_calls'],
+      'Strings': ["'Time Remaining (seconds)'"]
+    },
+    
+    level4: {
+      'Variables': ['close_calls', 'summary', 'summarized_table']
+    },
+    
+    level5: {
+      'Variables': ['speed_sorted', 'summarized_table', 'descending'],
+      'Strings': ["'Speed (kph)'"]
+    },
+    
+    level6: {
+      'Variables': ['final_table', 'speed_sorted'],
+      'Numbers': ['0', '3', '4', '7', '8'],
+      'Strings': ["'Mass (kg)'", "'Distance (m)'", "'Points'", "'Temperature (K)'", "'Moles'"]
+    }
+  },
+
+  colors: {
+    'Libraries': '#839493',
+    'Predicates': '#0097a7',
+    'Functions': '#7c4dff',
+    'Methods1': '#920545',
+    'Methods2': '#920545',
+    'Methods3': '#920545',
+    'Variables': '#2196f3',
+    'Numbers': '#43a047',
+    'Operators': '#ef6c00',
+    'Syntax': '#757575',
+    'Strings': '#c2185b',
+    'Booleans': '#43a047'
+  },
+
+    templates: {
+        'print': 'print(anything)',
+        'arange': 'np.arange(start, stop, step)',
+        'len': 'len(list or array)',
+        'average': 'np.average(list or array)',
+        'mean': 'np.mean(list or array)',
+        'with_columns': 'ExistingTable.with_columns(ColumnHeader1, ListOrArray1, ColumnHeader2, ListOrArray2, [etc, etc])',
+        'read_table': "Table.read_table('FileName')",
+        'with_row': "ExistingTable.with_row(NewRowAsList)",
+        'with_rows': "ExistingTable.with_rows(listOfLists)",
+        'sort': "ExistingTable.sort(ColumnHeader, descending = True)",
+        'select': "ExistingTable.select(ColumnHeader1, ColumnHeader2, [etc])",
+        'drop': "ExistingTable.drop(UnwantedColumnHeader1, UnwantedColumnHeader2, [etc])",
+        'take': "ExistingTable.take(IndexOfRow1, IndexOfRow2, [etc])",
+        'column': "ExistingTable.column(ColumnHeader)",
+        'num_rows': "ExistingTable.num_rows",
+        'num_columns': "ExistingTable.num_columns",
+        'where': "ExistingTable.where(ColumnHeader, predicate)",
+        'above': "ExistingTable.where(ColumnHeader, are.above(value))",
+        'below': "ExistingTable.where(ColumnHeader, are.below(value))",
+        'equal_to': "ExistingTable.where(ColumnHeader, are.equal_to(value))",
+        'not_equal_to': "ExistingTable.where(ColumnHeader, are.not_equal_to(value))",
+        'between': "ExistingTable.where(ColumnHeader, are.between(value1, value2))"
+    },
+      
+    answers: {
+        level0: [['data', ' = ', 'Table', '.', 'read_table', '(', "'reviewdata.csv'", ')']],
+        level1: [['bright_adjust', ' = ', 'data', '.', 'where', '(', "'Brightness'", ', ', 'are', '.', 'between', '(', '12', ', ', '20', ')', ')'],
+                ['bright_adjust', ' = ', 'data', '.', 'where', '(', '5', ', ', 'are', '.', 'between', '(', '12', ', ', '20', ')', ')']],
+        level2: [['average_time_left', ' = ', 'np', '.', 'average', '(', 'bright_adjust', '.', 'column', '(', "'Time Remaining (seconds)'", ')', ')'],
+                ['average_time_left', ' = ', 'np', '.', 'mean', '(', 'bright_adjust', '.', 'column', '(', "'Time Remaining (seconds)'", ')', ')'],
+                ['average_time_left', ' = ', 'np', '.', 'average', '(', 'bright_adjust', '.', 'column', '(', '1', ')', ')'],
+                ['average_time_left', ' = ', 'np', '.', 'mean', '(', 'bright_adjust', '.', 'column', '(', '1', ')', ')'],
+                ['average_time_left', ' = ', 'np', '.', 'average', '(', 'bright_adjust', '[', "'Time Remaining (seconds)'", ']', ')'],
+                ['average_time_left', ' = ', 'np', '.', 'mean', '(', 'bright_adjust', '[', "'Time Remaining (seconds)'", ']', ')'],
+                ['average_time_left', ' = ', 'np', '.', 'average', '(', 'bright_adjust', '[', '1', ']', ')'],
+                ['average_time_left', ' = ', 'np', '.', 'mean', '(', 'bright_adjust', '[', '1', ']', ')']],
+        level3: [['close_calls', ' = ', 'bright_adjust', '.', 'where', '(', "'Time Remaining (seconds)'", ', ', 'are', '.', 'below', '(', 'average_time_left', ')', ')'],
+                ['close_calls', ' = ', 'bright_adjust', '.', 'where', '(', '1', ', ', 'are', '.', 'below', '(', 'average_time_left', ')', ')']],
+        level4: [['summarized_table', ' = ', 'close_calls', '.', 'with_row', '(', 'summary', ')']],
+        level5: [['speed_sorted', ' = ', 'summarized_table', '.', 'sort', '(', "'Speed (kph)'", ', ', 'descending', ' = ', 'True', ')'],
+                ['speed_sorted', ' = ', 'summarized_table', '.', 'sort', '(', '2', ', ', 'descending', ' = ', 'True', ')']],
+        level6: [['final_table', ' = ', 'speed_sorted', '.', 'drop', '(', '0', ', ', '3', ', ', '4', ', ', '7', ', ', '8', ')'],
+                ['final_table', ' = ', 'speed_sorted', '.', 'drop', '(', "'Mass (kg)'", ', ', "'Distance (m)'", ', ', "'Points'", ', ', "'Temperature (K)'", ', ', "'Moles'", ')']]
+    }
+};
+
+console.log("CB SCRIPT LOADED");
+
+const UID = %%UID%%;
+
+const activeLevel = "__LEVEL__";
+
+/* -----------------------------
+   STATE ACCESS (ipywidgets)
+------------------------------ */
+function getStateTextarea() {
+    return document.querySelector(`.cb-state-${UID} textarea`);
+}
+
+/* -----------------------------
+   HELPERS
+------------------------------ */
+function getAnswerKey() {
+    return DATA.answers[activeLevel];
+}
+
+function findCategory(value, blockGroups) {
+    if (!blockGroups) return "Variables";
+
+    for (const [cat, list] of Object.entries(blockGroups)) {
+        if (list.includes(value)) return cat;
+    }
+    return "Variables";
+}
+
+/* -----------------------------
+   BLOCK MERGE
+------------------------------ */
+function mergeBlocks(globalBlocks, levelBlocks, levelOnly=false) {
+    const merged = levelOnly ? {} : JSON.parse(JSON.stringify(globalBlocks));
+
+    for (const category in levelBlocks) {
+        if (category === "levelOnly") continue;
+        if (!merged[category]) merged[category] = [];
+        merged[category].push(...levelBlocks[category]);
+    }
+    return merged;
+}
+
+/* -----------------------------
+   INIT
+------------------------------ */
+function init() {
+    
+
+const root = document.getElementById(`cb-root-${UID}`);
+if (!root) return;
+
+const els = {
+    root,
+    blocksEl: root.querySelector(`#cb-blocks-${UID}`),
+    slotsEl: root.querySelector(`#cb-slots-${UID}`),
+    codeEl: root.querySelector(`#cb-code-${UID}`),
+    templateEl: root.querySelector(`#cb-template-${UID}`),
+    checkBtn: root.querySelector(`#cb-check-${UID}`),
+    feedback: root.querySelector(`#cb-feedback-${UID}`),
+    clearBtn: root.querySelector(`#cb-clear-${UID}`)
+};
+
+els.blocksEl.style.display = "flex";
+els.blocksEl.style.flexDirection = "column";
+els.blocksEl.style.gap = "18px";
+
+    const levelBlocks = DATA.levelBlocks[activeLevel];
+    if (!levelBlocks) {
+        console.error("Bad level");
+        return;
+    }
+
+    const blockGroups = mergeBlocks(
+        DATA.globalBlocks,
+        levelBlocks,
+        levelBlocks.levelOnly === true
+    );
+
+    let slots = [];
+    let dragged = null;
+
+    const widget = getStateTextarea();
+
+    const answerKey = getAnswerKey();
+    const slotCount = answerKey[0].length;
+
+    /* -----------------------------
+       LOAD STATE SAFELY
+    ------------------------------ */
+    function loadSlots() {
+        if (!widget?.value) return new Array(slotCount).fill(null);
+
+        try {
+            const data = JSON.parse(widget.value);
+            if (!data?.response?.slots) return new Array(slotCount).fill(null);
+
+            return data.response.slots.map(v =>
+                v ? { value: v, category: findCategory(v, blockGroups) } : null
+            );
+        } catch {
+            return new Array(slotCount).fill(null);
+        }
+    }
+
+    slots = loadSlots();
+
+    /* -----------------------------
+       RENDER BLOCKS
+    ------------------------------ */
+    function renderBlocks() {
+        els.blocksEl.innerHTML = "";
+
+        Object.keys(blockGroups).forEach(category => {
+
+            const section = document.createElement("div");
+
+            const title = document.createElement("div");
+            title.innerHTML = `▼ ${category}`;
+            title.style.cssText = `
+                font-size:12px;
+                font-weight:700;
+                letter-spacing:1px;
+                color:#666;
+                margin-bottom:8px;
+                cursor:pointer;
+                user-select:none;
+            `;
+            
+            const row = document.createElement("div");
+            row.style.cssText = `
+                display:flex;
+                flex-wrap:wrap;
+                gap:10px;
+            `;
+            
+            let expanded = true;
+            
+            title.onclick = () => {
+                expanded = !expanded;
+                row.style.display = expanded ? "flex" : "none";
+                title.innerHTML = `${expanded ? "▼" : "▶"} ${category}`;
+            };
+            
+            section.appendChild(title);
+
+            blockGroups[category].forEach(b => {
+
+                const div = document.createElement("div");
+                div.textContent = b;
+                div.dataset.value = b;
+                div.dataset.category = category;
+                div.draggable = true;
+
+                div.style.cssText =
+                    `padding:10px 14px;
+                     background:${DATA.colors[category]};
+                     color:white;border-radius:12px;
+                     cursor:grab;font-size:15px;font-weight:600;`;
+
+                div.addEventListener("dragstart", () => {
+                    dragged = { value: b, category };
+                    updateTemplate(b);
+                });
+                
+                div.addEventListener("dblclick", () => {
+                    updateTemplate(b);
+                
+                    const empty = slots.findIndex(s => s === null);
+                    if (empty === -1) return;
+                
+                    slots[empty] = { value: b, category };
+                    refresh();
+                });
+
+                div.addEventListener("click", () => {
+                    updateTemplate(b);
+                });
+
+                row.appendChild(div);
+            });
+
+            section.appendChild(row);
+            els.blocksEl.appendChild(section);
+        });
+    }
+
+    /* -----------------------------
+       RENDER SLOTS
+    ------------------------------ */
+    function renderSlots() {
+        els.slotsEl.innerHTML = "";
+
+        for (let i = 0; i < slotCount; i++) {
+
+            const slot = document.createElement("div");
+            const item = slots[i];
+
+            const width = item
+                ? Math.max(95, item.value.length * 11)
+                : 95;
+            
+            slot.style.cssText = `
+                width:${width}px;
+                height:65px;
+                border:2px dashed #ccc;
+                border-radius:14px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                position:relative;
+                background:${item ? DATA.colors[item.category] : "#fafafa"};
+                color:white;
+                font-weight:600;
+                font-size:18px;
+                white-space:nowrap;
+                transition:width .15s ease;
+            `;
+
+            slot.textContent = item ? item.value : "";
+
+            slot.addEventListener("dragover", e => e.preventDefault());
+
+            slot.addEventListener("drop", e => {
+                e.preventDefault();
+                if (!dragged) return;
+
+                slots[i] = { ...dragged };
+                refresh();
+            });
+
+            const x = document.createElement("div");
+            x.textContent = "×";
+            x.style.cssText = "position:absolute;top:4px;right:6px;cursor:pointer;color:#999;font-weight:700;";
+            x.onclick = () => {
+                slots[i] = null;
+                refresh();
+            };
+
+            slot.appendChild(x);
+            els.slotsEl.appendChild(slot);
+        }
+    }
+
+    /* -----------------------------
+       CODE VIEW
+    ------------------------------ */
+    function updateCode() {
+        const line = slots.filter(Boolean).map(x => x.value).join("");
+        els.codeEl.textContent = line || "Your code will appear here...";
+    }
+
+    function updateTemplate(block) {
+        els.templateEl.textContent =
+            DATA.templates[block] || "Click or drag a function block.";
+    }
+
+    /* -----------------------------
+       SAVE STATE
+    ------------------------------ */
+function save(bestMatch = null, bestLength = null) {
+
+    const ta = getStateTextarea();
+    if (!ta) return;
+
+    const user = slots.map(s => s ? s.value : "");
+    const targets = getAnswerKey();
+
+    // If no values were supplied, compute them here
+    if (bestMatch === null || bestLength === null) {
+
+        bestMatch = 0;
+        bestLength = 0;
+
+        targets.forEach(target => {
+
+            let matches = 0;
+
+            target.forEach((value, i) => {
+                if (value !== "" && user[i] === value) {
+                    matches++;
+                }
+            });
+
+            if (matches > bestMatch) {
+                bestMatch = matches;
+                bestLength = target.filter(x => x !== "").length;
+            }
+
+        });
+    }
+
+    console.log(user.length, targets[0].length);
+    console.log(user);
+    console.log(targets[0]);
+    
+    const correct = targets.some(target =>
+        user.length === target.length &&
+        user.every((v, i) => v === target[i])
+    );
+
+    ta.value = JSON.stringify({
+        type: "codebuilder",
+        uid: UID,
+        level: activeLevel,
+        response: {
+            slots: user,
+            code: els.codeEl.textContent
+        },
+        evaluation: {
+            correct,
+            bestMatch,
+            bestLength
+        }
+    });
+
+    ta.dispatchEvent(new Event("input", { bubbles: true }));
+}
+
+function refresh() {
+    renderSlots();
+    updateCode();
+    save();
+}
+
+    /* -----------------------------
+       EVENTS
+    ------------------------------ */
+els.checkBtn.onclick = () => {
+
+    const user = slots.map(x => x ? x.value : "");
+    const targets = getAnswerKey();
+
+    let bestMatch = 0;
+    let bestLength = 0;
+
+    targets.forEach(target => {
+
+        let matches = 0;
+
+        target.forEach((value, i) => {
+            if (value !== "" && user[i] === value)
+                matches++;
+        });
+
+        if (matches > bestMatch) {
+            bestMatch = matches;
+            bestLength = target.filter(x => x !== "").length;
+        }
+    });
+
+    save(bestMatch, bestLength);
+
+    const correct = targets.some(target =>
+        user.length === target.length &&
+        user.every((v, i) => v === target[i])
+    );
+
+var hooray = '✓ Correct!';
+
+    if (correct) {
+        els.feedback.textContent =
+            hooray;
+        els.feedback.style.color = "green";
+    } else {
+        els.feedback.textContent = `✗ Try again (${bestMatch}/${bestLength})`;
+        els.feedback.style.color = "red";
+    }
+};
+
+    els.clearBtn.onclick = () => {
+        slots = new Array(slotCount).fill(null);
+        refresh();
+    };
+
+    /* -----------------------------
+       START
+    ------------------------------ */
+    renderBlocks();
+    refresh();
+}
+
+/* -----------------------------
+   WAIT FOR DOM SAFELY
+------------------------------ */
+init();
+
+})(window, document);
+</script>

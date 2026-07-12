@@ -161,6 +161,12 @@ def _append_to_sheet(record, sheet_id, creds_path):
 # ── public API ────────────────────────────────────────────────────────────────
 
 def submit_review(name, user, CB_WIDGETS, review_id=REVIEW_ID):
+
+    if review_id == 'Review 2':
+        total_pts = 18
+    elif review_id == 'Review 3':
+        total_pts = 21
+    
     percentage = []
     
     for i in CB_WIDGETS:
@@ -175,7 +181,7 @@ def submit_review(name, user, CB_WIDGETS, review_id=REVIEW_ID):
 
     totalscore = sum(percentage)*3
 
-    print(f"Score: {totalscore:.1f}/18")
+    print(f"Score: {totalscore:.1f}/total_pts")
     print(f"Note: this doesn't take into account the secret code. >:P")
 
     btn = widgets.Button(
@@ -216,9 +222,9 @@ def submit_review(name, user, CB_WIDGETS, review_id=REVIEW_ID):
                     "name":      name,
                     "user":      user,
                     "timestamp": localtime,
-                    "score_pct": round(totalscore/18, 1),
+                    "score_pct": round(totalscore/total_pts, 1),
                     "correct":   totalscore,
-                    "total":     18,
+                    "total":     total_pts,
                     "notebook":  nb_path or "unknown",
                     "answers":   answers,
                 }
@@ -246,7 +252,7 @@ def submit_review(name, user, CB_WIDGETS, review_id=REVIEW_ID):
 
                 print(f"✅  Submitted {review_id} for {name}")
                 print(f"    Time    : {localtime}")
-                print(f"    Score   : {totalscore:.1f}/18")
+                print(f"    Score   : {totalscore:.1f}/{total_pts:.1f}")
                 print(f"    Answers : {len(answers)} open-ended response(s) captured")
                 print(f"    Saved   : {', '.join(destinations) or 'nowhere — see warnings'}")
 
