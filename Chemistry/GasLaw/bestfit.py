@@ -1,5 +1,8 @@
 import numpy as np
 from datascience import *
+import matplotlib.pyplot as plt
+plt.style.use('ggplot')
+from bestfit import *
 
 def standard_units(any_numbers):
     "Convert any array of numbers to standard units."
@@ -21,13 +24,13 @@ def originalGrapher(slope, intercept, table, xlabel, ylabel, preset='Linear'):
     xvals = np.arange(lowLimit, highLimit, increment)
 
     if preset == 'Linear':
-        plt.plot(xvals, xvals*slope+intercept, color='red', label='fit')
+        plt.scatter(xvals, xvals*slope+intercept, color='red', label='fit')
     elif preset == 'Power':
-        plt.plot(xvals, slope * xvals**2 + intercept, color='red', label='fit')
+        plt.scatter(xvals, slope * xvals**2 + intercept, color='red', label='fit')
     elif preset == 'Inverse':
-        plt.plot(xvals, slope / xvals + intercept, color='red', label='fit')
+        plt.scatter(xvals, slope / xvals + intercept, color='red', label='fit')
     elif preset == 'Root':
-        plt.plot(xvals, slope * xvals**0.5 + intercept, color='red', label='fit')
+        plt.scatter(xvals, slope * xvals**0.5 + intercept, color='red', label='fit')
     else:
         return 'Not an accepted preset! Check for typos.'
     
@@ -36,7 +39,7 @@ def originalGrapher(slope, intercept, table, xlabel, ylabel, preset='Linear'):
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
 
-    plt.title(ylabel.split('(')[0], 'as a function of', xlabel.split('(')[0], 'with a best fit line.') 
+    plt.title(ylabel + ' as a function of ' + xlabel + ' with a best fit line.') 
 
     plt.legend()
     plt.show()
