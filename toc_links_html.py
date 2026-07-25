@@ -84,8 +84,6 @@ HS_ACTIVITIES = [
         "🎲 Lab 05",   "Probability, Simulation & Hypothesis Testing"),
     ("Plant Activity/Plant_Explorer.ipynb",
         "🌿 Plant Similarity: Photo Investigation", "Plant Identification"),
-    ("Hypothesis_Test/Hypothesis_Test.ipynb",
-        "Hypothesis Test Activity", "Guide to doing the P-test"),
     ("Code Library/Code_Library.ipynb",
         "📖 Your Code Library", "For all your coding needs :)"),
 ]
@@ -118,9 +116,8 @@ CHEMISTREES = [
 
 GROUP_PROJ = [
     ("Group-Project/Group_Project_Datasets.ipynb", "View Datasets", "I love numberz"),
-    ("Group-Project/GroupProject_Submission.ipynb", "Submit Group Choice", "No refunds lol"),
-    ("Group-Project/GroupProject_Dashboard.ipynb", "View Groups", "In case you forgot"),
-    ("Group-Project/example_group_project-indego_bikes/Indego.ipynb", "Example Final Project", "For your reference")
+    ("Group-Project/example_group_project-indego_bikes/Indego.ipynb", "Example Final Project", "For your reference"),
+    ("Group-Project/Hypothesis_Test.ipynb","Hypothesis Test Template", "Complete Guide to doing the P-test")
 ]
 
 # ── Instructor-only notebooks ─────────────────────────────────────────────────
