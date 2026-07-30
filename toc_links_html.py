@@ -108,7 +108,8 @@ CHEMISTREES = [
     ("Chemistry/Titrations/Titration Sprite Postlab.ipynb", "Titration: Sprite Postlab", "Anyone else fancy a pint of boiled soda?"),
     ("Chemistry/Titrations/Titration Coca Cola Postlab.ipynb", "Titration: Coca-Cola Postlab", "I know I do")],
     [("Chemistry/Tea/Caffeine Postlab Analysis.ipynb", "Tea: Caffeine Postlab", "I love caffeine :D"),
-    ("Chemistry/Tea/LTheanine Analysis UVvis.ipynb", "Tea: LTheanine UV-vis Postlab", "I love Theanine :D")],
+    ("Chemistry/Tea/LTheanine Postlab Analysis.ipynb", "Tea: LTheanine UV-vis Postlab", "I love Theanine :D"),
+    ("Chemistry/Tea/Tea_Trends.ipynb", "Tea: Advanced Analysis", "How to make the perfect brew")],
     [("Chemistry/UnitConvert/UnitConvert.ipynb", "Guide to Unit Conversion", "Unit Conversions :|"),
     ("SLOOH FITS/Tutor_STEMUP.ipynb", "SLOOH Fits Quest 1", "For measuring star distances"),
     ("SLOOH FITS/Combining_Fits_STEMUP.ipynb", "SLOOH Fits Quest 2", "For Adjusting image quality")]
